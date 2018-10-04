@@ -1,0 +1,99 @@
+
+\section{Beam Design}
+
+\subsection{Deriving the Design Equations}
+
+Equation \ref{Eq:design} is the basic design relationship for concrete beams.
+
+\begin{align}
+	\phi M_n \geq M_u
+	\label{Eq:design}
+\end{align}
+
+The nominal moment of the beam is found by taking moments about the resultant compressive force. The only force left is the tension force in the steel.
+
+\begin{align}
+	\phi T_s z \geq M_u
+\end{align}
+
+Next, plug in the force in the tension steel and the distance from the compressive force to the tensile force.
+
+\begin{align}
+	\phi
+	\left(A_s f_y\right)
+	\left(d-\frac{1}{2}a\right)
+	\geq
+	M_u
+\end{align}
+
+Next, plug in the value for $a$.
+
+\begin{align}
+	\phi
+	\left(A_s f_y\right)
+	\left(d-\frac{1}{2}\frac{A_sf_y}{0.85f'_cb}\right)
+	\geq
+	M_u
+\end{align}
+
+We want to get the equation in terms of the \textit{reinforcement ratio}, $\rho$. We can accomplish this by dividing both sides of the equation by $bd^2$.
+
+
+\begin{align}
+	\phi
+	\left(\frac{A_s}{bd} f_y\right)
+	\left(\frac{d}{d} - \frac12\frac{A_sf_y}{0.85f'_cbd}\right)
+	\geq
+	\frac{M_u}{bd^2}
+\end{align}
+
+
+Substitute the reinforcement ratio into the equation
+
+\begin{align}
+	\phi
+	\left(\rho f_y\right)
+	\left(1 - \frac12\frac{\rho f_y}{0.85f'_c}\right)
+	\geq
+	M_u
+\end{align}
+
+To calculate the reinforcement ratio at the balance condition:
+
+\begin{align}
+	\rho_{bal} = 
+	\frac{0.85f'_c\beta_1}{f_y}
+	\left[
+		\frac{87}{f_y+85}
+	\right]
+\end{align}
+
+\begin{align}
+	\rho_{design}=\frac{0.75\rho_{bal}}{2}
+\end{align}
+
+
+
+\begin{align}
+	\phi \rho f_y
+	\left[1-\frac{f_y}{1.7 f'_c} \rho\right]
+	\geq
+	\frac{M_u}{bd^2}
+\end{align}
+
+\begin{align}
+	\phi R \geq \frac{M_u}{bd^2}
+\end{align}
+
+where
+
+\begin{align}
+	R(f'_c,f_y,\rho) = 
+	\rho f_y 
+	\left(1-\frac{f_y}{1.7f'_c \rho}\right)
+\end{align}
+
+
+
+
+
