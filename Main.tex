@@ -8,7 +8,7 @@
 \usepackage{float}
 \usepackage{pdfpages}
 \usepackage{gensymb}
-
+\usepackage{tikz}
 \everymath{\displaystyle}
 
 \usepackage{hyperref}%Make references, clickable links
@@ -61,26 +61,72 @@
 % Note figures and tables can span both columns by adding a "*"
 \usepackage{cuted}
 
+\usepackage[toc]{glossaries}
+
+\makeglossaries
+
+\newcommand{\glo}[3]{
+% #1: name
+% #2: code
+% #3: definition
+\newglossaryentry{#1}{
+	name={\ensuremath{#2}},
+	description={#3}}
+% 
+	\expandafter\newcommand\csname #1\endcsname{\ensuremath{#2}}
+}
+
+\glo{Mu}{M_{u}}{Factored ultimate moment in the beam}
+\glo{Mn}{M_n}{Nominal moment strength}
+\glo{As}{A_s}{Area of tension reinforcing steel}
+\glo{bb}{b}{Width of compression zone in a beam}
+\glo{dd}{d}{Distance from the extreme fiber in compression}
+
+\glo{rhob}{\rho_b}{The reinforcement ratio of concrete at the balance condition}
+
+\glo{fy}{f_y}{Yield stress of steel}
+\glo{fs}{f_s}{Stress of the steel}
+\glo{fc}{f'_c}{Yield stress of concrete}
+\glo{betao}{\beta_1}{ACI variable}
+
+\glo{ecu}{\varepsilon_{cu}}{Ultimate compressive strain of concrete}
+\glo{ey}{\varepsilon_y}{Yield strain of steel}
+\glo{es}{\varepsilon_s}{Strain of tension steel}
+
+%\newglossaryentry{Mu}{name=$M_u$,description={Ultimate moment in the beam}}
+
 %------------------------------------------------------------------------------------------
 \begin{document}
 
+
+
 %TITLE PAGE COMMANDS
-	
+
 \title{Concrete Beam Design}
 \subtitle{Beam Design}
-\subject{CEE421}
-\titleimage{Figures/Title}
+\coursenum{CEE421}
+\coursetitle{Concrete Structures}
+\university{Arizona State University}
+
+\titleimage{Figures/Title.png}
 \author{Brian Chevalier}
 \date{\today}
 \maketitle
 \pagenumbering{arabic}
 
+
 \input{Sections/beams}
 
 %------------------------------------------------------------------------------------------
 \newpage
-\bibliography{References}
-\addcontentsline{toc}{section}{References}
-\bibliographystyle{apalike}
+\glsaddall
+\printglossary[title={Variables Definitions}]
+
+\newpage
+%\bibliography{References}
+%\addcontentsline{toc}{section}{References}
+%\bibliographystyle{apalike}
+
+
 
 \end{document}

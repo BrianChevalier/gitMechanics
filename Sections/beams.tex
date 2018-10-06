@@ -1,39 +1,155 @@
 
-\section{Beam Design}
+\section{Beam Analysis}
+\subsection{The Whitney Stress Block}
 
+The parameter \betao is calculated by equation \ref{Eq:betao} which is taken from ACI Table 22.2.2.4.3, where \fc  is taken to be in units of psi.
+
+\begin{align}
+	\betao
+	=
+	\begin{cases}
+		0.85 & \fc \leq 4000 \\
+		0.85-0.05\left[\frac{\fc-4000}{1000}\right] & 4000 \leq\fc\leq 8000 \\
+		0.65 & \fc > 8000
+	\end{cases}
+	\label{Eq:betao}
+\end{align}
+
+
+
+\subsection{The Balance Condition}
+
+The balance condition is the condition which the concrete crushes at the same time that the steel yields. To solve for the neutral axis at the balance condition we use similar triangles.
+
+\begin{align}
+	\frac{c}{\ecu} &= \frac{d-c}{\es}\\ 
+	c \es &= \ecu(d-c)\\ 
+	c \es &= d\ecu -c\ecu\\ 
+	c_{bal} &= \frac{d\ecu}{\es+\ecu}
+\end{align}
+
+
+Using $c_{bal}$ we can calculate the area of the steel \As at the balance condition.
+
+\begin{align}
+	\As_{,bal} &= \frac{0.85\fc\betao\c_{bal}\bb}{\fy}
+\end{align}
+
+Next, we find the reinforcement ratio of the balance condition:
+
+\begin{align}
+	\rho_{bal} &= \frac{0.85\fc\betao}{\fy}
+	\left[
+		\frac{\ecu}{\es+\ecu}
+	\right]\\
+	&= 
+	\frac{0.85\fc\betao}{\fy}
+	\left[
+		\frac{87}{87+\fy}
+	\right]
+\end{align}
+
+
+
+
+\section{Beam Design}
 \subsection{Deriving the Design Equations}
+
+
+\begin{tikzpicture}
+	%% Cross section
+	\draw[ultra thick] (1.5,3) rectangle (0,0);
+	
+	%% height
+	\draw[thick,|<->|] (-0.5,0) -- node[left]{h} (-0.5,3);
+	
+	%% base
+	\draw[thick,|<->|] (0,3.5) -- node[above]{\bb} (1.5,3.5);
+	
+	%% depth to steel
+	\draw[thick,|<->|] (2,0.5) -- node[right]{\dd} (2,3);
+	
+	\draw[dashed, thin] (0,0.5) -- (2.5,0.5);
+	
+	\draw[dashed, thin] (-1,0) -- (10,0);
+	\draw[dashed, thin] (-1,3) -- (10,3);
+	
+	
+	
+	%% Strain axis line
+	\draw[ultra thick] (4,0) -- (4,3);
+	% strain plot and labels
+	\draw[thick,|<->|] (4,-0.5) -- node[below]{\es$\geq$\es} (2.5,-0.5);
+	\draw[thick] (2.5,0) -- (5,3);
+	\draw[thick,|<->|] (5,3.5) -- node[above]{\ecu} (4,3.5);
+	%Neutral axis
+	\draw[thin, dashed] (3,1.8) -- (10, 1.8);
+	% Depth to neutral axis line
+	\draw[thick, |<->|] (3,1.8) -- node[left]{c} (3,3);
+	
+	%% Stress axis line
+	\draw[ultra thick] (7,0) -- (7,3);
+	\draw[thick,|<->|] (6,2) -- node[left]{a} (6,3);
+	\draw[thin, dashed] (6,2) -- (10,2);
+	
+	\draw[thick,|<->|] (7,3.5) -- node[above]{0.85\fc} (8,3.5);
+	\draw[thick,|<->|] (6,-0.5) -- node[below]{\fs=\fy} (7,-0.5);
+	
+	%% Force axis line
+	\draw[ultra thick] (9,0) -- (9,3);
+	
+\end{tikzpicture}
+
 
 Equation \ref{Eq:design} is the basic design relationship for concrete beams.
 
+
 \begin{align}
-	\phi M_n \geq M_u
+	\phi \Mn \geq \Mu
 	\label{Eq:design}
 \end{align}
+
+where \Mn is the nominal moment in the beam and \Mu is the ultimate moment in the beam.
 
 The nominal moment of the beam is found by taking moments about the resultant compressive force. The only force left is the tension force in the steel.
 
 \begin{align}
-	\phi T_s z \geq M_u
+	\phi T_s z \geq \Mu
 \end{align}
 
-Next, plug in the force in the tension steel and the distance from the compressive force to the tensile force.
+Next, plug in the force in the tension steel and the distance from the compressive force to the tensile force. Note that the force in the tension steel is taken to be the area of the steel multiplied by the yield stress. This is because the steel is assumed to be yielding.
 
 \begin{align}
 	\phi
-	\left(A_s f_y\right)
+	\left(\As \fy\right)
 	\left(d-\frac{1}{2}a\right)
 	\geq
-	M_u
+	\Mu
+	\label{Eq:2}
 \end{align}
 
-Next, plug in the value for $a$.
+Now we will derive the height of the ``Whitney Stress block'' or the ``equivalent stress block''. From equilibrium we know the tensile force in the steel will be equal to the compressive force in the concrete. This fact will be used to isolate the height of the stress block
+
+\begin{align}
+	T_s &= C_c\\
+	\As \fy &= 0.85 \fc ab
+\end{align}
+
+Solve for $a$
+
+\begin{align}
+	a&=\frac{\As \fy}{0.85f'_cb}
+\end{align}
+
+
+Next, plug in the value of $a$ into equation \ref{Eq:2}.
 
 \begin{align}
 	\phi
-	\left(A_s f_y\right)
-	\left(d-\frac{1}{2}\frac{A_sf_y}{0.85f'_cb}\right)
+	\left(\As \fy\right)
+	\left(d-\frac{1}{2}\frac{\As \fy}{0.85f'_cb}\right)
 	\geq
-	M_u
+	\Mu
 \end{align}
 
 We want to get the equation in terms of the \textit{reinforcement ratio}, $\rho$. We can accomplish this by dividing both sides of the equation by $bd^2$.
@@ -41,10 +157,10 @@ We want to get the equation in terms of the \textit{reinforcement ratio}, $\rho$
 
 \begin{align}
 	\phi
-	\left(\frac{A_s}{bd} f_y\right)
-	\left(\frac{d}{d} - \frac12\frac{A_sf_y}{0.85f'_cbd}\right)
+	\left(\frac{\As}{bd} \fy\right)
+	\left(\frac{d}{d} - \frac12\frac{\As\fy}{0.85\fc bd}\right)
 	\geq
-	\frac{M_u}{bd^2}
+	\frac{\Mu}{bd^2}
 \end{align}
 
 
@@ -52,46 +168,80 @@ Substitute the reinforcement ratio into the equation
 
 \begin{align}
 	\phi
-	\left(\rho f_y\right)
-	\left(1 - \frac12\frac{\rho f_y}{0.85f'_c}\right)
+	\left(\rho \fy\right)
+	\left(1 - \frac12\frac{\rho \fy}{0.85 \fc}\right)
 	\geq
-	M_u
+	\Mu
 \end{align}
+
+
 
 To calculate the reinforcement ratio at the balance condition:
 
 \begin{align}
-	\rho_{bal} = 
-	\frac{0.85f'_c\beta_1}{f_y}
+	c_{bal} =
 	\left[
-		\frac{87}{f_y+85}
+		\frac{\ecu}{\ecu + \ey}
+	\right]
+	\dd
+\end{align}
+
+
+\begin{align}
+	\rho_{bal} = 
+	\frac{0.85\fc\betao}{\fy}
+	\left[
+		\frac{87}{\fy+87}
 	\right]
 \end{align}
 
+
+
 \begin{align}
-	\rho_{design}=\frac{0.75\rho_{bal}}{2}
+	\rho_{design}=\frac{0.75\rhob}{2}
 \end{align}
 
 
 
-\begin{align}
-	\phi \rho f_y
-	\left[1-\frac{f_y}{1.7 f'_c} \rho\right]
-	\geq
-	\frac{M_u}{bd^2}
-\end{align}
+
+
+
+
+
+
+
 
 \begin{align}
-	\phi R \geq \frac{M_u}{bd^2}
+	\phi R \geq \frac{\Mu}{bd^2}
 \end{align}
 
 where
 
 \begin{align}
-	R(f'_c,f_y,\rho) = 
-	\rho f_y 
-	\left(1-\frac{f_y}{1.7f'_c \rho}\right)
+	R(\fc,\fy,\rho) = 
+	\rho \fy 
+	\left(1-\frac{\fy}{1.7\fc \rho}\right)
 \end{align}
+
+
+
+To solve for the depth of the neutral axis:
+
+\begin{align}
+	T &= C\\
+	\As\fs &=0.85\fc a b\\ 
+	\As E_s \es &= 0.85\fc \betao c b\\
+	\As E_s \frac{\ecu(d-c)}{c} &= 0.85\fc \betao c b\\
+	\As E_s (d-c) \ecu &= 0.85 \fc \betao c^2 b\\ 
+\end{align}
+
+Solving for the neutral axis $c$ is a matter of using the quadratic formula. This requires putting the equation into the following form:
+
+\begin{align}
+		0.85 \fc \betao c^2 b + \As E_s \ecu c \As E_s \ecu d &= 0
+\end{align}
+
+
 
 
 
