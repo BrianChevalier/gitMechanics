@@ -3,4 +3,6 @@
 \contentsline {subsection}{\numberline {1.2}The Balance Condition}{1}{subsection.1.2}
 \contentsline {section}{\numberline {2}Beam Design}{1}{section.2}
 \contentsline {subsection}{\numberline {2.1}Deriving the Design Equations}{1}{subsection.2.1}
-\contentsline {section}{Variables Definitions}{3}{section*.2}
+\contentsline {subsection}{\numberline {2.2}Automating beam design}{3}{subsection.2.2}
+\contentsline {section}{\numberline {3}T-Beams}{4}{section.3}
+\contentsline {section}{Variables Definitions}{5}{section*.7}

@@ -1,6 +1,7 @@
+% Basic document class
 \documentclass[landscape, twocolumn, 12pt]{article}
-\usepackage{TitlePage}
 
+% General public packages loaded here:
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{graphicx}
@@ -9,73 +10,13 @@
 \usepackage{pdfpages}
 \usepackage{gensymb}
 \usepackage{tikz}
-\everymath{\displaystyle}
 
-\usepackage{hyperref}%Make references, clickable links
-\hypersetup{
-    colorlinks,
-    citecolor=black,
-    filecolor=black,
-    linkcolor=black,
-    urlcolor=black
-}
+% Custom .sty files loaded here:
+\usepackage{TitlePage}
+\usepackage{mathshortcuts}
 
-%------------------------------------------------------------------------------------------
-\newcommand{\ei}{\vec{e_1}}   %e1 shortcut
-\newcommand{\ej}{\vec{e_2}}   %e2 shortcut
-\newcommand{\ek}{\vec{e_3}}   %e3 shortcut
-\newcommand{\n}{\vec{n}}
-\newcommand{\m}{\vec{m}}
-\newcommand{\x}{\vec{x}}
-
-\newcommand{\sig}{\sigma}       %sigma shortcut
-\newcommand{\ep}{\varepsilon} %epsilon shotcut
-
-\renewcommand{\vec}[1]{\mathbf{#1}} %make vectors bold
-
-
-\newcommand{\beq}{\begin{equation}} %begin equation shortcut
-\newcommand{\eeq}{\end{equation}} %end equation shortcut
-
-\newcommand{\of}[1]{\left(#1\right)} %parenthases shortcuts
-\newcommand{\ofa}[1]{\left[#1\right]} %brackets shotcut
-
-%%------------------------------
-\usepackage{empheq}
-\usepackage[most]{tcolorbox}
-% Box commands
-\newtcbox{\mymath}[1][]{%
-    nobeforeafter, math upper, tcbox raise base,
-    enhanced, colframe=blue!30!black,
-    colback=blue!30, boxrule=1pt,
-    #1}
-
-\newcommand{\pbox}[1]{\begin{empheq}[box=\mymath]{align*}#1\end{empheq}} %purple box shortcut
-
-% Reduce figure padding
-\setlength{\intextsep}{2.0 pt plus 2.0pt minus 2.0pt}
-\setlength{\belowcaptionskip}{-20pt}
-
-
-% This provides the "strip" command which allows an equation to be one column.
-% Note figures and tables can span both columns by adding a "*"
-\usepackage{cuted}
-
-\usepackage[toc]{glossaries}
-
-\makeglossaries
-
-\newcommand{\glo}[3]{
-% #1: name
-% #2: code
-% #3: definition
-\newglossaryentry{#1}{
-	name={\ensuremath{#2}},
-	description={#3}}
-% 
-	\expandafter\newcommand\csname #1\endcsname{\ensuremath{#2}}
-}
-
+% Add to glossary
+% Check mathshortcuts.sty for documentation
 \glo{Mu}{M_{u}}{Factored ultimate moment in the beam}
 \glo{Mn}{M_n}{Nominal moment strength}
 \glo{As}{A_s}{Area of tension reinforcing steel}
@@ -93,14 +34,8 @@
 \glo{ey}{\varepsilon_y}{Yield strain of steel}
 \glo{es}{\varepsilon_s}{Strain of tension steel}
 
-%\newglossaryentry{Mu}{name=$M_u$,description={Ultimate moment in the beam}}
-
-%------------------------------------------------------------------------------------------
-\begin{document}
-
-
-
-%TITLE PAGE COMMANDS
+% Title Page commands
+% Check TitlePage.sty for documentation
 
 \title{Concrete Beam Design}
 \subtitle{Beam Design}
@@ -109,24 +44,24 @@
 \university{Arizona State University}
 
 \titleimage{Figures/Title.png}
-\author{Brian Chevalier}
+\author{Brian Badahdah}
 \date{\today}
+
+%-------------------------------------------
+\begin{document}
+
 \maketitle
-\pagenumbering{arabic}
 
+\input{Sections/beamanalysis}
+\input{Sections/beamdesign}
+\input{Sections/tsection}
 
-\input{Sections/beams}
-
-%------------------------------------------------------------------------------------------
-\newpage
+%---------------------------------------------
+\clearpage
 \glsaddall
 \printglossary[title={Variables Definitions}]
-
-\newpage
+%\newpage
 %\bibliography{References}
 %\addcontentsline{toc}{section}{References}
 %\bibliographystyle{apalike}
-
-
-
 \end{document}
