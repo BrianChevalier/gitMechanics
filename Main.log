@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=latex 2016.11.16)  9 OCT 2018 17:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=latex 2016.11.16)  10 OCT 2018 14:50
 entering extended mode
 **Main.tex
 (Main.tex
@@ -1301,7 +1301,7 @@ Package: glossary-tree 2016/04/30 v4.23 (NLCT)
 \glo@main@file=\write7
 \openout7 = `Main.glo'.
 
-Package glossaries Info: Writing glossary file Main.glo on input line 82.
+Package glossaries Info: Writing glossary file Main.glo on input line 107.
 )
 (Main.aux)
 \openout1 = `Main.aux'.
@@ -1384,7 +1384,7 @@ Package: inputenc 2015/03/17 v1.2c Input encoding file
 \inpenc@prehook=\toks51
 \inpenc@posthook=\toks52
 )
-<Figures/Title.png, id=74, 947.54pt x 706.64pt>
+<Figures/Title.png, id=82, 947.54pt x 706.64pt>
 File: Figures/Title.png Graphic file (type png)
  <use Figures/Title.png>
 Package pdftex.def Info: Figures/Title.png used on input line 53.
@@ -1413,31 +1413,49 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 {/var/containers/Bundle/Application/B6811DCB-0033-43DD-9C63-F9231E15CF8C/TeX Wr
 iter.app/texmf-base/./fonts/map/pdftex/updmap/pdftex.map} <Figures/Title.png>] 
-(Sections/beams.tex
-Overfull \hbox (4.89346pt too wide) in paragraph at lines 130--131
+(Sections/beamanalysis.texpdfTeX warning (ext4): destination with the same iden
+tifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.60 
+      [1
+
+]) (Sections/beamdesign.tex
+Overfull \hbox (17.6962pt too wide) in paragraph at lines 77--78
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--78
+
+ []
+
+
+Overfull \hbox (15.64996pt too wide) in paragraph at lines 78--78
 [][] 
  []
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.147 \end{align}
-                  [1
+[2]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 196.
 
-] [2]
-Overfull \hbox (7.06282pt too wide) in paragraph at lines 273--287
+
+(/var/containers/Bundle/Application/B6811DCB-0033-43DD-9C63-F9231E15CF8C/TeX Wr
+iter.app/texmf-base/./tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 196.
+ [3]) (Sections/tsection.tex
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [4])
+Overfull \hbox (7.06282pt too wide) in paragraph at lines 65--79
  [][] 
  []
 
+[5
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-) (Sections/tsection.tex [3]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-) [4] (Main.gls
+] (Main.gls
 
 Package glossaries Warning: Glossary entry `beta1' has not been defined on inpu
 t line 11.
@@ -1451,62 +1469,52 @@ Package glossaries Warning: Glossary entry `beta1' has not been defined on inpu
 t line 11.
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 66.
- [5
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 89.
+ [6
 
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 66.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 89.
  (Main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 66.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 66.
-
-
-Package rerunfilecheck Warning: File `Main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Main.out':
-(rerunfilecheck)             Before: 870F3311851E69F1F65C0EE14DC05407;485
-(rerunfilecheck)             After:  15673B4DD0DF2FB13A12DC807F620E23;485.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 66.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 89.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 89.
+Package rerunfilecheck Info: File `Main.out' has not changed.
+(rerunfilecheck)             Checksum: D5D9D0A3A39EBAE8BEE487BF75A5E75D;622.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 89.
  ) 
 Here is how much of TeX's memory you used:
- 35009 strings out of 493024
- 712575 string characters out of 6124273
- 825448 words of memory out of 5000000
- 37921 multiletter control sequences out of 15000+600000
+ 35051 strings out of 493024
+ 713342 string characters out of 6124273
+ 822734 words of memory out of 5000000
+ 37950 multiletter control sequences out of 15000+600000
  12400 words of font info for 45 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 70i,16n,103p,10491b,945s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{section*.6} has been referenced but does not exis
-t, replaced by a fixed one
-
-</var/containers/Bundle/Application/B6811DCB-0033-43DD-9C63-F9231E15CF8C/TeX Wr
-iter.app/texmf-base/./fonts/type1/public/amsfonts/cm/cmbx10.pfb></var/container
-s/Bundle/Application/B6811DCB-0033-43DD-9C63-F9231E15CF8C/TeX Writer.app/texmf-
-base/./fonts/type1/public/amsfonts/cm/cmbx12.pfb></var/containers/Bundle/Applic
-ation/B6811DCB-0033-43DD-9C63-F9231E15CF8C/TeX Writer.app/texmf-base/./fonts/ty
-pe1/public/amsfonts/cm/cmcsc10.pfb></var/containers/Bundle/Application/B6811DCB
--0033-43DD-9C63-F9231E15CF8C/TeX Writer.app/texmf-base/./fonts/type1/public/ams
-fonts/cm/cmex10.pfb></var/containers/Bundle/Application/B6811DCB-0033-43DD-9C63
--F9231E15CF8C/TeX Writer.app/texmf-base/./fonts/type1/public/amsfonts/cm/cmmi12
-.pfb></var/containers/Bundle/Application/B6811DCB-0033-43DD-9C63-F9231E15CF8C/T
-eX Writer.app/texmf-base/./fonts/type1/public/amsfonts/cm/cmmi8.pfb></var/conta
-iners/Bundle/Application/B6811DCB-0033-43DD-9C63-F9231E15CF8C/TeX Writer.app/te
-xmf-base/./fonts/type1/public/amsfonts/cm/cmr12.pfb></var/containers/Bundle/App
-lication/B6811DCB-0033-43DD-9C63-F9231E15CF8C/TeX Writer.app/texmf-base/./fonts
-/type1/public/amsfonts/cm/cmr8.pfb></var/containers/Bundle/Application/B6811DCB
--0033-43DD-9C63-F9231E15CF8C/TeX Writer.app/texmf-base/./fonts/type1/public/ams
-fonts/cm/cmsy10.pfb></var/containers/Bundle/Application/B6811DCB-0033-43DD-9C63
--F9231E15CF8C/TeX Writer.app/texmf-base/./fonts/type1/public/amsfonts/cm/cmsy8.
-pfb></var/containers/Bundle/Application/B6811DCB-0033-43DD-9C63-F9231E15CF8C/Te
-X Writer.app/texmf-base/./fonts/type1/public/amsfonts/cm/cmti10.pfb></var/conta
-iners/Bundle/Application/B6811DCB-0033-43DD-9C63-F9231E15CF8C/TeX Writer.app/te
-xmf-base/./fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on Main.pdf (6 pages, 188401 bytes).
+ 70i,16n,103p,10491b,1027s stack positions out of 5000i,500n,10000p,200000b,80000s
+</var/containers/Bundle/Application/B6811DCB-0033-43DD-9C63-F9231E15CF8C/TeX 
+Writer.app/texmf-base/./fonts/type1/public/amsfonts/cm/cmbx10.pfb></var/contain
+ers/Bundle/Application/B6811DCB-0033-43DD-9C63-F9231E15CF8C/TeX Writer.app/texm
+f-base/./fonts/type1/public/amsfonts/cm/cmbx12.pfb></var/containers/Bundle/Appl
+ication/B6811DCB-0033-43DD-9C63-F9231E15CF8C/TeX Writer.app/texmf-base/./fonts/
+type1/public/amsfonts/cm/cmcsc10.pfb></var/containers/Bundle/Application/B6811D
+CB-0033-43DD-9C63-F9231E15CF8C/TeX Writer.app/texmf-base/./fonts/type1/public/a
+msfonts/cm/cmex10.pfb></var/containers/Bundle/Application/B6811DCB-0033-43DD-9C
+63-F9231E15CF8C/TeX Writer.app/texmf-base/./fonts/type1/public/amsfonts/cm/cmmi
+12.pfb></var/containers/Bundle/Application/B6811DCB-0033-43DD-9C63-F9231E15CF8C
+/TeX Writer.app/texmf-base/./fonts/type1/public/amsfonts/cm/cmmi8.pfb></var/con
+tainers/Bundle/Application/B6811DCB-0033-43DD-9C63-F9231E15CF8C/TeX Writer.app/
+texmf-base/./fonts/type1/public/amsfonts/cm/cmr12.pfb></var/containers/Bundle/A
+pplication/B6811DCB-0033-43DD-9C63-F9231E15CF8C/TeX Writer.app/texmf-base/./fon
+ts/type1/public/amsfonts/cm/cmr8.pfb></var/containers/Bundle/Application/B6811D
+CB-0033-43DD-9C63-F9231E15CF8C/TeX Writer.app/texmf-base/./fonts/type1/public/a
+msfonts/cm/cmsy10.pfb></var/containers/Bundle/Application/B6811DCB-0033-43DD-9C
+63-F9231E15CF8C/TeX Writer.app/texmf-base/./fonts/type1/public/amsfonts/cm/cmsy
+8.pfb></var/containers/Bundle/Application/B6811DCB-0033-43DD-9C63-F9231E15CF8C/
+TeX Writer.app/texmf-base/./fonts/type1/public/amsfonts/cm/cmti10.pfb></var/con
+tainers/Bundle/Application/B6811DCB-0033-43DD-9C63-F9231E15CF8C/TeX Writer.app/
+texmf-base/./fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on Main.pdf (7 pages, 198871 bytes).
 PDF statistics:
- 266 PDF objects out of 1000 (max. 8388607)
- 80 named destinations out of 1000 (max. 500000)
- 226 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 290 PDF objects out of 1000 (max. 8388607)
+ 87 named destinations out of 1000 (max. 500000)
+ 242 words of extra memory for PDF output out of 10000 (max. 10000000)
 

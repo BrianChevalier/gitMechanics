@@ -60,12 +60,15 @@
 % http://texdoc.net/texmf-dist/doc/latex/tcolorbox/tcolorbox.pdf#page39
 \definecolor{mattegreen}{rgb}{0.84,0.89,0.74}
 
-\newenvironment{pseudocode}
-{\begin{tcolorbox}[
-	width=0.9\columnwidth,
+\newenvironment{pseudocode}{
+\begin{center}
+\begin{tcolorbox}[
+	width=0.95\columnwidth,
 	colback={mattegreen},
 	title={\textbf{Pseudocode}},
 	toprule = 10pt, %padding above title
+	rightrule = 5pt,
+	leftrule = 5pt,
 	colbacktitle= mattegreen,
 	coltitle=black,
 	colframe=mattegreen,
@@ -74,8 +77,30 @@
 
 	\begin{enumerate}
 }
-{\end{enumerate}
-\end{tcolorbox}  }
+{
+\end{enumerate}
+\end{tcolorbox}
+\end{center}
+}
+
+\newenvironment{greenfig}{
+\begin{tcolorbox}[
+	width=1.05\columnwidth,
+	colback={mattegreen},
+	title={\textbf{Pseudocode}},
+	toprule = 0pt, %padding above title
+	rightrule = 0pt,
+	leftrule = 0pt,
+	colbacktitle= mattegreen,
+	coltitle=black,
+	colframe=mattegreen,
+	rounded corners,
+	arc=10pt]
+
+}
+{
+\end{tcolorbox}
+}
 
 % Glossary commands
 \RequirePackage[toc]{glossaries}

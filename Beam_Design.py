@@ -12,14 +12,6 @@ def beta_1(fc):
 		var = 0.65
 	
 	return var
-	
-def phi(ey):
-	# Not yet complete
-	# source: ACI 21.2.2 Strength reduction factors
-	
-	if es >= 0.005:
-		# tension controlled
-		var = 0.9
 
 # inputs in KSI
 def rho_bal(fc, fy):
@@ -30,10 +22,10 @@ def As_min(fc,fy):
 
 def R(fc, fy):
 	rho = (0.75/2)* rho_bal(fc, fy) # rho target
-	var = 1 - fy/(1.7*fc) * rho
+	var = 1 - (rho*fy)/(1.7*fc)
 	return rho * fy * var
 
-def g(d, Mu, phi, fc, fy, ratio=0.6):
+def g(d, Mu, phi, fc, fy, ratio=0.65):
 	return Mu/((d**3)*phi*R(fc, fy)) - ratio
 
 def A(d, Mu, phi, fc, fy):
@@ -46,9 +38,9 @@ fc = 4 #ksi
 fy = 60 #ksi
 Es = 29000 #ksi
 ecu = 0.003
-Mu = 212*12 # kip-in.
+Mu = 200*12 # kip-in.
 
-tolerance=1.0e-4
+tolerance=1.0e-2
 itMax=100
 error = 1
 iterations = 0
@@ -67,7 +59,7 @@ bunrounded = Mu/(dunrounded**2*phi*R(fc,fy))
 b_des = math.ceil(bunrounded)
 d_des = math.ceil(dunrounded)
 
-As = rho_bal(fc,fy) * b_des * d_des
+As = (0.75/2) * rho_bal(fc,fy) * b_des * d_des
 
 # Picking Steel
 
@@ -82,36 +74,40 @@ for i, area in enumerate(areas):
 	no_of_bars = math.ceil(As/area)
 	
 	bar_width = no_of_bars*diameters[i]
-	bar_spacing = (no_of_bars - 1) * 1# inch bt bars
+	bar_spacing = (no_of_bars - 1) * 0.5# inch bt bars
 	clearance = 2*1.5 #1.5 inch on both sides
 	
 	total_space = bar_width + bar_spacing + clearance
 	
-	if b_des > total_space:
-		print(f'{no_of_bars} number {No[i]} bars')
+	if b_des >= total_space:
+		print(f'{no_of_bars} #{No[i]:2.0f} bars, A: {no_of_bars*area}')
 		areas_des.append(no_of_bars * areas[i])
 
 # Choose the minimum area
 As_des = min(areas_des)
 
 print(f'As: {As_des}, b: {b_des}, d: {d_des}')
+print(f'rho_bal: , rho: {As_des/(b_des*d_des):0.3}')
 
-# Check strain in the steel
-A = 0.85*fc*beta_1(fc)*b_des
-B = As_des * Es * ecu
-C = -As_des * Es * ecu * d_des
-
-# Calculate depth of neutral axis
-c = (-B + math.sqrt(B**2 - 4*A*C)) / (2*A)
+a = (As_des*fy)/(0.85*fc*b_des)
+c = a/beta_1(fc)
+print(c)
 
 # Calculate strain of steel
-ey = fy/Es
-es = (ecu*(d_des-c))/c
+ey = fy/Es #yield strain
+es = (ecu*(d_des-c))/c #actual strain
 
 if es>ey:
-	print('The steel is yielding!')
+	print('\nThe steel is yielding!\n')
+	Mn = As_des * fy * (d_des - a/2)
+	print(f'Nominal capacity: {Mn/12:5.1f} kip-ft')
+	print(f'Reduced Strength: {0.9*Mn/12:5.1f} kip-ft')
+	if 0.9*Mn > Mu:
+		print('The beam has adequate strength.')
 else:
 	print('The steel is not yielding ://')
+
+
 
 ## Checks
 rho_min = 0.003
