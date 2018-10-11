@@ -1,0 +1,12 @@
+*.icloud
+*.aux
+*.log
+*.toc
+*.ist
+*.fdb_latexmk
+*.blg
+*.bbl
+*.fls
+*.glg
+*.glo
+*.xdy
