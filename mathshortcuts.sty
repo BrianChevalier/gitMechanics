@@ -15,6 +15,31 @@
 
 \everymath{\displaystyle}
 
+%---------
+% Points of interest
+\newcommand{\poi}[2]{
+\filldraw[ultra thick,fill=white] (#1,#2) circle (0.1cm);
+}
+
+% For help with drawing tikz bezier curves
+\tikzset{
+  ctrlpoint/.style={%
+    draw=gray,
+    circle,
+    inner sep=0,
+    minimum width=1ex,
+  }
+}
+\newcommand\Bezier[4]{% \bezier (lowercase 'b') was already defined elsewhere
+  \node (p1) [ctrlpoint,label=90:$P_1$] at (#1) {};
+  \node (p2) [ctrlpoint,label=90:$P_2$] at (#2) {};
+  \node (p3) [ctrlpoint,label=90:$P_3$] at (#3) {};
+  \node (p4) [ctrlpoint,label=90:$P_4$] at (#4) {};
+  \draw [gray] (p1) -- (p2) -- (p3) -- (p4);
+  \draw [blue] (#1) .. controls (#2) and (#3) .. (#4);
+}
+
+
 %%------------------------------
 \RequirePackage{empheq}
 \RequirePackage[most]{tcolorbox}
