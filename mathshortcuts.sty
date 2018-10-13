@@ -17,8 +17,9 @@
 
 %---------
 % Points of interest
-\newcommand{\poi}[2]{
-\filldraw[ultra thick,fill=white] (#1,#2) circle (0.1cm);
+% just makes a lil white outlined dot
+\newcommand{\poi}[1]{
+\filldraw[ultra thick,fill=white] (#1) circle (0.1cm);
 }
 
 % For help with drawing tikz Bézier curves
