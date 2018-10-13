@@ -61,10 +61,10 @@ There are $3n$ unknowns, where $n$ is the number of data points in the dataset. 
         (10,3);
 
 % Draw points
-\poi{1}{1}
-\poi{3}{2}
-\poi{6}{1}
-\poi{10}{3}
+\poi{1,1}
+\poi{3,2}
+\poi{6,1}
+\poi{10,3}
 
 \end{tikzpicture}
 \caption{Example dataset plot with splines}
@@ -117,10 +117,66 @@ This results in $6$ equations total leaving $3$ more unknowns that must be found
 
 \subsection{Smooth Functions}
 
+Next, take the derivative of the three spline equations:
+
+\begin{align}
+	f'(x)=
+\begin{cases}
+	2a_1x+b_1\\ 
+	2a_2x+b_2\\ 
+	2a_3x+b_3 
+\end{cases}
+\end{align}
+
+We know that the derivatives of the interior points must be continuous. We take the first two derivatives, evaluate them at the point $x_1$, and set them equal to each other. The same is done for spline 2 and 3. This results in two additional equations (\ref{Eq:der1}, \ref{Eq:der2}).
+
+\begin{align}
+	2a_1x_1+b_1 &= 2a_2x_1+b_2 \label{Eq:der1}\\
+	2a_2x_2+b_2 &=2a_3x_2+b_3 \label{Eq:der2}
+\end{align}
+
+Rewriting the equations to move all the variables to the left side:
+
+\begin{align}
+	2a_1x_1+b_1 - 2a_2x_1-b_2 &=0\\
+	2a_2x_2+b_2 - 2a_3x_2-b_3 &=0
+\end{align}
+
+To generalize this pattern, the smooth function condition produces $(n-2)$ equations. We now have 9 unknowns but only 8 equations. The last equation is the decision that the first spline will be linear. This is written in equation \ref{Eq:a10}
+
+\begin{align}
+	a_1=0
+	\label{Eq:a10}
+\end{align}
+
+% stretch matrix vertically.
+% This will be undone after the matrix
+\renewcommand\arraystretch{1.3}
+
+\begin{equation}
+\begin{blockarray}{cccccccccc}
+%% First are continuity condition
+    & a_1 & b_1 & c_1 & a_2 & b_2 & c_2 & a_3 & b_3 & c_3 \\
+  \begin{block}{c[ccccccccc]}
+	f_1 & x_0^2 & x_0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+	f_2 & x_1^2 & x_1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+	f_3 & 0 & 0 & 0 & x_1^2 & x_1 & 0 & 0 & 0 & 0 \\
+	f_4 & 0 & 0 & 0 & x_2^2 & x_2 & 0 & 0 & 0 & 0 \\
+	f_5 & 0 & 0 & 0 & 0 & 0 & 0 & x_2^2 & x_2 & 0 \\
+	f_6 & 0 & 0 & 0 & 0 & 0 & 0 & x_3^2 & x_3 & 0 \\
+%% Next are smooth function equations
+  \end{block}
+\end{blockarray}
+\end{equation}
+\renewcommand\arraystretch{1}
+
+\section{Coding Quadratic Splines}
+
 
 \begin{pseudocode}
 \item Define dataset or take dataset as input if programmed as a stand alone function
-\item Initialize $\vec{A}$ as a matrix of zeros (3n,3n)
+\item Initialize $\vec{A}$ as a matrix of zeros $(3n,3n)$
+\item Initialize $\vec{b}$ as a matrix of zeros $(30,1)$
 \item Loop through number of points and use continuous function information
 
 \begin{enumerate}
@@ -130,6 +186,14 @@ This results in $6$ equations total leaving $3$ more unknowns that must be found
 \item Loop through number of points and use continuous derivatives information
 \begin{enumerate}
 \item Use interior points
+\end{enumerate}
+
+\item Solve the system of equations for the constants
+\item Plot and output values
+\begin{enumerate}
+	\item Plot the piecewise quadratic function \textit{only} in the intervals where they are valid.
+	\item Scatter plot points
+	\item Plot query point, if any
 \end{enumerate}
 
 \end{pseudocode}
