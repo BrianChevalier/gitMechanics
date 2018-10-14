@@ -4,11 +4,10 @@ title: CEE421 Concrete Structures
 ---
 <h1>{{ page.title }}</h1>
 
-{%- assign pdflink = "www.gitmechanics.com/CEE421/Main.pdf" -%}
+{%- assign pdflink = "/CEE421/Main.pdf" -%}
 
 <div markdown="1">
 
-## Available materials:
 * [Beam Design]({{ pdflink }})
 
 </div>
