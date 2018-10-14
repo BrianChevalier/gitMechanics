@@ -3,7 +3,7 @@ layout: default
 title: CEE384 Numerical Methods
 ---
 
-{%- assign pdflink = "https://brianchevalier.github.io/Civil-Engineering-Material/CEE384/Interpolation/Main.pdf" -%}
+{%- assign pdflink = "www.gitmechanics.com/CEE384/Interpolation/Main.pdf" -%}
 
 <div markdown="1">
 # {{ page.title }}

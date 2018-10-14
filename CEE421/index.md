@@ -4,7 +4,7 @@ title: CEE421 Concrete Structures
 ---
 <h1>{{ page.title }}</h1>
 
-{%- assign pdflink = "https://brianchevalier.github.io/Civil-Engineering-Material/CEE421/Main.pdf" -%}
+{%- assign pdflink = "www.gitmechanics.com/CEE421/Main.pdf" -%}
 
 <div markdown="1">
 
