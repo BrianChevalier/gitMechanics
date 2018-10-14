@@ -2,3 +2,4 @@ theme: jekyll-theme-cayman
 title: Civil Engineering Learning Material
 description: Civil Engineering Undergraduate Student Building Learning Content
 markdown: kramdown
+google_analytics: UA-127468533-1
