@@ -1,5 +1,7 @@
 
+\NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{mathshortcuts}
+\RequirePackage{tikz}
 
 \newcommand{\ei}{\vec{e_1}}   %e1 shortcut
 \newcommand{\ej}{\vec{e_2}}   %e2 shortcut
@@ -144,3 +146,5 @@
 % 
 	\expandafter\newcommand\csname #1\endcsname{\ensuremath{#2}}
 }
+
+\endinput

@@ -1,6 +1,7 @@
 % Copyright note: This package defines how titles should
 % be typeset at the columbidae University
 % Please check for updates
+\NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{TitlePage}
 \RequirePackage{graphicx}
 \RequirePackage{multicol}
@@ -53,7 +54,7 @@
 
 % This provides the "strip" command which allows an equation to be one column.
 % Note figures and tables can span both columns by adding a "*"
-\usepackage{cuted}
+\RequirePackage{cuted}
 
 % Give space for captions
 \captionsetup{belowskip=12pt, aboveskip=4pt}
