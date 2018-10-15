@@ -1,37 +1,15 @@
-## Welcome to GitHub Pages
+<p align="center">
+<img src="./assets/images/gitMechanics.svg" alt="Project Logo">
+</p>
+<h1 align="center"></h1>
+<p align="center">
+<img src="https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg" alt="Made with LaTeX badge">
+<img src="https://img.shields.io/npm/l/express.svg" alt="MIT License Badge">
+</p>
 
-You can use the [editor on GitHub](https://github.com/BrianChevalier/BrianChevalier.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+## About
+gitMechanics is dedicated to providing and creating a shared knowledge-base of Mechanics and related topics. This includes many Civil Engineering and Mechanical Engineering classes such as statics, dynamics, deformable solids (mechanics of materials) as well as concrete and steel design.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Contributing
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/BrianChevalier/BrianChevalier.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.

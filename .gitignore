@@ -11,3 +11,5 @@
 *.glo
 *.xdy
 *.out
+/_site/*
+/.sass-cache/*
