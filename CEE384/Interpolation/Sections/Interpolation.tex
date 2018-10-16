@@ -14,35 +14,35 @@ Linear interpolation is estimating the value between two data points given an in
 % Draw grid
 \draw[gray, step=1cm] (0,0) grid (5,4);
 
-\coordinate (x0) at (1,1);
-\coordinate (x1) at (3,2);
-\coordinate (xq) at (2,1.5);
+
+
+%\coordinate (x0) at (1,1);
+%\coordinate (x1) at (3,2);
+%\coordinate (xq) at (2,1.5);
 
 % Draw path through points
-        \draw [ultra thick]
-        (x0) -- 
-        %node[midway,above,sloped]
-        %{\small $y=mx+b$}
-        (x1);
+\draw[ultra thick]
+(1,1)--
+(3,2);
 
 % write x_0, x_1...
 \draw[thick,dashed]
         (1,0) 
         node[below]{$x_0$} -- 
-        (x0);
+        (1,1);
 \draw[thick,dashed]
         (3,0) 
         node[below]{$x_1$} -- 
-        (x1);
+        (3,2);
         
 \draw[thick,dashed]
-        (xq|-,0) 
+        (2,0) 
         node[below]{$x$} -- 
-        (xq);
+        (2,1.5);
 \draw[thick,dashed]
         (0,1.5) 
         node[left]{$y$} -- 
-        (xq);
+        (2,1.5);
 
 % Draw points
 \poi{1,1}

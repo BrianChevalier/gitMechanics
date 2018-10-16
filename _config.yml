@@ -1,8 +1,11 @@
 theme: jekyll-theme-cayman
-title: Civil Engineering Learning Material
-description: Civil Engineering Undergraduate Student Building Learning Content
 markdown: kramdown
 exclude:
   - CNAME
   - README
   - "*.tex"
+title: gitMechanics
+description: Open-source Mechanics Knowledge-base
+markdown: kramdown
+google_analytics: UA-127468533-1
+repository: gitMechanics

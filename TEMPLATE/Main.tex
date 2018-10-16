@@ -10,42 +10,57 @@
 \usepackage{pdfpages}
 \usepackage{gensymb}
 \usepackage{tikz}
+
 \usetikzlibrary{math}
 
 % Custom .sty files loaded here:
-\usepackage{../../TitlePage}
-\usepackage{../../mathshortcuts}
+\usepackage{../TitlePage}
+\usepackage{../mathshortcuts}
 
-\usepackage{blkarray}
-
-% Add to glossary
+% Add item to glossary
 % Check mathshortcuts.sty for documentation
-
+% Uncomment following example line to add more items
+%\glo{Mu}{M_{u}}{Factored ultimate moment in the beam}
 
 % Title Page commands
 % Check TitlePage.sty for documentation
 
-\title{Interpolation}
-\subtitle{Interpolation of Discrete Datasets}
-\coursenum{CEE384}
-\coursetitle{Numerical Methods}
+% Fill out the following information
+% This is used by TitlePage.sty
+\title{}
+\subtitle{}
+\coursenum{}
+\coursetitle{}
 \university{Arizona State University}
 
-%\titleimage{Figures/Title.png}
-\author{Brian Chevalier}
+% Path to title page figure.
+% If note specified the default image will be used.
+\titleimage{}
+\author{}
 \date{\today}
 
 %-------------------------------------------
 \begin{document}
 
+% Leave this alone. 
+% It will make the title page
 \maketitle
-\input{Sections/Interpolation}
-\input{Sections/Splines}
+
+% Add additional sections here
+%\input{Sections/}
+%\input{Sections/}
+%\input{Sections/}
 
 %---------------------------------------------
-%\newpage
+
+%% The following is for an optional glossary section
+
+%\clearpage
 %\glsaddall
 %\printglossary[title={Variables Definitions}]
+
+%% The following is for an optional references section
+
 %\newpage
 %\bibliography{References}
 %\addcontentsline{toc}{section}{References}
