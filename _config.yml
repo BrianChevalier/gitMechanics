@@ -1,4 +1,9 @@
 theme: jekyll-theme-cayman
+markdown: kramdown
+exclude:
+  - CNAME
+  - README
+  - "*.tex"
 title: gitMechanics
 description: Open-source Mechanics Knowledge-base
 markdown: kramdown
