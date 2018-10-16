@@ -1,0 +1,29 @@
+\section{Drawing in \LaTeX{}}
+
+\LaTeX{} produces truly stunning PDF output, but as the great philosopher, Beyonc\'e once said, ``Pretty Hurts''.
+
+\paragraph{GUI Options}
+There are some options to avoid manually marking up drawings. One method is to simply produce figures and drawings in another application, and export as a PDF, or if you like the pixelated compression artifacts, JPEG. You can then save the file in the Figures subdirectory of your project and include something like the following:
+
+\begin{center}
+\begin{latexcode}
+\begin{figure}[H]
+\centerline{
+\includegraphics[width=\columnwidth]
+{Figures/FIGNAME}}
+\caption{CAPTION}
+\label{fig:LABEL}
+\end{figure}
+\end{latexcode}
+\end{center}
+
+You can also use a GUI editor that will output to markup formats and include those directly into your source code. You can export to TikZ format which we will discuss in the next section. A great option for this is GeoGebra:
+
+\begin{center}
+	\url{https://www.geogebra.org}
+\end{center}
+
+\subsection{TikZ}
+While including external images works, it can get out of control pretty quickly if you have many figures. It also eliminates the possibility of using a set of macros to keep drawings consistent throughout many documents. Using generated TikZ still runs into this problem. Therefore, the only good option is to learn TikZ markup. For gitMechanics, I have already begun building a library of macros that will hopefully make the processs more straight-forward and consistent between documents.
+
+

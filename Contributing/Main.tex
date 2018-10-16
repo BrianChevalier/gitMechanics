@@ -1,0 +1,71 @@
+% Basic document class
+\documentclass[landscape, twocolumn, 12pt]{article}
+
+% General public packages loaded here:
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{pdfpages}
+\usepackage{gensymb}
+\usepackage{tikz}
+
+\usetikzlibrary{math}
+
+% Custom .sty files loaded here:
+\usepackage{../TitlePage}
+\usepackage{../mathshortcuts}
+
+% Add item to glossary
+% Check mathshortcuts.sty for documentation
+% Uncomment following example line to add more items
+%\glo{Mu}{M_{u}}{Factored ultimate moment in the beam}
+
+% Title Page commands
+% Check TitlePage.sty for documentation
+
+% Fill out the following information
+% This is used by TitlePage.sty
+\title{Contributing to gitMechanics}
+\subtitle{Basics of \LaTeX{}, git, and How You Can Help}
+\coursenum{GIT101}
+\coursetitle{Introduction to git}
+\university{Arizona State University}
+
+% Path to title page figure.
+% If note specified the default image will be used.
+\titleimage{../assets/images/gitMechanics}
+\author{Brian Chevalier}
+\date{\today}
+
+%-------------------------------------------
+\begin{document}
+
+% Leave this alone. 
+% It will make the title page
+\maketitle
+
+% Add additional sections here
+\input{Sections/Introduction-to-git}
+\input{Sections/Introduction-to-LaTeX}
+\input{Sections/Drawing-in-LaTeX}
+\input{Sections/Introduction-to-Jekyll}
+\input{Sections/Making-a-pull-request}
+
+
+%---------------------------------------------
+
+%% The following is for an optional glossary section
+
+%\clearpage
+%\glsaddall
+%\printglossary[title={Variables Definitions}]
+
+%% The following is for an optional references section
+
+%\newpage
+%\bibliography{References}
+%\addcontentsline{toc}{section}{References}
+%\bibliographystyle{apalike}
+\end{document}

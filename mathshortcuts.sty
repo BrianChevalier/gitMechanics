@@ -147,4 +147,20 @@
 	\expandafter\newcommand\csname #1\endcsname{\ensuremath{#2}}
 }
 
+
+\newtcblisting{latexcode}{
+  listing only,
+  hbox,
+  colframe=mattegreen,
+  colback=mattegreen,
+  listing options={
+    language=TeX,
+    basicstyle=\small\ttfamily,
+    breaklines=true,
+    columns=fullflexible,
+    boxpos=c
+  },
+}
+
+
 \endinput
