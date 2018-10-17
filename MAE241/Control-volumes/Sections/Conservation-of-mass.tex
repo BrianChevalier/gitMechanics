@@ -1,0 +1,128 @@
+\section{The First Law}
+The total energy flowing in and out of the system is equal to the total change in internal energy change in the system. That is mathematically written as:
+
+\begin{align}
+	Q-W&=\Delta E\\ 
+	(Q_{in}-Q_{out}) - (W_{out}-W_{in}) &=\Delta E
+\end{align}
+
+
+Some definitions:
+
+\begin{description}
+	\item[Isothermal] Constant temperature
+	\item[Isobaric] Constant pressure
+	\item[Isochoric] Constant volume
+\end{description}
+
+
+\section{Conservation of Mass}
+
+A control volume is a volume used to model and track physical processes. It is similar to a free body diagram. The control surface is the surface surrounding the volume.
+
+
+
+The general conservation of mass equation is:
+
+\begin{align}
+\frac{d}{dt}\int_{cv} \rho dV
++
+\int_{cs}\rho(\vec{V}\cdot\vec{n})dA
+=
+0
+\end{align}
+
+Mass balance for a steady flow process:
+
+\begin{align}
+\frac{dm_{cv}}{dt}
+=
+\sum_{in} \dot{m}
+-
+\sum_{out} \dot{m}
+\end{align}
+
+\begin{align}
+\dot{m}_1      &= \dot{m}_2\\
+\rho_1 V_1 A_1 &= \rho_2 V_2A_2
+\end{align}
+
+For incompressible fluids the density is constant, therefore the density eliminates from both sides.
+
+Total energy for a flowing fluid, the energy per unit mass is:
+
+\begin{align}
+\theta =
+\underbrace{PV}_{\text{flow energy}}
++
+\underbrace{u}_{\text{internal energy}}
++
+\underbrace{\frac{V^2}{2}}_{\text{kinetic energy}}
++
+\underbrace{gz}_{\text{potential energy}}
+\end{align}
+
+Amount of energy transport:
+
+\begin{align}
+E_{mass} &= m\theta\\
+         &= m(h+\frac12V^2+gz)
+\end{align}
+
+The rate of energy transport:
+
+
+\begin{align}
+\dot{E}_{mass} &= \dot{m}\theta\\
+               &= \dot{m}(h+\frac12V^2+gz)
+\end{align}
+
+
+Applying energy balance for multiple a control volume with multiple inlets or outlets:
+
+\begin{align}
+\dot{E}_{in} &= \dot{E}_{out}\\ 
+\dot{Q}_{in} + \dot{W}_{in} + \sum_{in}\dot{m}\theta &=
+\dot{Q}_{out} + \dot{W}_{out} + \sum_{out}\dot{m}\theta
+\end{align}
+
+\subsubsection{Diffuser}
+A diffuser is a device that reduces the velocity of a flowing fluid. The governing equation for a diffuser is:
+
+\begin{align}
+	h_2 = h_1 + \frac{V_1^2}{2}
+\end{align}
+
+\subsubsection{Nozzle}
+A nozzle is a device that increases the velocity of a flowing fluid. The governing equation is:
+
+\begin{align}
+	0&=\dot{Q} + \dot{m}
+	\left[
+	(h_1-h_2)
+	+
+	\frac{V_1^2-V_2^2}{2}
+	\right]
+\end{align}
+
+\subsubsection{Turbine/Compressor}
+
+\begin{align}
+	\dot{W} = \dot{m}(h_1-h_2)
+\end{align}
+
+
+\subsubsection{Throttling Valve}
+Reduces pressure
+\begin{align}
+	\dot{m}(h_1-h_2)&=0\\ 
+	h_1=h_2
+\end{align}
+
+
+
+
+
+
+
+
