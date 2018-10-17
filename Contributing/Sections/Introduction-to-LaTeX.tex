@@ -8,6 +8,7 @@
 	\item[Package] A package is a set of predefined \LaTeX{} macros packaged up for your use. Users can create their own packages. gitMechanics relies on a few custom packages.
 	\item[Document class] There are many document classes that you can use, and you can even define your own classes. Classes include: article, standalone, beamer (slide presentation format), report, book, etc. Each class provides a set of commands to typeset your work.
 	\item[Environments] Text in an environment is processed in a particular way by the compiler. Inside an environment particular types of commands are available for use. The entire body of the document is wrapped in the document environment. There are also list environments, math environments, floating environments, and of course you can define custom environments.
+	\item[WYSIWYG] Pronounced wizzy-wig. This stands for what you see is what you get. This is what GUI editors do. Some people refer to \LaTeX{} as what you see is what you want.
 \end{description}
 
 \subsection{Getting \LaTeX{} on Your Machine}
@@ -96,8 +97,27 @@ y &= mx + b\\
 Things to note: the equations are aligned based on the location of the ``\&'' and new lines are entered with ``\textbackslash''. Greek letters and other commands also require a space after the command name otherwise it will throw an error.
 
 \subsubsection{Lableing and Referencing}
+One of the benefits with \LaTeX{} is that it has automated equation numbering, referencing and hyperlinking. When you write an equation, within the equation environment you need to provide a label with a name for that object like the following:
 
-Hyperlinking
+\begin{center}
+\begin{latexcode}
+\label{label-name}
+\end{latexcode}
+\end{center}
+
+Once you have labeled an equation you can reference that equation number in your text with the following:
+
+\begin{center}
+\begin{latexcode}
+\ref{label-name}
+\end{latexcode}
+\end{center}
+
+It is best practice to begin an equation label with ``Eq:'' since labels include table and figure labels (same for ``Tab'' and ``Fig''). The process for labeling and referencing figures and tables is the same. Add a label within the respective environment, then reference the object somewhere in your text.
+
+Note that you may have to run \LaTeX{} more than once for the object number to appear in your text. This is because \LaTeX{} builds a file in your current working directory with the information about your labeled information. Just run \LaTeX{} again and it will update your text. The same is true for the table of contents.
+
+All internal references can automatically become hyperlinked by importing the ``hyperref'' package. This will make the table of contents and any referenced object clickable and will redirect to the referenced object. This is already imported by default in gitMechanics documents since the custom TitlePage package uses the hyperref package so there's no need to add that to your preamble.
 
 \subsubsection{Greek Letters}
 Most Greek letters can be included in math mode typically by typing ``\textbackslash'' followed by the name of the letter such as typesetting the letter beta: $\beta$. The following PDF lists many Greek letters and math mode symbols.
@@ -106,12 +126,21 @@ Most Greek letters can be included in math mode typically by typing ``\textbacks
 	\url{https://wch.github.io/latexsheet/latexsheet.pdf}
 \end{center}
 
-
-
 \subsubsection{Operators}
+There are many common math operators such as trigonometric functions:
 
+\begin{center}
+\begin{latexcode}
+\sin \csc
+\cos \sec
+\tan \cot
+\end{latexcode}
+\end{center}
 
+\subsubsection{Typsetting Tables}
+Tables in \LaTeX{} can be difficult to produce and debug. 
 
+WYSIWYG
 
 
 
