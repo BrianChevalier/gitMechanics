@@ -2,7 +2,7 @@
 
 Git is an open-source, distributed \textit{version control system} originally built by Linus Torvalds for managing contributions to Linux. Git is now one of the world's most used version control systems (all of Windows is now managed with git), one of the primary places git repositories are stored is on github.com (which is where this document lives). At it's core all git does is keep track of changes in files, but particularly plain text files. Plain text files can have many file extensions such as txt, md, tex, etc. We'll talk about these more later.
 
-Git can be used through two primary ways: via a graphical user interface (GUI) or through the command line. Git is available on all platforms (even iOS, android, and chromeOS). Before we talk about actually using git we'll look at some basic terminology.
+Git can be used through two primary ways: via a graphical user interface (GUI) or through the command line. Git is available on all platforms (even iOS, Android, and chromeOS. On iOS I highly recommend Working Copy). Before we talk about actually using git we'll look at some basic terminology.
 
 
 \subsection{Vernacular}
@@ -10,7 +10,7 @@ Git can be used through two primary ways: via a graphical user interface (GUI) o
 There are a few concepts that you'll want to understand in general before getting started with the particulars of using git. Some of these words can be very confusing for beginners so we're going to lay out some words that you'll want to be familiar with.
 
 \begin{description}
-	\item[Repository] Also called a ``repo''. This is a directory that stores your source files. There is a special folder called ``.git'' which contains the metadata about the repo.
+	\item[Repository] Also called a ``repo''. This is a directory that stores your source files. There is a special folder called ``.git'' which contains the metadata about the repo. Folders that start with a dot will be hidden in most files systems.
 	\item[Clone] When you see a project on github you can clone that project. This is a full copy of a repository. Every repo is a clone which is why git is a distributed version control system. 
 	\item[Commit] After you make changes to a repo you'll want to commit those changes. This is essentially like a bookmark in your repo that holds the state of your repo. Every commit must be made with a message (make sure it's useful!) and optional additional comments.
 	\item[Stage] Before you actually make a commit you will will have to ``stage'' or decide which files will be included with the commit. If you're using a GUI git tool this may just be a step while making a commit. On the command line you have to stage the files you are going to commit (this is done with git add filename or git add -a for all files in the repo to be added) and then commit them.

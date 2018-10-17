@@ -38,6 +38,52 @@ The most basic document needs two things. First you have to define your ``docume
 
 \subsection{Document Structure}
 
+Documents are split into different pieces. This includes (from highest level, to lowest): part, chapter, section, subsection, subsubsection, paragraph, subparagraph. The highest level in this document is a section and then subsection. Table \ref{Tab:HeaderLevels} shows the various header types available. Note that ``part'' is only available in books and reports.
+
+\begin{table}[H]
+\centering
+\caption{Header levels}
+\label{Tab:HeaderLevels}
+% repeat syntax
+% number of religions
+% string to repeat
+% *{num}{str}
+\begin{tabular}{|l|*{2}{c|}}
+\hline
+Header        & Level \\\hline
+part          & -1    \\
+chapter       & 0     \\ 
+section       & 1     \\ 
+subsection    & 2     \\ 
+subsubsection & 3     \\ 
+paragraph     & 4     \\ 
+subparagraph  & 5 \\\hline
+\end{tabular}
+\end{table}
+
+New headers can be added similar to the following:
+
+\begin{center}
+\begin{latexcode}
+\section{section name}
+\subsection*{subsection name}
+\end{latexcode}
+\end{center}
+
+This code adds a new numbered section with the name ``section name'' and unnumbered subsection that does not show up in the table of contents called ``subsection name''.
+
+
+
+Note: subsubsections are used in this document, however they are suppressed from the table of contents since it would make the table of contents too long. You can choose the level shown in the table of contents by the following:
+
+\begin{center}
+\begin{latexcode}
+\setcounter{tocdepth}{2}
+\end{latexcode}
+\end{center}
+
+where the number is the lowest depth the table of contents goes to.
+
 
 
 \subsection{Loading Packages}
@@ -142,7 +188,7 @@ Tables in \LaTeX{} can be difficult to produce and debug.
 
 WYSIWYG
 
-
+\url{https://tablesgenerator.com}
 
 
 
