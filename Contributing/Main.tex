@@ -10,6 +10,12 @@
 \usepackage{pdfpages}
 \usepackage{gensymb}
 \usepackage{tikz}
+\usepackage{forest}
+
+% To-do list
+\usepackage{enumitem,amssymb}
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
 
 \setcounter{tocdepth}{2}
 \usetikzlibrary{math}
@@ -49,14 +55,26 @@
 % It will make the title page
 \maketitle
 
+% I'm not content with the name abstract
+% but whatever...
+\renewcommand{\abstractname}{Welcome to the gitMechanics Team!}
+
+\begin{abstract}
+This document is a beginners introduction to the information needed to contribute to gitMechanics. We will cover the basics of git, \LaTeX{}, and we'll end on the steps you need to take to make a contribution.
+
+All suggestions, corrections, or new material is very welcome, no matter how small. The \textit{beauty} of open-source is that all contributions make a permanent difference. If you have no expierience with any of these things don't be intimidated! Feel free to reach out for any clarification or help you need. I'm so happy you've even considered helping.
+\end{abstract}
+
 % Add additional sections here
 \input{Sections/Introduction-to-git}
 \input{Sections/Introduction-to-LaTeX}
 \input{Sections/Drawing-in-LaTeX}
-\input{Sections/Introduction-to-Jekyll}
 \input{Sections/Making-a-pull-request}
-\input{Sections/LaTeX-Appendix}
 
+\begin{appendices}
+	\input{Sections/Introduction-to-Jekyll}
+	\input{Sections/LaTeX-Appendix}
+\end{appendices}
 
 %---------------------------------------------
 

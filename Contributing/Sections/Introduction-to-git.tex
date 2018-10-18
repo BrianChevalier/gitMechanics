@@ -11,7 +11,8 @@ There are a few concepts that you'll want to understand in general before gettin
 
 \begin{description}
 	\item[Repository] Also called a ``repo''. This is a directory that stores your source files. There is a special folder called ``.git'' which contains the metadata about the repo. Folders that start with a dot will be hidden in most files systems.
-	\item[Clone] When you see a project on github you can clone that project. This is a full copy of a repository. Every repo is a clone which is why git is a distributed version control system. 
+	\item[Clone] When you see a project on github you can clone that project. This is a full copy of a repository. Every repo is a clone which is why git is a distributed version control system.
+	\item[Fork] A fork is a copy of a repo that is associated with your github account. This gives you a repo that you can edit and push changes to. Typically you will \textit{fork} someone's repo on github.com, then \textit{clone} that repo to your local machine. In effect, all repos are clones and forks because it is a distributed network.
 	\item[Commit] After you make changes to a repo you'll want to commit those changes. This is essentially like a bookmark in your repo that holds the state of your repo. Every commit must be made with a message (make sure it's useful!) and optional additional comments.
 	\item[Stage] Before you actually make a commit you will will have to ``stage'' or decide which files will be included with the commit. If you're using a GUI git tool this may just be a step while making a commit. On the command line you have to stage the files you are going to commit (this is done with git add filename or git add -a for all files in the repo to be added) and then commit them.
 	\item[Fetch] When you're working with a repo you typically have a version of that repo on a server that you want to route your changes through. If someone else has made changes to that repo or you made changes on another device you have to fetch changes, then merge them into your repo and push those changes back to the server.
@@ -60,5 +61,12 @@ and provides full guides on using their application:
 \end{center}
 
 
+\subsection{Making a Pull Request}
 
+Now we will take a look at making a \textit{pull request}. A pull request is your method of suggesting changes to someone's work. Typically, big open-source projects are not just a Wikipedia-style free-for-all. Only project maintainers have \textit{write access} to the canonical version of Python, for instance. However, community members \textit{are} able to fork a copy of the repository to their own github. This allows write access to your own version of the repo. After you make changes to your code, you can then make a pull request on the original repo. This ensures that the code can be vetted by automated testing (i.e. continuous integration), and further tested by humans.
 
+The following video shows how to fork a public repo, make changes to that repo where you have write access, then suggest changes via a pull request to a project.
+
+\begin{center}
+	\url{https://youtu.be/YTbRzhQju4c}
+\end{center}
