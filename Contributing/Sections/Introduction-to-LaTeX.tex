@@ -84,7 +84,59 @@ Note: subsubsections are used in this document, however they are suppressed from
 
 where the number is the lowest depth the table of contents goes to.
 
+\subsection{Text Commands}
+\LaTeX{} has a markup syntax similar to what you might be familiar with HTML. In a text environment (document environment, itemize, etc.) You can use: 
 
+\begin{center}
+\begin{latexcode}
+\textit{}
+\end{latexcode}
+\end{center}
+
+to \textit{italicize} text. You can use
+
+\begin{center}
+\begin{latexcode}
+\textit{}
+\end{latexcode}
+\end{center}
+
+
+\subsection{Text Environments}
+There are many text environments available in \LaTeX{} to typeset lists. You can typeset a basic bullet-point list with the following itemize environment:
+
+\begin{center}
+\begin{latexcode}
+\begin{itemize}
+\item Item 1
+\item Item 2
+\end{itemize}
+\end{latexcode}
+\end{center}
+
+Note that each item must be pretended with the item command followed by a space then the item. You can typeset a numbered list in the enumerate environment:
+
+\begin{center}
+\begin{latexcode}
+\begin{enumerate}
+\item Item 1
+\item Item 2
+\end{enumerate}
+\end{latexcode}
+\end{center}
+
+You can nest lists by adding the environment you want nested. You can also customize the bullet points and how the list is typeset.
+
+You can typeset a list of definitions using the \textit{description} environment. Each item is the optional input item in the item command like the following:
+
+\begin{center}
+\begin{latexcode}
+\begin{description}
+\item[Word] Description 1
+\item[Phrase] Description 2
+\end{description}
+\end{latexcode}
+\end{center}
 
 \subsection{Loading Packages}
 Standard \LaTeX{} is good, however, you will likely need to load additional packages to extend the language. You can import a package like the following:
