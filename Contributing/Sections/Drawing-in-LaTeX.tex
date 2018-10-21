@@ -26,4 +26,28 @@ You can also use a GUI editor that will output to markup formats and include tho
 \subsection{TikZ}
 While including external images works, it can get out of control pretty quickly if you have many figures. It also eliminates the possibility of using a set of macros to keep drawings consistent throughout many documents. Using generated TikZ still runs into this problem. Therefore, the only good option is to learn TikZ markup. For gitMechanics, I have already begun building a library of macros that will hopefully make the processs more straight-forward and consistent between documents.
 
+The following site has many example TikZ examples:
+
+\begin{center}
+\url{http://www.texample.net/tikz/examples/}
+\end{center}
+
+
+
+\subsubsection{TikZ Math}
+The TikZ Math library is a great way to use math to better geometrically describe your diagrams. The direct link to the documentation can be found at:
+
+\begin{center}
+\url{http://ctan.mirrors.hoobly.com/graphics/pgf/base/doc/pgfmanual.pdf\#page640}
+\end{center}
+
+You must load the tikzmath library using the following:
+
+\begin{center}
+\begin{latexcode}
+\usetikzlibrary{math}
+\end{latexcode}
+\end{center}
+
+Then you can define variables and evaluate math expressions in the tikzmath command. Each statement \textbf{must} be terminated by a semi-colon, and the variable should not be an existing variable used in your \LaTeX{} file or used packages.
 

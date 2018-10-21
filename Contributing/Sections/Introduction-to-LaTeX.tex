@@ -97,10 +97,11 @@ to \textit{italicize} text. You can use
 
 \begin{center}
 \begin{latexcode}
-\textit{}
+\textbf{}
 \end{latexcode}
 \end{center}
 
+to write \textbf{bold face} text.
 
 \subsection{Text Environments}
 There are many text environments available in \LaTeX{} to typeset lists. You can typeset a basic bullet-point list with the following itemize environment:
@@ -114,7 +115,7 @@ There are many text environments available in \LaTeX{} to typeset lists. You can
 \end{latexcode}
 \end{center}
 
-Note that each item must be pretended with the item command followed by a space then the item. You can typeset a numbered list in the enumerate environment:
+Note that each item must be prepended with the item command followed by a space then the item. You can typeset a numbered list in the enumerate environment:
 
 \begin{center}
 \begin{latexcode}
@@ -179,6 +180,7 @@ The next important math environment is the align environment. The align environm
 \begin{align}
 y &= mx + b\\ 
   &= \frac{\Delta y}{\Delta x}x + b
+\label{Eq:ex1}
 \end{align}
 
 The syntax looks like:
@@ -188,11 +190,14 @@ The syntax looks like:
 \begin{align}
 y &= mx + b\\ 
   &= \frac{\Delta y}{\Delta x}x + b
+\label{Eq:ex1}
 \end{align}
 \end{latexcode}
 \end{center}
 
 Things to note: the equations are aligned based on the location of the ``\&'' and new lines are entered with ``\textbackslash''. Greek letters and other commands also require a space after the command name otherwise it will throw an error.
+
+You can insert any equation \textit{inline} anywhere in your document simply by wrapping the equation in dollar signs. For instance, you can reference equation \ref{Eq:ex1} and say the variable $\Delta$ means the change in the following variable.
 
 \subsubsection{Lableing and Referencing}
 One of the benefits with \LaTeX{} is that it has automated equation numbering, referencing and hyperlinking. When you write an equation, within the equation environment you need to provide a label with a name for that object like the following:
