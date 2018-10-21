@@ -13,7 +13,8 @@
 \newcommand{\sig}{\sigma} %sigma shortcut
 \newcommand{\ep}{\varepsilon} %epsilon shotcut
 
-\renewcommand{\vec}[1]{\mathbf{#1}} %make vectors bold
+% Make vectors bold
+\renewcommand{\vec}[1]{\mathbf{#1}}
 
 \everymath{\displaystyle}
 
@@ -23,6 +24,41 @@
 \newcommand{\poi}[1]{
 \filldraw[ultra thick,fill=white] (#1) circle (0.1cm);
 }
+
+%---------
+% TikZ styles:
+\tikzstyle{basevec}=[->, red, very thick]
+\tikzstyle{label}=[draw, rounded corners=5 pt, midway, right=4pt, fill=white]
+\tikzstyle{guide}=[thin, dashed]
+
+
+%---------
+% Custom Colors
+\definecolor{space}{HTML}{18B092}
+\definecolor{mattegreen}{rgb}{0.84,0.89,0.74}
+\definecolor{flatp}{rgb}{0.56,0.54,0.63}
+
+
+%---------
+% TikZ commands:
+\newcommand{\basevec}[4]{
+% 1: point
+% 2: angle
+
+\draw [basevec]
+(#1) -- +(#2+90:1cm)
+node[above]{$\vec{#3}$};
+
+\draw[basevec]
+(#1) -- +(#2:1cm) node[above]{$\vec{#4}$};
+
+}
+
+\newcommand{\nandm}[2]{
+\basevec{#1}{#2}{n}{m}
+}
+
+
 
 % For help with drawing tikz Bézier curves
 % Source: https://tex.stackexchange.com/questions/255234/how-does-one-pick-control-points-to-control-bézier-curves-in-tikz
@@ -87,8 +123,6 @@
 %% Pseudo-code box
 % tcolorbox documentation:
 % http://texdoc.net/texmf-dist/doc/latex/tcolorbox/tcolorbox.pdf#page39
-\definecolor{mattegreen}{rgb}{0.84,0.89,0.74}
-\definecolor{flatp}{rgb}{0.56,0.54,0.63}
 
 \newenvironment{pseudocode}{
 \begin{center}
