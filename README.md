@@ -10,6 +10,11 @@
 ## About
 gitMechanics is dedicated to providing and creating a shared knowledge-base of Mechanics and related topics. This includes many Civil Engineering and Mechanical Engineering classes such as statics, dynamics, deformable solids (mechanics of materials) as well as concrete and steel design.
 
+Fundamental engineering topics like *dynamics* and *deformable solids* are still taught as they were decades ago, in spite of the rise of computational mechanics. There are many resources available to instruct these classes but few build concepts for students from first principles, integrate computation, and provide ample example problems for students to appropriately scaffold their knowledge.
+
+This project aims to eliminate the waste associated with professors building their own courses from scratch. Using *git* as a version control system allows us educators (and even students) to build this repository of knowledge, and share it freely. Anyone can make changes, enhancements, and corrections to the content on the site. We hope you'll take the time to contribute!
+
 ## Contributing
 
 
+Basics on git, LaTeX, and contributing to the project can be found [here](http://www.gitmechanics.com/Contributing/Main.pdf).
