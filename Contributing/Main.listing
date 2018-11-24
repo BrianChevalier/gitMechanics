@@ -1,7 +1,1 @@
-\begin{figure}[H]
-\centerline{
-\includegraphics[width=\columnwidth]
-{Figures/FIGNAME}}
-\caption{CAPTION}
-\label{fig:LABEL}
-\end{figure}
+\usetikzlibrary{math}
