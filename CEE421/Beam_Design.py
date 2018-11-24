@@ -34,11 +34,11 @@ def A(d, Mu, phi, fc, fy):
 x0 = 10
 
 phi = 0.9
-fc = 4 #ksi
+fc = 3 #ksi
 fy = 60 #ksi
 Es = 29000 #ksi
 ecu = 0.003
-Mu = 200*12 # kip-in.
+Mu = 723.2*12 # kip-in.
 
 tolerance=1.0e-2
 itMax=100
