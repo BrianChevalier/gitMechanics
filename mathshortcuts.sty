@@ -9,6 +9,8 @@
 \newcommand{\n}{\vec{n}}
 \newcommand{\m}{\vec{m}}
 \newcommand{\x}{\vec{x}}
+\newcommand{\dtheta}{\dot{\theta}}
+\newcommand{\ddtheta}{\ddot{\theta}}
 
 \newcommand{\sig}{\sigma} %sigma shortcut
 \newcommand{\ep}{\varepsilon} %epsilon shotcut
@@ -46,8 +48,11 @@
 % 2: angle
 
 \draw [basevec]
-(#1) -- +(#2+90:1cm)
-node[above]{$\vec{#3}$};
+(#1)
+-- +
+(#2+90:1cm)
+node[above]{$\vec{#3}$}
+;
 
 \draw[basevec]
 (#1) -- +(#2:1cm) node[above]{$\vec{#4}$};
@@ -62,27 +67,28 @@ node[above]{$\vec{#3}$};
 
 % For help with drawing tikz Bézier curves
 % Source: https://tex.stackexchange.com/questions/255234/how-does-one-pick-control-points-to-control-bézier-curves-in-tikz
-\tikzset{
-  ctrlpoint/.style={%
-    draw=gray,
-    circle,
-    inner sep=0,
-    minimum width=1ex,
-  }
-}
-\newcommand\Bezier[4]{% \bezier (lowercase 'b') was already defined elsewhere
-  \node (p1) [ctrlpoint,label=90:$P_1$] at (#1) {};
-  \node (p2) [ctrlpoint,label=90:$P_2$] at (#2) {};
-  \node (p3) [ctrlpoint,label=90:$P_3$] at (#3) {};
-  \node (p4) [ctrlpoint,label=90:$P_4$] at (#4) {};
-  \draw [gray] (p1) -- (p2) -- (p3) -- (p4);
-  \draw [blue] (#1) .. controls (#2) and (#3) .. (#4);
-}
+%\tikzset{
+%  ctrlpoint/.style={%
+%    draw=gray,
+%    circle,
+%    inner sep=0,
+%    minimum width=1ex,
+%  }
+%}
+%\newcommand\Bezier[4]{% \bezier (lowercase 'b') was already defined %elsewhere
+%  \node (p1) [ctrlpoint,label=90:$P_1$] at (#1) {};
+%  \node (p2) [ctrlpoint,label=90:$P_2$] at (#2) {};
+%  \node (p3) [ctrlpoint,label=90:$P_3$] at (#3) {};
+%  \node (p4) [ctrlpoint,label=90:$P_4$] at (#4) {};
+%  \draw [gray] (p1) -- (p2) -- (p3) -- (p4);
+%  \draw [blue] (#1) .. controls (#2) and (#3) .. (#4);
+%}
 
 
 %%------------------------------
 \RequirePackage{empheq}
-\RequirePackage[most]{tcolorbox}
+\RequirePackage{tcolorbox}
+\tcbuselibrary{listings}
 % Box commands
 \newtcbox{\purplebox}[1][]{
 	nobeforeafter,
@@ -168,8 +174,10 @@ node[above]{$\vec{#3}$};
 
 % Glossary commands
 \RequirePackage[toc]{glossaries}
+%
 \makeglossaries
 
+%
 \newcommand{\glo}[3]{
 % #1: name
 % #2: code
@@ -177,8 +185,9 @@ node[above]{$\vec{#3}$};
 \newglossaryentry{#1}{
 	name={\ensuremath{#2}},
 	description={#3}}
-% 
+ 
 	\expandafter\newcommand\csname #1\endcsname{\ensuremath{#2}}
+%
 }
 
 

@@ -13,3 +13,4 @@
 *.out
 /_site/*
 /.sass-cache/*
+*.listing
