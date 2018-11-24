@@ -33,6 +33,7 @@
 \RequirePackage{hyperref}
 \RequirePackage{multicol}
 \RequirePackage{paracol}
+\RequirePackage{fancyhdr}
 
 \RequirePackage[
 	top    = 3.75cm,
@@ -48,6 +49,15 @@
     linkcolor=black,
     urlcolor=black
 }
+
+\pagestyle{fancy}
+
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+
+\fancyfoot[L]{\textcolor{gray}{\@author}}
+\fancyfoot[C]{\textcolor{gray}{\thepage}}
+\fancyfoot[R]{\textcolor{gray}{Updated: \today}}
 
 \setlength\parindent{0pt}
 \setlength{\parskip}{\baselineskip}
