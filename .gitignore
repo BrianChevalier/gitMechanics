@@ -14,3 +14,5 @@
 /_site/*
 /.sass-cache/*
 *.listing
+/Contributing/.master
+/Example-Example-Problem/*
