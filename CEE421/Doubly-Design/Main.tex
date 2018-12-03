@@ -1,0 +1,247 @@
+% Basic document class
+\documentclass[landscape, twocolumn, 12pt]{article}
+
+% General public packages loaded here:
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{pdfpages}
+\usepackage{gensymb}
+\usepackage{tikz}
+\usetikzlibrary{math}
+
+% Custom .sty files loaded here:
+\usepackage{../../TitlePage}
+\usepackage{../../mathshortcuts}
+
+% Add to glossary
+% Check mathshortcuts.sty for documentation
+\glo{Mu}{M_{u}}{Factored ultimate moment in the beam}
+\glo{Mn}{M_n}{Nominal moment strength}
+\glo{As}{A_s}{Area of tension reinforcing steel}
+\glo{bb}{b}{Width of compression zone in a beam}
+\glo{dd}{d}{Distance from the extreme fiber in compression}
+
+\glo{rhob}{\rho_b}{The reinforcement ratio of concrete at the balance condition}
+
+\glo{fy}{f_y}{Yield stress of steel}
+\glo{fs}{f_s}{Stress of the steel}
+\glo{fc}{f'_c}{Yield stress of concrete}
+\glo{betao}{\beta_1}{ACI variable}
+
+\glo{ecu}{\varepsilon_{cu}}{Ultimate compressive strain of concrete}
+\glo{ey}{\varepsilon_y}{Yield strain of steel}
+\glo{es}{\varepsilon_s}{Strain of tension steel}
+
+% Title Page commands
+% Check TitlePage.sty for documentation
+
+\title{Doubly Reinforced Concrete Beam}
+\subtitle{Beam Design}
+\coursenum{CEE421}
+\coursetitle{Concrete Structures}
+\university{Arizona State University}
+
+\titleimage{../../default-title-image}
+\author{Brian Badahdah}
+\date{\today}
+
+%-------------------------------------------
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+The goal of this document is to introduce the idea of \texit{double reinforced} beams and why compression reinforcement is necessary in concrete design.
+
+One goal of concrete design is reduce material costs, and one way to do that is ensuring a tension controlled section. A tension controlled section can use a moment reduction factor of 0.9. However, to ensure tension control, the steel must yield before the concrete will crush. Which means there is a maximum amount of tension reinforcement that can be added before tension steel will not yield before the concrete crushes. Adding compression reinforcement allows the addition of tension reinforcement.
+
+\section{Moment Capacity of Singly Reinforced Beams}
+We can calculate the maximum possible moment strength of a beam at the balance condition (when the tension steel yields at the same time the concrete crushes).
+
+\begin{equation}
+  \rho_{bal} = 0.85\betao
+  \left[\frac{\fc}{\fy}\right]
+  \left[ \frac{\ecu}{\ecu+0.005}\right]
+\end{equation}
+
+Next, calculate the area of steel:
+
+\begin{equation}
+  \As = \rho_{bal} bd
+\end{equation}
+
+Calculate the depth of the Whitney stress block:
+\begin{equation}
+  a = \frac{\As\fy}{0.85 \fc b}
+\end{equation}
+
+Finally, calculate the maximum moment strength for the tension controlled, singly reinforced concrete beam, using moment equilibrium:
+
+\begin{equation}
+  \Mn = \As\fy \left[\dd-\frac{a}{2}\right]
+\end{equation}
+
+If this moment strength is not high enough, and the cross sectional area cannot be increased, then a doubly reinforced beam will be necessary to increase the moment capacity.
+
+\section{Piecewise Stress}
+
+\begin{figure}[h]
+\begin{tikzpicture}[xscale=0.95]
+	%% Cross section
+	\draw[ultra thick] (1.5,3) rectangle (0,0);
+
+	%% height
+	\draw[thick,|<->|] (-0.5,0) -- node[left]{h} (-0.5,3);
+
+	%% base
+	\draw[thick,|<->|] (0,3.5) -- node[above]{\bb} (1.5,3.5);
+
+	%% depth to steel
+	\draw[thick,|<->|] (2,0.5) -- node[right]{\dd} (2,3);
+
+	\draw[dashed, thin] (0,0.5) -- (10,0.5);
+
+	\draw[dashed, thin] (-1,0) -- (10,0);
+	\draw[dashed, thin] (-1,3) -- (10,3);
+
+	%Steel circles
+	\draw[ultra thick,fill=white] (0.5,0.5) circle (0.1cm);
+	\draw[ultra thick,fill=white] (1,0.5) circle (0.1cm);
+
+	%% Strain axis line
+	\draw[ultra thick] (4,0) -- (4,3);
+	% strain plot and labels
+	\draw[thick,|<->|] (2.9,-0.5) -- node[below]{\es} (4,-0.5);
+	\draw[dashed, thin] (2.9,-0.5) -- (2.9,0.5);
+
+	\draw[thick] (2.5,0) -- (5,3);
+	\draw[thick,|<->|] (5,3.5) -- node[above]{\ecu} (4,3.5);
+	%Neutral axis
+	\draw[thin, dashed] (3,1.8) -- (10, 1.8);
+	% Depth to neutral axis line
+	\draw[thick, |<->|] (3,1.8) -- node[left]{c} (3,3);
+
+	\begin{scope}[xshift=-0.5cm]
+	%% Stress axis line
+	\draw[ultra thick] (7,0) -- (7,3);
+	\draw[thick,|<->|] (6,2) -- node[left]{a} (6,3);
+	\draw[thin, dashed] (6,2) -- (10,2);
+
+	\draw[thick,|<->|] (7,3.5) -- node[above]{0.85\fc} (8,3.5);
+	\draw[thick,|<->|] (5.5,-0.5) -- node[below]{\fs} (7,-0.5);
+
+	%whitney stress block arrows
+	\draw[thick,red,->] (8,3) -- (7,3);
+	\draw[thick,red,->] (8,2.5) -- (7,2.5);
+	\draw[thick,red,->] (8,2) -- (7,2);
+	\draw[thick, red] (8,3) -- (8,2);
+
+	% Steel stress
+	\draw[thick, red, <-] (7,0.6) -- (5.5,0.6);
+	\draw[thick, red, <-] (7,0.4) -- (5.5,0.4);
+	\draw[thick, red] (5.5,0.4) -- (5.5,0.6);
+	\end{scope}
+
+	\begin{scope}[xshift=-0.5cm]
+	%% Force axis line
+	\draw[ultra thick] (9,0) -- (9,3);
+
+	% Resultant forces
+	% Comression
+	\draw[ultra thick, red, <-] (9,2.5) -- node[above,fill=white]{$C_c$} (10,2.5);
+	\draw[thick, |<->|] (10,2.5) -- node[right=0.2cm,fill=white]{$\frac{a}{2}$} (10,3);
+	%Tension
+	\draw[ultra thick, red, ->] (8,0.5) -- node[below,fill=white]{$T_s$} (9,0.5);
+
+	\draw[thick, |<->|] (10,2.5) -- node[fill=white]{$\dd-\frac{a}{2}$} (10,0.5);
+
+	\end{scope}
+
+\end{tikzpicture}
+\end{figure}
+
+The stress the compression and tension steel is defined in the following equations.
+
+\begin{align}
+f_s =
+  \begin{cases}
+    E \ecu \left[\frac{d-c}{c}\right] & \es<\ey \\
+    \fy                               & \es>\ey
+  \end{cases}
+\end{align}
+
+\begin{align}
+f'_s =
+  \begin{cases}
+    E \ecu \left[\frac{c-d'}{c}\right] & \es' < \ey \\
+    \fy'                               & \es' > \ey
+  \end{cases}
+\end{align}
+
+
+In order to determine the stress in both the tension and compression steel we must first determine the strains. They can be calculated using similar triangles from the strain profile of the cross section.
+
+\begin{equation}
+  \es' = \ecu \left[ \frac{c-d'}{c}\right]
+\end{equation}
+
+\begin{equation}
+  \es = \ecu \left[ \frac{d-c}{c}\right]
+\end{equation}
+
+
+Therefore, to calculate the stress, the strain must be known.
+
+\section{Determining the Neutral Axis}
+The depth to the neutral axis, $c$, must also be known to compute the stress and strain in the steel. Using force equilibrium of the section the following equation can be found:
+
+\begin{align}
+  0 = \fs\As - \fs'\As' - 0.85\fc\betao c b
+\end{align}
+
+The neutral axis depth is in each term of this equation, by virtue of the stress piecewise equation, and the bounds of the piecewise as determined by the strain in the steel, which is calculated using the depth of the neutral axis.
+
+If both the compression and tension steel are yielding, then the stress in the steel can be substituted from the previous equations, as the yield stress of the steel.
+
+However, often the compression steel will not yield, and the equation becomes non-linear, and piecewise.
+
+Using Newton's method can efficiently solve the equation for the depth of the neutral axis. With a good initial guess of c, a guess of the strain values of the steel can be determined, followed by the stress, and a better estimate of the neutral axis can be determined.
+
+Taking the derivative of the force equation, with respect to the neutral axis:
+
+\begin{equation}
+  0 = \frac{\partial\fs}{\partial c}\As
+  - \frac{\partial\fs'}{\partial c}\As'
+  -0.85 \fc\betao b
+\end{equation}
+
+where, the derivatives of the stress are piecewise functions defined by the following equations:
+
+\begin{equation}
+  \frac{\partial\fs}{\partial c} =
+  \begin{cases}
+    E\ecu\left[-\frac{d}{c^2}\right] &\es<\ey\\
+    0& \es>\ey
+  \end{cases}
+\end{equation}
+
+\begin{equation}
+  \frac{\partial\fs'}{\partial c} =
+  \begin{cases}
+    E\ecu\left[\frac{d}{c^2}\right] &\es'<\ey'\\
+    0& \es'>\ey'
+  \end{cases}
+\end{equation}
+
+%---------------------------------------------
+%\clearpage
+%\glsaddall
+%\printglossary[title={Variables Definitions}]
+%\newpage
+%\bibliography{References}
+%\addcontentsline{toc}{section}{References}
+%\bibliographystyle{apalike}
+\end{document}
