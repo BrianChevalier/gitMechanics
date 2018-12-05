@@ -16,3 +16,6 @@
 *.listing
 /Contributing/.master
 /Example-Example-Problem/*
+*.pytxcode
+*.gz
+*/pythontex-files-Main/*
