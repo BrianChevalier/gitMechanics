@@ -1,0 +1,79 @@
+% Basic document class
+\documentclass[landscape, twocolumn, 12pt]{article}
+
+% General public packages loaded here:
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{pdfpages}
+\usepackage{gensymb}
+\usepackage{tikz}
+\usetikzlibrary{math}
+
+% Custom .sty files loaded here:
+\usepackage{../../TitlePage}
+\usepackage{../../mathshortcuts}
+
+\newcommand{\fig}[2]{
+\begin{figure}
+  \centering
+  \includegraphics[width=0.7\columnwidth]{Figures/#1}
+  \caption{#2}
+  \label{Fig:#1}
+\end{figure}
+}
+
+% Title Page commands
+% Check TitlePage.sty for documentation
+
+\title{Taylor Series}
+\subtitle{Approximating Functions with Polynomials}
+\coursenum{CEE384}
+\coursetitle{Numerical Methods}
+\university{Arizona State University}
+
+%\titleimage{}
+\author{Brian Badahdah}
+\date{\today}
+
+%-------------------------------------------
+\begin{document}
+
+\maketitle
+\section{Motivation}
+
+There are many functions that are just a bit annoying. Instead of dealing with the actual function we want to deal with a much simpler polynomial approximation of that function. For instance, the familiar trigonometric functions have known values at discrete points but calculating the cosine of a value not at a particular point is not directly possible without a numerical approximation.
+
+We will begin by looking at the sin function. Essentially we want to make the function sin equal to some polynomial
+
+\begin{equation}
+  \sin(x)=a_0 + a_1x+a_2x^2 + a_3x^3
+\end{equation}
+
+We have two problems. 1) we don't currently have a value for $x$ and 2) We don't have enough equations to determine the coefficients in the Taylor polynomial.
+
+Problem one is pretty easy to solve. We just need to pick a point, $x$, to center our approximation about. This should be a convenient point that we know the value of the function at. $x=0$ will do for this example.
+
+The second problem can be solved by generating more equations.
+
+
+Figure \ref{Fig:3ordersin} shows this third order Taylor Polynomial.
+
+\fig{3ordersin}{3rd order Taylor Polynomial for sin}
+
+
+
+
+
+%---------------------------------------------
+%\clearpage
+%\glsaddall
+%\printglossary[title={Variables Definitions}]
+
+\newpage
+\bibliography{../../assets/bibtex}
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{apalike}
+\end{document}
