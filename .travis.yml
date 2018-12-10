@@ -3,6 +3,7 @@ dist: trusty
 before_install:
 - sudo apt-get install texlive-full
 script:
+- sudo tlmgr install tikzmath
 - cd Contributing
 - pdflatex -interaction=nonstopmode -half-on-error --shell-escape Main.tex
 notifications:
@@ -18,4 +19,3 @@ deploy:
   keep-history: true
   on:
       branch: deploy
-            
