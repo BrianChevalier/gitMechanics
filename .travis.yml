@@ -11,6 +11,9 @@ script:
 - conda install -y tectonic
 - cd Contributing
 - tectonic Main.tex
+branches:
+  only:
+    - master
 notifications:
   pushover:
     api_key:
