@@ -1,8 +1,8 @@
 sudo: required
 dist: trusty
 before_install:
+- sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended
 script:
-- - sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended
 - cd Contributing
 - pdflatex -interaction=nonstopmode -half-on-error --shell-escape Main.tex
 branches:
@@ -20,4 +20,4 @@ deploy:
   github-token: $GITHUB_TOKEN
   keep-history: true
   on:
-      branch: deploy
+      branch: gh-pages
