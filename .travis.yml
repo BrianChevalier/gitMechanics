@@ -4,7 +4,7 @@ before_install:
 - sudo apt-get install texlive-full
 script:
 - cd Contributing
-- latexmk Main.tex
+- pdflatex -interaction=nonstopmode -half-on-error --shell-escape Main.tex
 notifications:
   pushover:
     api_key:
