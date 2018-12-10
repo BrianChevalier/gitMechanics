@@ -2,10 +2,15 @@ sudo: required
 dist: trusty
 before_install:
 script:
-- sudo apt-get install libfontconfig1-dev libgraphite2-dev libharfbuzz-dev libicu-dev libssl-dev zlib1g-dev
-- sudo apt install g++
-- curl -sSf https://static.rust-lang.org/rustup.sh | sh
-- cargo install tectonic
+- wget https://repo.continuum.io/archive/Anaconda2-4.2.0-Linux-x86_64.sh
+- bash Anaconda2-4.2.0-Linux-x86_64.sh -b -p ~/anaconda
+- rm Anaconda2-4.2.0-Linux-x86_64.sh
+- echo 'export PATH="~/anaconda/bin:$PATH"' >> ~/.bashrc 
+- Refresh basically
+- source .bashrc
+- conda update conda
+- conda config --add channels conda-forge
+- conda install tectonic
 - cd Contributing
 - tectonic Main.tex
 notifications:
