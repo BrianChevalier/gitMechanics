@@ -8,9 +8,9 @@ script:
 - export PATH="$HOME/anaconda/bin:$PATH"
 - conda update conda --yes
 - conda config --add channels conda-forge
-- conda install tectonic -yes
+- conda install tectonic
 - cd Contributing
-- tectonic Main.tex
+- tectonic Main.texa
 notifications:
   pushover:
     api_key:
