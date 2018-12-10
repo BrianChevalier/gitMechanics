@@ -46,6 +46,7 @@
 
 There are many functions that are just a bit annoying. Instead of dealing with the actual function we want to deal with a much simpler polynomial approximation of that function. For instance, the familiar trigonometric functions have known values at discrete points but calculating the cosine of a value not at a particular point is not directly possible without a numerical approximation.
 
+\section{Approximating sin}
 We will begin by looking at the sin function. Essentially we want to make the function sin equal to some polynomial
 
 \begin{equation}
@@ -56,14 +57,32 @@ We have two problems. 1) we don't currently have a value for $x$ and 2) We don't
 
 Problem one is pretty easy to solve. We just need to pick a point, $x$, to center our approximation about. This should be a convenient point that we know the value of the function at. $x=0$ will do for this example.
 
-The second problem can be solved by generating more equations.
+The second problem can be solved by generating more equations. We know the derivatives of sin, and we can take the derivatives of the polynomial to generate as many equations as we need.
 
+\begin{alignat}{3}
+  \sin(x)  = &a_0 &+a_1x &+a_2x^2 &+a_3x^3\\
+  \cos(x)  = &0   &+a_1  &+2a_2x  &+3a_3x^2\\
+  -\sin(x) = &0   &+0    &+2a_2   &+(3)(2)a_3x\\
+  -\cos(x) = &0   &+0    &+0      &+(3)(2)a_3
+\end{alignat}
 
-Figure \ref{Fig:3ordersin} shows this third order Taylor Polynomial.
+We now have a system of equations with exactly four equations and four unknowns. Using substitution beginning with the last equation, and substituting into the previous equations we find:
+
+\begin{align*}
+  a_0&=0 \\ a_1&=1 \\ a_2&=0 \\ a_3&=-\frac{1}{6}
+\end{align*}
+
+The third order Taylor Polynomial is therefore:
+
+\begin{equation}
+  f(x) = x - \frac{1}{6}x^3
+\end{equation}
+
+ This equation is plotted along with the true sine plot in Figure \ref{Fig:3ordersin}.
 
 \fig{3ordersin}{3rd order Taylor Polynomial for sin}
 
-
+\section{Generalizing Some Findings}
 
 
 
