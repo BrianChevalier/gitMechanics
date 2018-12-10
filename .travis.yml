@@ -1,11 +1,11 @@
 sudo: required
 dist: trusty
 before_install:
-- sudo apt-get install texlive-full
 script:
-- sudo tlmgr install tikzmath
+- sudo apt-get install libfontconfig1-dev libgraphite2-dev libharfbuzz-dev libicu-dev libssl-dev zlib1g-dev
+- cargo install tectonic
 - cd Contributing
-- pdflatex -interaction=nonstopmode -half-on-error --shell-escape Main.tex
+- tectonic Main.tex
 notifications:
   pushover:
     api_key:
