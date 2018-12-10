@@ -1,7 +1,7 @@
 sudo: required
 dist: trusty
 before_install:
-- sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended
+- sudo apt-get install texlive-full
 script:
 - cd Contributing
 - pdflatex -interaction=nonstopmode -half-on-error --shell-escape Main.tex
