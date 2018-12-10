@@ -8,7 +8,7 @@ script:
 - export PATH="$HOME/anaconda/bin:$PATH"
 - conda update conda --yes
 - conda config --add channels conda-forge
-- conda install tectonic
+- conda install tectonic -yes
 - cd Contributing
 - tectonic Main.tex
 notifications:
