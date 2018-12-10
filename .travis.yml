@@ -25,3 +25,4 @@ deploy:
   target-branch: gh-pages
   on:
       branch: master
+      
