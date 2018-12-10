@@ -10,7 +10,7 @@ script:
 - conda config --add channels conda-forge
 - conda install -y tectonic
 - cd Contributing
-- tectonic Main.texa
+- tectonic Main.tex
 notifications:
   pushover:
     api_key:
