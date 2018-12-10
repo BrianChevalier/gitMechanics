@@ -6,9 +6,9 @@ script:
 - bash Anaconda2-4.2.0-Linux-x86_64.sh -b -p ~/anaconda
 - rm Anaconda2-4.2.0-Linux-x86_64.sh
 - export PATH="$HOME/anaconda/bin:$PATH"
-- conda update conda
-- conda config --add channels conda-forge
-- conda install tectonic
+- conda update conda --yes
+- conda config --add channels conda-forge --yes
+- conda install tectonic --yes
 - cd Contributing
 - tectonic Main.tex
 notifications:
