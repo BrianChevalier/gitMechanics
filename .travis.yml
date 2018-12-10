@@ -2,15 +2,9 @@ sudo: required
 dist: trusty
 before_install:
 script:
-- wget https://repo.continuum.io/archive/Anaconda2-4.2.0-Linux-x86_64.sh
-- bash Anaconda2-4.2.0-Linux-x86_64.sh -b -p ~/anaconda
-- rm Anaconda2-4.2.0-Linux-x86_64.sh
-- export PATH="$HOME/anaconda/bin:$PATH"
-- conda update conda --yes
-- conda config --add channels conda-forge
-- conda install -y tectonic
+- - sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended
 - cd Contributing
-- tectonic Main.tex
+- pdflatex -interaction=nonstopmode -half-on-error --shell-escape Main.tex
 branches:
   only:
     - master
