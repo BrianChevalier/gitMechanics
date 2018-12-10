@@ -5,7 +5,7 @@ before_install:
 - bash ~/miniconda.sh -b -p $HOME/miniconda
 - export PATH="$HOME/miniconda/bin:$PATH"
 - conda config --add channels conda-forge
-- conda update --all
+- conda update --y --all
 - conda install tectonic
 script:
 - cd Contributing
