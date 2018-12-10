@@ -1,0 +1,20 @@
+sudo: required
+dist: trusty
+before_install:
+- sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended
+script:
+- cd Contributing
+- latexmk Main.tex
+notifications:
+  pushover:
+      api_key:
+            secure: uAI4zOnDg3Gn1vY7ey79s5FVlcgzVw60krCzf7oMw4BXyBHlo+sYE0vfwY1e5XW2P+IflrRKvkgYhJAgFUGK6GFWnqVJ1BHZFW25w9LuU7ce7TEXYQSpyGoUJfW+WqtfW9w5C8UWyWjZne2xs1SRo8PrRWGMSNzfYvhsJV2EQ53iu52xae6+wtFHcVec6ghOLDCmPui52wXVdWdQ/ME68a5nJ47XQcZaGdptQtM9kCkWD/TIGcHnhVxLVJ92PGY8LPKw3MnohQu2HiayvVuz+m/xZPImIxac5Jxgk8NaxNIG+hH2Gmx5VKcG6ReNOQxyNGuHsGIoTKTMiQtOIUYpW/kMMWzHU706hzCoVqHaMoZaMs8cAvtUVylywnrkuZrrnPvxkIww72unjnhGp5CCWa1OoVKhkdJW0KJWDjv1tjyFzf+S1pbHOLGwloVFKV2FrnTIuX+3uCA2ixeZ9YvPTzQnGy77JgKpqXXPb63HR+SdrDyVF3tpEtu/Z7DrsZX5WHsjLjQr+Td5v/XGZalOJNVpGbVKZER8/AFWTFRMVkHNWanfT6Wyqd6ILt+tjT81YGx3NNuZQQrHpQ/5lyBbPE6I1GZd+hRcAYvDZ3D/h++B/pgEAZCxE5HIe/DHys/Xc46QWkeIuxtTxkTSBvMVw7kyIN2TUBbdXs+sefqcrXM=
+      users:
+            secure: Av3mf7CYmgV3fpsLPNimMH03rJnPIxbxXG5exvs417E/9/Pvb2QR9mtGP1kwCBwl7ZYqlnXrcjLnbjqLLDEARsoWPNzf1pMF2tebMQ4BC/WwoZMcQBJ3W9qLHZP12ysNPPPorlkUInUbRETL2VseTliKnofjB5Hp3idC7qwJWb2x9dEBwDhxBd7EZbZr3t4XP+fW3DSqJX7PSE5U1ilDssbOS8mpBOwFv3AIUdFU4fYqyb91jNTvL7Qq23kbiA9VVIZZcLGBWm+PzKl6WkiA5PeKsbz6SClvcqQUVmFGb4i4eh5UCNOYwFQzM0IUSJ/iU05aiWR/kSxRoXNI2S1CCGbt+7QGvf9JMZN8rzRt+yJYtTH4bmeRMLx4o44Frmqnnk1HgQBb7SJVs0Gt1U2tVeJMJ50ZLY3VYu3+SxcsJIrsTYfdZtU8n63FBpYfnKbQJr2dqSc510VqYLFzcnvxe5ffDdI/I/o+PUmz4Nn1f3Gs3WKhkx5uyz2huAfJe6tU0moN8dIOIPttFuw40/u8iE1Z3qp6B7FA7K6sbe5ThUu2aRqeTdZx3nHx4NVHfByGf2Fd+DIosMt75xG5ITFImKeGsMsriVCb/XRq64plLJM8foeUZJqhIkOwffrn4ZKvGQSsMkTFEE3syjk85S4gXFH8B/a9Y/tzy8W2VdyCijo=
+deploy:
+      provider:pages
+      skip-cleanup: true
+      github-token: $GITHUB_TOKEN
+      keep-history: true
+      on:
+            branch: deploy
