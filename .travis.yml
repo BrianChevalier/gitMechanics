@@ -3,6 +3,8 @@ dist: trusty
 before_install:
 script:
 - sudo apt-get install libfontconfig1-dev libgraphite2-dev libharfbuzz-dev libicu-dev libssl-dev zlib1g-dev
+- sudo apt install g++
+- curl -sSf https://static.rust-lang.org/rustup.sh | sh
 - cargo install tectonic
 - cd Contributing
 - tectonic Main.tex
