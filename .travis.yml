@@ -5,9 +5,7 @@ script:
 - wget https://repo.continuum.io/archive/Anaconda2-4.2.0-Linux-x86_64.sh
 - bash Anaconda2-4.2.0-Linux-x86_64.sh -b -p ~/anaconda
 - rm Anaconda2-4.2.0-Linux-x86_64.sh
-- echo 'export PATH="~/anaconda/bin:$PATH"' >> ~/.bashrc 
-- Refresh basically
-- source .bashrc
+- export PATH="$HOME/anaconda/bin:$PATH"
 - conda update conda
 - conda config --add channels conda-forge
 - conda install tectonic
