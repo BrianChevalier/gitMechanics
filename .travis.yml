@@ -2,47 +2,39 @@ sudo: required
 dist: trusty
 language: python
 python:
-  # We don't actually use the Travis Python, but this keeps it organized.
-  - "3.6"
+- '3.6'
 install:
-  - sudo apt-get update
-  # We do this conditionally because it saves us some downloading if the
-  # version is the same.
-  - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
-      wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
-    else
-      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
-    fi
-  - bash miniconda.sh -b -p $HOME/miniconda
-  - export PATH="$HOME/miniconda/bin:$PATH"
-  - hash -r
-  - conda config --add channels conda-forge
-  - conda config --add channels bioconda
-  - conda config --set always_yes yes --set changeps1 no
-  - conda update -q conda
-  # Useful for debugging any issues with conda
-  - conda info -a
-
-  # Replace dep1 dep2 ... with your dependencies
-  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION tectonic snakemake
-  - source activate test-environment
+- sudo apt-get update
+- if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh
+  -O miniconda.sh; else wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+  -O miniconda.sh; fi
+- bash miniconda.sh -b -p $HOME/miniconda
+- export PATH="$HOME/miniconda/bin:$PATH"
+- hash -r
+- conda config --add channels conda-forge
+- conda config --add channels bioconda
+- conda config --set always_yes yes --set changeps1 no
+- conda update -q conda
+- conda info -a
+- conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION tectonic snakemake
+- source activate test-environment
 script:
-  - snakemake
-  - sed -i '$d' .gitignore
+- snakemake
+- sed -i '$d' .gitignore
 branches:
   only:
-    - master
+  - master
 notifications:
   pushover:
-    api_key: $PUSHOVER_API
+    api_key:
+      secure: FSjpJIbUONk0SEOxJcIDHXPFHfTHYPNcOea1JMsUFe0DxD1tNuQ0HgYOuF8QOSlrpbW1T9bfogCkOzv8mDfG2n4F0QO8YMw72V3AXq5/mh1Ruq0L1Y7xqa41ytfqKumffL2lkkpcycv2xdicMZ+atBFPPt0HQWt763cObKFt8J27BhDYOGKsCkW8Iz3NR9RT+4pTVNBJith4qqjawnhYqbTdCVSk/+UK4o+ITl595x7bXbYOeOqiTAcshP2HhiCSWs+KnGhZkmrerZioLSBNUzLyMf1JBphsgQaN3Y96De/u58bEzcBZ/w1HbqIZf3Ms+HG6knuCdrSSkEqE3IzTP1TpEHJ8PBsmmJfmdnAtsfhOJV0m6sq0xXPYWFFnz9NfLgvZ7js6MTJac9vHQ3SRq/z/b0dL1fqeTnkq3dUh4ozJkEQ2I5ltxjABsYsVRLs7rccptNKgMV1NQbm6iX8BVcu5PfNnNQOyrolCv5srSaITfOhArbW149VFDSdB34PYW+vVGTfIVyV1gmlz3nD28bofWcWp8QrUOJPRZFBuu70wcWScCnTOOt38u2iTst+4VjSsngr7BjktzwjpDJtYOQ8qLV2nQvNpqdmisacxdc17LAdyFfvcy1aea5Ol4bSqD6F8RZMsENmRcq/EaivCICAiOm8VKzF2p1JjSl04H0A=
     users:
-      - $PUSHOVER_USER
-
+    - secure: zVo5fPkRvHfPhnvqdE6i1pcbjxgNCzmZsEIhVkpcgNKB4fGITWfO2QvDE9erklc2/+gYJ2DlkrRsze1DXnpje54+D7YEsBfH6QbDS3h6YiFKZ0UkX9pDvrrAT8U22tngmc1CrZFcUmhVjDaIQsiO8FNym14fAlGJTj4UDsRIeWFVMN0sFzyYDBvJKqPQEmrRZjFq89ebyk7fxfpL58hWS5HLh247rggTK85InXw57DTRTimZ9EwDzR65Fo/U+HZayfCIntpm60lQfnjU6Sx0YK8lyQRMSR/So5pyzoWrcSXAI0Iud7aMTYm+iQ9voEd4gF5cR3o6wPOvnD3GbXxhGelaH2x/nLXq/pGANBKVPoQEb+qbdiXKNi2C/Ektu/J+AO1+/F9ZcFj/gE7KMsQcJTagHtJSPm7Zy9f/g0i5FRvDOgxVVxWJAUUXuO6tOAVrMEA3iustAOIRG+mSDE4BOTwbyaGa5tNCErOiyJa3l1Sb98lFHAmfZbCrquAWJHn8n0p3dxetQoQArFEt9uBathAUawsI+vgwV2spSQFT67H+01MN2XZnf1bSQ4rumB1j35nkLH1EfmFrwYF79bcPMWO2Fp1U0OsJdywwqQ0K37mIwXepxrrXnNtV+lgSwQiBVvbah7yKOwXiLmJmBUoLXUPb67pPd5VIDpCJSiZCj5w=
 deploy:
   provider: pages
   skip-cleanup: true
-  github-token: $GITHUB_TOKEN
+  github-token: "$GITHUB_TOKEN"
   keep-history: true
   target-branch: gh-pages
   on:
-      branch: master
+    branch: master
