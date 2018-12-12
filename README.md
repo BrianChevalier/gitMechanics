@@ -3,8 +3,9 @@
 </p>
 <h1 align="center"></h1>
 <p align="center">
-<img src="https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg" alt="Made with LaTeX badge">
-<img src="https://img.shields.io/npm/l/express.svg" alt="MIT License Badge">
+  <img src="https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg" alt="Made with LaTeX badge">
+  <img src="https://travis-ci.org/BrianChevalier/gitMechanics.svg?branch=master" alt="Travis Build Status Badge">
+  <img src="https://img.shields.io/npm/l/express.svg" alt="MIT License Badge">
 </p>
 
 ## About
