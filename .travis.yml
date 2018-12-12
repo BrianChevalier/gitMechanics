@@ -3,8 +3,7 @@ dist: trusty
 before_install:
 - wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
 - bash ~/miniconda.sh -b -p $HOME/miniconda
-- export PATH="$HOME/miniconda/bin:$PATH"
-- conda update conda --y
+- sudo ln -s /home/travis/miniconda/etc/profile.d/conda.sh /etc/profile.d/conda.sh
 script:
 - conda env create -f environment.yml
 - conda activate myenv -y
