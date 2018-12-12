@@ -33,32 +33,45 @@ for path in PATHS:
 for i, item in enumerate(PDFS):
     PDFS[i] = item.replace('.tex','.pdf')
 
+PYS = []
+for path in PATHS:
+	for subpath in os.listdir(path):
+		if subpath.endswith('Main.py'):
+			PYS.append('/'.join([path,subpath]))
+		elif os.path.isdir(path +'/'+subpath):
+			for subsubpath in os.listdir(path+'/'+subpath):
+				if subsubpath.endswith('Main.py'):
+					PYS.append('/'.join([path,subpath,subsubpath]))
+
+for i, item in enumerate(PYS):
+    PYS[i] = item.replace('Main.py','Figures/figurename.pdf')
+
 rule all:
     input:
         PDFS
 
-ruleorder:  tex2pdf_with_bib > tex2pdf_without_bib
-
-rule tex2pdf_with_bib:
+rule run_python:
     input:
-        '{path}/{name}.tex',
-        '{path}/{name}.bib'
+        '{path}/{name}.py'
     output:
-        '{path}/{name}.pdf'
+        '{path}/Figures/{figure_name}.pdf'
     threads: 2
     shell:
         """
         cd {wildcards.path}
-        tectonic {wildcards.name}.tex
+        python {wildcards.name}.py
         """
-rule tex2pdf_without_bib:
+
+rule tex2pdf_without_py:
     input:
         '{path}/{name}.tex'
     output:
         '{path}/{name}.pdf'
     threads: 2
-    shell:
-        """
-        cd {wildcards.path}
-        tectonic {wildcards.name}.tex
-        """
+    run:
+        shell("cd {wildcards.path}")
+        try:
+            shell("cd {wildcards.path} && python {wildcards.name}.py")
+        except:
+            pass
+        shell("cd {wildcards.path} && tectonic {wildcards.name}.tex")
