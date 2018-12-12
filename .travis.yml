@@ -5,8 +5,8 @@ before_install:
 - bash ~/miniconda.sh -b -p $HOME/miniconda
 - export PATH="$HOME/miniconda/bin:$PATH"
 script:
-- conda env create -f environment.yml
-- conda activate tectonic-env
+- conda env create -y
+- conda activate myenv
 - snakemake
 branches:
   only:

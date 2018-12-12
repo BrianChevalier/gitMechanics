@@ -1,4 +1,4 @@
-name: tectonic-env
+name: myenv
 channels:
   - bioconda
   - conda-forge
