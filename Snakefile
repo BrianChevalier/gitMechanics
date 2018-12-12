@@ -49,10 +49,7 @@ rule tex2pdf_with_bib:
     shell:
         """
         cd {wildcards.path}
-        pdflatex {wildcards.name}
-        bibtex {wildcards.name}
-        pdflatex {wildcards.name}
-        pdflatex {wildcards.name}
+        tectonic {wildcards.name}.tex
         """
 rule tex2pdf_without_bib:
     input:
@@ -63,6 +60,5 @@ rule tex2pdf_without_bib:
     shell:
         """
         cd {wildcards.path}
-        pdflatex {wildcards.name}
-        pdflatex {wildcards.name}
+        tectonic {wildcards.name}.tex
         """
