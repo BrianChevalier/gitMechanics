@@ -89,10 +89,9 @@ Figure \ref{Fig:rotationalcirculargeometry} shows rotational circular geometry t
 % draw circle
 \shadedraw[inner color=gray!10,outer color=gray!40, draw=black, very thick] (0,0) circle (3cm);
 
-\tikzmath{
-	\y = -45 + 90;
-	\z = 90 - 45;
-}
+
+\def\y = -45 + 90
+\def\z = 90 - 45
 
 \draw[guide] (0,0) -- (\y:4cm);
 \draw[guide] (0,0) -- (-45:5cm);
