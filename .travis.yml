@@ -6,7 +6,7 @@ before_install:
 - export PATH="$HOME/miniconda/bin:$PATH"
 - conda update conda --y
 script:
-- conda env create -f environment.yml -y
+- conda env create -f environment.yml
 - conda activate myenv -y
 - snakemake
 branches:
