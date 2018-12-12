@@ -19,4 +19,5 @@
 *.pytxcode
 *.gz
 */pythontex-files-Main/*
+*.DS_Store
 *.pdf
