@@ -1,6 +1,10 @@
 sudo: required
 dist: trusty
 language: python
+cache:
+  - bundler
+  directories:
+    - $HOME/miniconda/bin
 python:
 - '3.6'
 install:
