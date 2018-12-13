@@ -3,6 +3,9 @@ dist: trusty
 language: python
 cache:
   - bundler
+  directories:
+    - $HOME/miniconda
+    - $HOME/.cache/Tectonic
 python:
 - '3.6'
 install:
