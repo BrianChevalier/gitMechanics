@@ -1,5 +1,3 @@
-#PATHS = ['Contributing','CEE321/Direct-stiffness','CEE421','CEE421/Doubly-Design']
-#PDFS = [path+"/Main.pdf" for path in PATHS]
 
 import os
 
@@ -50,26 +48,16 @@ rule all:
     input:
         PDFS
 
-rule run_python:
+rule pytex:
     input:
-        '{path}/{name}.py'
-    output:
-        '{path}/Figures/{figure_name}.pdf'
-    threads: 2
-    shell:
-        """
-        cd {wildcards.path}
-        python {wildcards.name}.py
-        """
-
-rule tex2pdf_without_py:
-    input:
+        'mathshortcuts.sty'
+        'TitlePage.sty'
+        'ExampleProblem.cls'
         '{path}/{name}.tex'
     output:
         '{path}/{name}.pdf'
     threads: 2
     run:
-        shell("cd {wildcards.path}")
         try:
             shell("cd {wildcards.path} && python {wildcards.name}.py")
         except:
