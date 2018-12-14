@@ -1,34 +1,33 @@
-import os 
+import os
 import indicies
 
 output = indicies.main()
+print('The following files should be produced:')
+for item in output:
+    print(item)
 
 rule all:
     input:
         output
 
-rule run_python:
+rule python:
     input:
-        '{path}/{name}.py'
+        '{path}/Main.py'
     output:
-        '{path}/Figures/{figure_name}.pdf'
-    threads: 2
+        '{path}/Figures/{figname}.pdf'
     shell:
         """
         cd {wildcards.path}
-        python {wildcards.name}.py
+        python Main.py
         """
 
-rule tex2pdf_without_py:
+rule latex:
     input:
-        '{path}/{name}.tex'
+        '{path}/Main.tex'
     output:
-        '{path}/{name}.pdf'
-    threads: 2
-    run:
-        shell("cd {wildcards.path}")
-        try:
-            shell("cd {wildcards.path} && python {wildcards.name}.py")
-        except:
-            pass
-        shell("cd {wildcards.path} && tectonic {wildcards.name}.tex")
+        '{path}/Main.pdf'
+    shell:
+        """
+        cd {wildcards.path}
+        tectonic Main.tex
+        """

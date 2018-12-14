@@ -20,4 +20,6 @@
 *.gz
 */pythontex-files-Main/*
 *.DS_Store
+*.pyc
+__pychache__/*
 *.pdf

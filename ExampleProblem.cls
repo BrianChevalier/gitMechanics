@@ -87,7 +87,7 @@
 
 \definecolor{PPTblue}{HTML}{DCE6F2}
 \definecolor{PPTdarkblue}{HTML}{4F82BD}
-% --- BACKGROUND 
+% --- BACKGROUND
 \backgroundsetup{
 opacity=1,
 angle=0,
@@ -95,32 +95,32 @@ scale=1,
 contents = {
 	\begin{tikzpicture}[opacity=0.5]
 	\draw[PPTblue, ultra thick] (-7,0) rectangle (10,25);
-	\draw[step=0.5cm,gray, very thin] 
-		(-7,0) grid 
+	\draw[step=0.5cm,gray, very thin]
+		(-7,0) grid
 		(10,25);
 	\begin{scope}[opacity=1]
-		\fill[PPTblue] 
+		\fill[PPTblue]
 (-7,23) rectangle (10,25);
 	\node[
 		align=right,
 		PPTdarkblue,
-		text width=5cm] at 
+		text width=5cm] at
 		(7,24.5)
 		{\@author};
 	\node[align=right,
 		PPTdarkblue,
-		text width=5cm] at 
+		text width=5cm] at
 		(7,23.7)
 		{\@subtitle};
 	\node[align=left,
 		PPTdarkblue,
-		text width=5cm] at 
+		text width=5cm] at
 		(-4,24.5)
 		{\@coursenum -- \textit{\@coursetitle}};
 	\node[
 		align=left,
 		PPTdarkblue,
-		text width=5cm] at 
+		text width=5cm] at
 		(-4,23.7)
 		{\@university};
 	\end{scope}
