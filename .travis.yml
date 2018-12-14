@@ -23,7 +23,7 @@ install:
 - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION tectonic snakemake-minimal matplotlib
 - source activate test-environment
 script:
-- snakemake
+- snakemake --forceall
 - sed -i '$d' .gitignore
 branches:
   only:
