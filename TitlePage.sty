@@ -94,19 +94,19 @@
 
 \centering
 
-\vspace{1cm}
+\vspace{0.1cm}
 
 {\small\bfseries\@coursenum\unskip\strut\par}
-\vspace{0.5cm}
+\vspace{0.1cm}
 {\Large\bfseries\@title\unskip\strut\par}
-\vspace{0.5cm}
+\vspace{0.1cm}
 {\large\itshape\@subtitle\unskip\strut\par}
 
-
+\vfill
 \begin{center}
-	\includegraphics[width = 0.7\columnwidth]{\@titleimage}
+	\includegraphics[width = 0.6\columnwidth]{\@titleimage}
 \end{center}
-
+\vfill
 
 {\scshape\LARGE \@university \par}
 \vspace{0.1cm}
@@ -114,10 +114,11 @@
 \vspace{0.1cm}
 {\large Updated: \@date\par}
 
-%\columnbreak \vspace*{0.1\textheight}
+\columnbreak
 
+\vfill
 \begin{tcolorbox}[
-	height=1.0\textheight,
+	height=0.9\textheight,
 	width=\columnwidth,
 	colframe=lightgray,
 	colback=lightgray,
@@ -127,7 +128,7 @@
 	\tableofcontents
 
 \end{tcolorbox}
-
+\vfill
 
 \end{multicols}
 
