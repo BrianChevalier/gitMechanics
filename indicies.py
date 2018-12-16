@@ -84,7 +84,8 @@ def findpys(wildcards):
 					matches.append(match)
 	except FileNotFoundError:
 		pass
-	return matches + [f'{wildcards.path}.tex']
+	dependencies = ['mathshortcuts.sty', 'TitlePage.sty','ExampleProblem.cls']
+	return matches + [wildcards.path + '/Main.tex']
 
 
 def main():
