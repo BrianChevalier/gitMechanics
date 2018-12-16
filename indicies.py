@@ -1,6 +1,6 @@
 #PATHS = ['Contributing','CEE321/Direct-stiffness','CEE421','CEE421/Doubly-Design']
 #PDFS = [path+"/Main.pdf" for path in PATHS]
-
+import snakemake
 import os
 import re
 
@@ -55,7 +55,7 @@ def Main_py_files(PATHS):
 					if subsubpath.endswith('Main.py'):
 						PYS.append('/'.join([path, subpath, subsubpath]))
 	return PYS
-	
+
 def find_py_output(PYS):
 	reg = re.compile('savefig\([\'\"](Figures/\w+.pdf)[\'\"].+\)')
 	matches = []
@@ -67,8 +67,25 @@ def find_py_output(PYS):
 				if match != []:
 					match = main.replace('Main.py', match[0])
 					matches.append(match)
-					
+
 	return matches
+
+def findpys(wildcards):
+	reg = re.compile('savefig\([\'\"](Figures/\w+.pdf)[\'\"].+\)')
+	matches = []
+	main = wildcards.path + '/Main.py'
+	try:
+		with open(main) as file:
+			for line in file:
+				match = reg.findall(line)
+				# if match found, add to list of outputs
+				if match != []:
+					match = main.replace('Main.py', match[0])
+					matches.append(match)
+	except FileNotFoundError:
+		pass
+	return matches + [f'{wildcards.path}.tex']
+
 
 def main():
 	PATHS = viable_paths()
@@ -76,7 +93,7 @@ def main():
 	PDFPATHS = pdfs_to_make(TEXPATHS)
 	PYS = Main_py_files(PATHS)
 	FIGPATHS = find_py_output(PYS)
-	
+
 	#FIGPATHS are python outputed figures
 	#PDFPATHS are paths to outputed latex figures
 	return FIGPATHS + PDFPATHS
@@ -88,4 +105,3 @@ if __name__ == "__main__":
 		print(path)
 else:
 	main()
-
