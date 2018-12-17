@@ -12,7 +12,7 @@ install:
 - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh
   -O miniconda.sh; else wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
   -O miniconda.sh; fi
-- if [ ! -d "$HOME/miniconda" ]; then bash miniconda.sh -b -p $HOME/miniconda; fi
+- if ! [ -x "$(command -v conda)" ]; then bash miniconda.sh -b -p $HOME/miniconda; fi
 - export PATH="$HOME/miniconda/bin:$PATH"
 - hash -r
 - conda config --add channels conda-forge
