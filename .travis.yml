@@ -14,11 +14,9 @@ install:
   -O miniconda.sh; fi
 - export PATH="$HOME/miniconda/bin:$PATH"
 - if ! [ -x "$(command -v conda)" ]; then bash miniconda.sh -u -b -p $HOME/miniconda; fi
-- hash -r
 - conda config --add channels conda-forge
 - conda config --add channels bioconda
 - conda config --set always_yes yes --set changeps1 no
-- conda update -q conda
 - conda info -a
 - conda install -q tectonic snakemake-minimal matplotlib
 script:
