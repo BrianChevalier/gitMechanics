@@ -95,6 +95,14 @@ def outputpdfs():
 	#PDFPATHS are paths to outputed latex figures
 	return PDFPATHS
 	
+def allMainPdfs(wildcards):
+	PATHS = viable_paths()
+	TEXPATHS = main_tex_files(PATHS)
+	PDFPATHS = pdfs_to_make(TEXPATHS)
+
+	#PDFPATHS are paths to outputed latex figures
+	return PDFPATHS
+	
 def findPdfsInClass(wildcards):
 	PDFS = outputpdfs()
 	paths = []
