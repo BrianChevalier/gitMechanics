@@ -12,9 +12,6 @@
 \DeclareUSUnit\ksi{ksi}
 \DeclareUSUnit\kipft{kip-ft}
 
-\usepackage{pythontex}
-
-
 \title{Beam Design}
 \author{Brian Chevalier}
 \subtitle{Beam Design}
@@ -246,22 +243,6 @@ Next, we find the reinforcement ratio of the balance condition. The reinforcemen
 
 
 The next step is to determine $bd^2$. First determine $\rho_{bal}:$
-
-\begin{pycode}
-import math
-def beta_1(fc):
-	if fc <= 4:
-		var = 0.85
-	elif fc < 8:
-		var = 0.85 - (0.05*(fc-4))/(1)
-	else:
-		var = 0.65
-	return var
-def rho_bal(fc, fy):
-	return (0.85*fc*beta_1(fc))/(fy) * (87)/(87+fy)
-var = rho_bal(4,60)
-print(var)
-\end{pycode}
 
 
 \end{document}
