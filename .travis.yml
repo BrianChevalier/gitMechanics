@@ -21,6 +21,8 @@ install:
 - conda install -q tectonic snakemake-minimal matplotlib
 script:
 - snakemake --forceall
+# remove pdf and .gz from .gitignore
+- sed -i '$d' .gitignore
 - sed -i '$d' .gitignore
 branches:
   only:

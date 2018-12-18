@@ -17,10 +17,10 @@
 /Contributing/.master
 /Example-Example-Problem/*
 *.pytxcode
-*.gz
 */pythontex-files-Main/*
 *.DS_Store
 *.pyc
 __pychache__/*
 .snakemake/*
 *.pdf
+*.gz
