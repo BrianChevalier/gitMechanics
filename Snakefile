@@ -10,6 +10,9 @@ for item in output:
 #output = ['CEE384/taylor-series/Main.pdf',
 #          'CEE384/taylor-series/Figures/3ordersin.pdf',
 #          'CEE384/taylor-series/Figures/135ordersin.pdf']
+
+output += ['CEE421/CEE421.tar.gz', 'MAE241/MAE241.tar.gz', 'CEE384/CEE384.tar.gz','Contributing/Contributing.tar.gz','CEE321/CEE321.tar.gz']
+
 rule all:
     input:
         output
@@ -34,4 +37,15 @@ rule latex:
         """
         cd {wildcards.path}
         tectonic Main.tex
+        """
+
+
+rule zipbysubject:
+    input:
+        indicies.findPdfsInClass
+    output:
+        '{course}/{course}.tar.gz'
+    shell:
+        """
+        tar -c -f {wildcards.course}/{wildcards.course}.tar.gz {input}
         """
