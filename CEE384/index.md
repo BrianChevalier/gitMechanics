@@ -9,7 +9,7 @@ title: "CEE384: Numerical Methods"
 # {{ page.title }}
 
 ## Taylor Series
-* [Taylor Series](/CEE384/Taylor-series/Main.pdf)
+* [Taylor Series](/CEE384/taylor-series/Main.pdf)
 
 ## Interpolation
 * [Interpolation](/CEE384/Interpolation/Main.pdf)
