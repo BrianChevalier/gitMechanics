@@ -22,4 +22,5 @@
 *.DS_Store
 *.pyc
 __pychache__/*
+.snakemake/*
 *.pdf
