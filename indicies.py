@@ -1,6 +1,6 @@
 #PATHS = ['Contributing','CEE321/Direct-stiffness','CEE421','CEE421/Doubly-Design']
 #PDFS = [path+"/Main.pdf" for path in PATHS]
-import snakemake
+
 import os
 import re
 
@@ -87,6 +87,13 @@ def findpys(wildcards):
 	dependencies = ['mathshortcuts.sty', 'TitlePage.sty','ExampleProblem.cls']
 	return matches + [wildcards.path + '/Main.tex'] + dependencies
 
+def outputpdfs():
+	PATHS = viable_paths()
+	TEXPATHS = main_tex_files(PATHS)
+	PDFPATHS = pdfs_to_make(TEXPATHS)
+
+	#PDFPATHS are paths to outputed latex figures
+	return PDFPATHS
 
 def main():
 	PATHS = viable_paths()
