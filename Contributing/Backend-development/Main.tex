@@ -73,6 +73,8 @@ Github will host a website for any user using a platform called Jekyll (discusse
 \section{Snakemake}
 Snakemake is a workflow management system to create reproducible and scalable data analyses. Snakemake was inspired by Make, which essentially automates the building of output files from input files. Snakemake does the same thing but using a nicer syntax and uses Python (or R) for scripting.
 
+What this means is Snakemake can be used to track input files (.tex and .py files) and automatically produce output files (.pdfs). This avoids the need to manually run \LaTeX{} on each file. And if a dependency changes (style files) we can ensure all .tex files will still compile. Furthermore, using Python we can automate finding the files to build so adding additional Main.tex files does not require adding the file path to some static list. Snakemake will just automatically build all necessary files.
+
 \subsection{Snakefile}
 The Snakefile is the configuration file for Snakemake, found in the root directory of the gitMechanics repository. You can see the most up to date Snakefile \href{http://www.gitmechanics.com/Snakefile}{here}. The Snakefile has three key parts: The initilization code, the first pseudo-rule, and the actual rules. The initilization code is python code that is run to find all of the output files that must be generated. The first rule also known as a pseudo-rule simply takes all of the output file paths as input which triggers the other rules to be run. The actual rules specify file paths as inputs and outputs and also specifies the shell commands necessary to produce the output from the input files.
 
@@ -91,7 +93,7 @@ Jekyll is a simple, blog-aware, static site generator.
 This is the special file that Jekyll will look for to configure the website.
 
 \subsection{The \_layouts folder}
-
+The layouts folder is a special folder used by Jekyll to define layouts that can be used on other pages throughout the site. 
 
 \subsection{Gemfile}
 The Gemfile in the repo is only necessary for testing building the website without having to push to the repo and having github rebuild the website (which can be really time consuming, and clutter the website). Jekyll can be run locally on your machine to test building the website from source and viewed locally.
