@@ -10,6 +10,10 @@ output = indicies.main()
 
 output += ['CEE421/CEE421.tar.gz', 'MAE241/MAE241.tar.gz', 'CEE384/CEE384.tar.gz','Contributing/Contributing.tar.gz','CEE321/CEE321.tar.gz','gitMechanics.tar.gz']
 
+output += ['_jupyterblog/' + each.replace('.ipynb','.md') for each in os.listdir('_jupyterblog') if each.endswith('.ipynb')]
+
+print(output)
+
 rule all:
     input:
         output
@@ -56,7 +60,16 @@ rule zipall:
         tar -c -f gitMechanics.tar.gz {input}
         """
 
-
+rule notebookTomd:
+    input:
+        '_jupyterblog/{name}.ipynb'
+    output:
+        '_jupyterblog/{name}.md'
+    shell:
+        """    
+        jupyter nbconvert --to notebook --inplace --execute _jupyterblog/{wildcards.name}.ipynb
+        jupyter nbconvert --to markdown _jupyterblog/{wildcards.name}.ipynb
+        """
 
 
 

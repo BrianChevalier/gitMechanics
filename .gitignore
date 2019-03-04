@@ -24,3 +24,5 @@ __pychache__/*
 .snakemake/*
 *.pdf
 *.gz
+/_jupyterblog/*.md
+/jupyterblog/*_files/*
