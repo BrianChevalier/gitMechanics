@@ -22,6 +22,7 @@
 *.pyc
 __pychache__/*
 .snakemake/*
+*.ipynb_checkpoints*
 
 /_jupyterblog/*_files/*
 /_jupyterblog/*.md
