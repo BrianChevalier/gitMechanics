@@ -18,7 +18,7 @@ install:
 - conda config --add channels bioconda
 - conda config --set always_yes yes --set changeps1 no
 - conda info -a
-- conda install -q tectonic snakemake-minimal matplotlib
+- conda install -q tectonic snakemake-minimal matplotlib jupyter nbconvert
 script:
 - snakemake --forceall
 # remove pdf and .gz from .gitignore
