@@ -22,8 +22,8 @@
 *.pyc
 __pychache__/*
 .snakemake/*
-/_jupyterblog/*_files/*
 
+/_jupyterblog/*_files/*
 /_jupyterblog/*.md
 *.pdf
 *.gz
