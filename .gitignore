@@ -25,4 +25,4 @@ __pychache__/*
 *.pdf
 *.gz
 /_jupyterblog/*.md
-/jupyterblog/*_files/*
+/_jupyterblog/*_files/*
