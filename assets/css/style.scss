@@ -8,12 +8,14 @@ nav ul, footer ul {
 	padding: 0px;
 	list-style: none;
 	font-weight: bold;
-	overflow: auto; 
+	overflow: auto;
+
 	}
 	 
 nav ul li, footer ul li {
-	display: inline;
+	display: inline-block;
 	margin-right: 0px;
+	margin-top: 5px;
 	}
 
 
@@ -27,7 +29,7 @@ nav ul li, footer ul li {
 	background-color:#dbe6fc;
 	-moz-border-radius:12px;
 	-webkit-border-radius:12px;
-	border-radius:12px;
+	border-radius:12;
 	border:0px solid #dbe6fc;
 	display:inline-block;
 	cursor:pointer;
@@ -35,7 +37,7 @@ nav ul li, footer ul li {
 	font-family:Arial;
 	font-size:12px;
 	font-weight:bold;
-	padding:12px 12px;
+	padding:10px 10px;
 	text-decoration:none;
 	min-width: 30px;
 	}
