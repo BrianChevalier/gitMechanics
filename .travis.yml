@@ -24,6 +24,7 @@ script:
 # remove pdf and .gz from .gitignore
 - sed -i '$d' .gitignore
 - sed -i '$d' .gitignore
+- sed -i '$d' .gitignore
 branches:
   only:
   - master
