@@ -12,4 +12,5 @@ repository: gitMechanics
 collections:
   jupyterblog:
     output: true
-    
+  octaveblog:
+    output: true

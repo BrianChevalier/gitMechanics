@@ -10,7 +10,12 @@ output = indicies.main()
 
 output += ['CEE421/CEE421.tar.gz', 'MAE241/MAE241.tar.gz', 'CEE384/CEE384.tar.gz','Contributing/Contributing.tar.gz','CEE321/CEE321.tar.gz','gitMechanics.tar.gz']
 
+# for jupyterblog
 output += ['_jupyterblog/' + each.replace('.ipynb','.md') for each in os.listdir('_jupyterblog') if each.endswith('.ipynb')]
+
+# for octave blog
+output += ['_octaveblog/' + each.replace('.ipynb','.md') for each in os.listdir('_octaveblog') if each.endswith('.ipynb')]
+
 
 print(output)
 
@@ -60,7 +65,7 @@ rule zipall:
         tar -c -f gitMechanics.tar.gz {input}
         """
 
-rule notebookTomd:
+rule pythonNotebookTomd:
     input:
         '_jupyterblog/{name}.ipynb'
     output:
@@ -72,12 +77,15 @@ rule notebookTomd:
         """
 
 
-
-
-
-
-
-
-
+rule octaveNotebookTomd:
+    input:
+        '_octaveblog/{name}.ipynb'
+    output:
+        '_octaveblog/{name}.md'
+    shell:
+        """    
+        jupyter nbconvert --to notebook --inplace --execute _octaveblog/{wildcards.name}.ipynb
+        jupyter nbconvert --to markdown _octaveblog/{wildcards.name}.ipynb
+        """
 
 

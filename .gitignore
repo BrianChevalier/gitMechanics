@@ -23,7 +23,13 @@
 __pychache__/*
 .snakemake/*
 *.ipynb_checkpoints*
+*octave-workspace
+/_jupyterblog/*.png
+_jupyterblog/*.pdf
+/_octaveblog/*.png
 
+/_octaveblog/*_files/*
+/_octaveblog/*.md
 /_jupyterblog/*_files/*
 /_jupyterblog/*.md
 *.pdf
