@@ -19,7 +19,7 @@ install:
 - conda config --add channels bioconda
 - conda config --set always_yes yes --set changeps1 no
 - conda info -a
-- conda install -q tectonic snakemake-minimal matplotlib jupyter nbconvert octave octave_kernel sympy pyqt
+- conda install -q tectonic snakemake-minimal matplotlib jupyter nbconvert octave octave_kernel sympy matplotlib-base
 script:
 - snakemake
 # remove pdf and .gz from .gitignore
