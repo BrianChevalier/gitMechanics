@@ -19,7 +19,7 @@ install:
 - conda config --add channels bioconda
 - conda config --set always_yes yes --set changeps1 no
 - conda info -a
-- conda install -q snakemake-minimal octave octave-kernel
+- conda install -q snakemake-minimal octave octave_kernel
 script:
 - python -m octave_kernel install
 - snakemake --use-conda
