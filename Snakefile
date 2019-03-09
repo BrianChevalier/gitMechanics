@@ -89,8 +89,9 @@ rule octaveNotebookTomd:
     conda:
         "envs/octave.yaml"
     shell:
-        """    
-        jupyter nbconvert --to notebook --inplace --execute _octaveblog/{wildcards.name}.ipynb
+        """
+        python -m octave_kernel install
+        jupyter nbconvert --ExecutePreprocessor.kernel_name=octave --to notebook --inplace --execute _octaveblog/{wildcards.name}.ipynb
         jupyter nbconvert --to markdown _octaveblog/{wildcards.name}.ipynb
         """
 
