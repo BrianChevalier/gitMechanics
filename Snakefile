@@ -11,7 +11,9 @@ output += ['CEE421/CEE421.tar.gz', 'MAE241/MAE241.tar.gz', 'CEE384/CEE384.tar.gz
 output += ['_jupyterblog/' + each.replace('.ipynb','.md') for each in os.listdir('_jupyterblog') if each.endswith('.ipynb')]
 
 # for octave blog
-output += ['_octaveblog/' + each.replace('.ipynb','.md') for each in os.listdir('_octaveblog') if each.endswith('.ipynb')]
+# removed for now
+# causing headaches.
+#output += ['_octaveblog/' + each.replace('.ipynb','.md') for each in os.listdir('_octaveblog') if each.endswith('.ipynb')]
 
 
 print(output)
