@@ -1,0 +1,12 @@
+name: myenv
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - python =3.6
+  - tectonic
+  - matplotlib
+  - matplotlib-base
+  - jupyter
+  - nbconvert
+  - sympy

@@ -4,9 +4,6 @@ import snakemake
 
 output = indicies.main()
 
-#output = ['CEE384/taylor-series/Main.pdf',
-#          'CEE384/taylor-series/Figures/3ordersin.pdf',
-#          'CEE384/taylor-series/Figures/135ordersin.pdf']
 
 output += ['CEE421/CEE421.tar.gz', 'MAE241/MAE241.tar.gz', 'CEE384/CEE384.tar.gz','Contributing/Contributing.tar.gz','CEE321/CEE321.tar.gz','gitMechanics.tar.gz']
 
@@ -28,6 +25,8 @@ rule python:
         '{path}/Main.py'
     output:
         expand("{{path}}/Figures/{{figname}}.pdf")
+    conda:
+        "envs/other.yaml"
     shell:
         """
         cd {wildcards.path}
@@ -39,6 +38,8 @@ rule latex:
         indicies.findpys
     output:
         '{path}/Main.pdf'
+    conda:
+        "envs/other.yaml"
     shell:
         """
         cd {wildcards.path}
@@ -55,6 +56,7 @@ rule zipbysubject:
         """
         tar -c -f {wildcards.course}/{wildcards.course}.tar.gz {input}
         """
+
 rule zipall:
     input:
         indicies.allMainPdfs
@@ -70,6 +72,8 @@ rule pythonNotebookTomd:
         '_jupyterblog/{name}.ipynb'
     output:
         '_jupyterblog/{name}.md'
+    conda:
+        "envs/other.yaml"
     shell:
         """    
         jupyter nbconvert --to notebook --inplace --execute _jupyterblog/{wildcards.name}.ipynb
@@ -82,6 +86,8 @@ rule octaveNotebookTomd:
         '_octaveblog/{name}.ipynb'
     output:
         '_octaveblog/{name}.md'
+    conda:
+        "envs/octave.yaml"
     shell:
         """    
         jupyter nbconvert --to notebook --inplace --execute _octaveblog/{wildcards.name}.ipynb
