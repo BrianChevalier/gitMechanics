@@ -49,8 +49,7 @@
         <li><a href="/CEE384/" class="iosybutton">CEE384</a></li>
         <li><a href="/CEE421/" class="iosybutton">CEE421</a></li>
 				<li><a href="/jupyterblog/" class="iosybutton">PYT101</a></li>
-				<li><a href="/octaveblog/" class="iosybutton">OCT101</a></li>
-        
+				
       </ul>
     </nav>
 </center>
@@ -61,6 +60,14 @@
         {% if site.github.is_project_page %}
         {% endif %}
         
+				{% if page.archive_link %}
+				<center>
+				<button class=iosybutton>
+					<a href="{{ page.archive_link }}.tar.gz" download>⬇️ Archive</a>
+				</button>
+				</center>
+				{% endif %}
+				
       </footer>
     </main>
 

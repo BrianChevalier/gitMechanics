@@ -14,3 +14,10 @@ collections:
     output: true
   octaveblog:
     output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: "jupyterblog"
+    values:
+      layout: notebook

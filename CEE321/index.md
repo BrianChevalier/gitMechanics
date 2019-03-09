@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "CEE321: Structural Analysis and Design"
+archive_link: CEE321
 ---
 
 

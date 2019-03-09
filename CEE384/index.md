@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "CEE384: Numerical Methods"
+archive_link: CEE384
 ---
 
 {%- assign pdflink = "" -%}
