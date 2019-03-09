@@ -21,7 +21,7 @@ install:
 - conda info -a
 - conda install -q snakemake-minimal
 script:
-- snakemake
+- snakemake --use-conda
 # remove pdf and .gz from .gitignore
 - sed -i '$d' .gitignore
 - sed -i '$d' .gitignore
