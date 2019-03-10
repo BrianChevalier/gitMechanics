@@ -5,7 +5,6 @@ cache:
   directories:
     - $HOME/miniconda
     - $HOME/.cache/Tectonic
-    - $TRAVIS_BUILD_DIR/.snakemake
 python:
 - '3.6'
 install:

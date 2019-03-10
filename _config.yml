@@ -21,3 +21,8 @@ defaults:
       type: "jupyterblog"
     values:
       layout: notebook
+  - scope:
+      path: ""
+      type: "octaveblog"
+    values:
+      layout: notebook

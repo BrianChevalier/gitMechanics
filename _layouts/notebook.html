@@ -6,16 +6,17 @@ layout: default
 
 {{ content }}
 
-
-
 <center>
 
+{% assign temp = '_' | append: page.collection %}
+
 <button class="iosybutton">
-	<a href="https://mybinder.org/v2/gh/BrianChevalier/gitMechanics/gh-pages?filepath=_jupyterblog%2F{{ page.file_title }}.ipynb"  target="_blank">▶️ Run in Binder</a>
+	<a href="https://mybinder.org/v2/gh/BrianChevalier/gitMechanics/gh-pages?filepath={{ page.url | replace: 'html', 'ipynb' | replace: page.collection, temp }}"  target="_blank">▶️ Run in Binder</a>
 </button>
 
 <button class=iosybutton>
-	<a href="{{ page.file_title }}.ipynb" download>⬇️ Download Notebook</a>
+	<a href="{{ page.url | replace: 'html', 'ipynb' }}" download>⬇️ Download Notebook</a>
 </button>
 
 </center>
+
