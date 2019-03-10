@@ -28,7 +28,7 @@ rule python:
     output:
         expand("{{path}}/Figures/{{figname}}.pdf")
     conda:
-        "envs/other.yaml"
+        "binder/environment.yml"
     shell:
         """
         cd {wildcards.path}
@@ -41,7 +41,7 @@ rule latex:
     output:
         '{path}/Main.pdf'
     conda:
-        "envs/other.yaml"
+        "binder/environment.yml"
     shell:
         """
         cd {wildcards.path}
@@ -75,7 +75,7 @@ rule pythonNotebookTomd:
     output:
         '_jupyterblog/{name}.md'
     conda:
-        "envs/other.yaml"
+        "binder/environment.yml"
     shell:
         """    
         jupyter nbconvert --to notebook --inplace --execute _jupyterblog/{wildcards.name}.ipynb
@@ -89,7 +89,7 @@ rule octaveNotebookTomd:
     output:
         '_octaveblog/{name}.md'
     conda:
-        "envs/octave.yaml"
+        "binder/octave.yml"
     shell:
         """
         jupyter nbconvert --ExecutePreprocessor.kernel_name=octave --to notebook --inplace --execute _octaveblog/{wildcards.name}.ipynb
