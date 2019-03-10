@@ -13,7 +13,7 @@ output += ['_jupyterblog/' + each.replace('.ipynb','.md') for each in os.listdir
 # for octave blog
 # removed for now
 # causing headaches.
-#output += ['_octaveblog/' + each.replace('.ipynb','.md') for each in os.listdir('_octaveblog') if each.endswith('.ipynb')]
+output += ['_octaveblog/' + each.replace('.ipynb','.md') for each in os.listdir('_octaveblog') if each.endswith('.ipynb')]
 
 
 print(output)
@@ -89,7 +89,7 @@ rule octaveNotebookTomd:
     output:
         '_octaveblog/{name}.md'
     conda:
-        "binder/octave.yml"
+        "binder/environment.yml"
     shell:
         """
         jupyter nbconvert --ExecutePreprocessor.kernel_name=octave --to notebook --inplace --execute _octaveblog/{wildcards.name}.ipynb
