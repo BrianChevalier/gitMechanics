@@ -10,3 +10,4 @@ dependencies:
   - jupyter
   - nbconvert
   - sympy
+  - octave_kernel
