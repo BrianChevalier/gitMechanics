@@ -5,6 +5,8 @@ cache:
   directories:
     - $HOME/miniconda
     - $HOME/.cache/Tectonic
+    - $TRAVIS_BUILD_DIR/.snamkemake
+    - find . -name "$TRAVIS_BUILD_DIR/.snakemake" -prune -o -name "*.pdf" -print
 python:
 - '3.6'
 install:
