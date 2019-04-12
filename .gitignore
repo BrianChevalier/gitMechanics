@@ -34,3 +34,4 @@ _jupyterblog/*.pdf
 /_jupyterblog/*.md
 *.pdf
 *.gz
+/_layouts/localStorage.json
