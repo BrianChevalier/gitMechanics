@@ -27,6 +27,7 @@ __pychache__/*
 /_jupyterblog/*.png
 _jupyterblog/*.pdf
 /_octaveblog/*.png
+/_layouts/localStorage.json
 
 /_octaveblog/*_files/*
 /_octaveblog/*.md
@@ -34,4 +35,3 @@ _jupyterblog/*.pdf
 /_jupyterblog/*.md
 *.pdf
 *.gz
-/_layouts/localStorage.json
