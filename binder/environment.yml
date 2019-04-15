@@ -3,10 +3,9 @@ channels:
   - bioconda
   - conda-forge
 dependencies:
-  - python=3.7
+  - python=3.6
   - tectonic
-  - matplotlib=3.0.3
-  - matplotlib-base
+  - matplotlib
   - jupyter
   - nbconvert
   - sympy
