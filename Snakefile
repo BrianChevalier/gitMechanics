@@ -77,7 +77,7 @@ rule pythonNotebookTomd:
     conda:
         "binder/environment.yml"
     shell:
-        """    
+        """
         jupyter nbconvert --to notebook --inplace --execute _jupyterblog/{wildcards.name}.ipynb
         jupyter nbconvert --to markdown _jupyterblog/{wildcards.name}.ipynb
         """
@@ -95,5 +95,3 @@ rule octaveNotebookTomd:
         jupyter nbconvert --ExecutePreprocessor.kernel_name=octave --to notebook --inplace --execute _octaveblog/{wildcards.name}.ipynb
         jupyter nbconvert --to markdown _octaveblog/{wildcards.name}.ipynb
         """
-
-
