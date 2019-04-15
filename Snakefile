@@ -89,9 +89,9 @@ rule octaveNotebookTomd:
     output:
         '_octaveblog/{name}.md'
     conda:
-        "binder/environment.yml"
+        "binder/octave.yml"
     shell:
         """
-        jupyter nbconvert --ExecutePreprocessor.kernel_name=octave_kernel --to notebook --inplace --execute _octaveblog/{wildcards.name}.ipynb
+        jupyter nbconvert --ExecutePreprocessor.kernel_name=octave --to notebook --inplace --execute _octaveblog/{wildcards.name}.ipynb
         jupyter nbconvert --to markdown _octaveblog/{wildcards.name}.ipynb
         """
