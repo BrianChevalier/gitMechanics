@@ -1,0 +1,55 @@
+% SOURCE:
+% https://tex.stackexchange.com/questions/5073/making-a-simple-directory-tree
+\begin{figure}
+\begin{center}
+\begin{forest}
+for tree={
+    font=\ttfamily,
+    text=black,
+    text width=3.5cm,
+    minimum height=0.75cm,
+    if level=0
+      {fill=mattegreen}
+      {fill=mattegreen},
+    rounded corners=4pt,
+    grow'=0,
+    child anchor=west,
+    parent anchor=south,
+    anchor=west,
+    calign=first,
+    edge={mattegreen,rounded corners,line width=1pt},
+    edge path={
+      \noexpand\path [draw, \forestoption{edge}]
+      (!u.south west) +(7.5pt,0) |- (.child anchor)\forestoption{edge label};
+    },
+    before typesetting nodes={
+      if n=1
+        {insert before={[,phantom]}}
+        {}
+    },
+    fit=band,
+    s sep=15pt,
+    before computing xy={l=15pt},
+  }
+[gitMechanics
+	[CEE321
+		[index.md]
+		[Direct-stiffness
+			[Main.tex]
+    	[Main.pdf]
+    	[Figures
+    		[Figure-1.pdf]
+    		[Figure-2.png]
+    	]
+    	[Sections
+    		[Section-1.tex]
+    		[Section-2.tex]
+    	]
+		]
+	]
+]
+\end{forest}
+\end{center}
+\caption{Directory of a typical course}
+\label{Fig:dirtree}
+\end{figure}

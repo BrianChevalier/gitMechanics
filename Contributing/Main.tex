@@ -1,0 +1,100 @@
+% Basic document class
+\documentclass[landscape, twocolumn, 12pt]{article}
+
+% General public packages loaded here:
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{pdfpages}
+\usepackage{gensymb}
+\usepackage{tikz}
+\usepackage{forest}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{backgrounds}
+
+% To-do list
+\usepackage{enumitem,amssymb}
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
+
+ 
+\setcounter{tocdepth}{2}
+%\usetikzlibrary{math}
+
+\usepackage[toc,page]{appendix}
+
+% Custom .sty files loaded here:
+\usepackage{../TitlePage}
+\usepackage{../mathshortcuts}
+\usepackage{../stanli}
+
+% Add item to glossary
+% Check mathshortcuts.sty for documentation
+% Uncomment following example line to add more items
+%\glo{Mu}{M_{u}}{Factored ultimate moment in the beam}
+
+% Title Page commands
+% Check TitlePage.sty for documentation
+
+% Fill out the following information
+% This is used by TitlePage.sty
+\title{Contributing to gitMechanics}
+\subtitle{Basics of \LaTeX{}, git, and How You Can Help}
+\coursenum{GIT101}
+\coursetitle{INTRODUCTION TO GIT}
+\university{Arizona State University}
+
+% Path to title page figure.
+% If note specified the default image will be used.
+\titleimage{../assets/images/gitMechanics}
+\author{Brian Chevalier}
+\date{\today}
+
+%-------------------------------------------
+\begin{document}
+
+% Leave this alone. 
+% It will make the title page
+\maketitle
+
+% I'm not content with the name abstract
+% but whatever...
+\renewcommand{\abstractname}{Welcome to the gitMechanics Team!}
+
+\begin{abstract}
+This document is a beginners introduction to the information needed to contribute to gitMechanics. We will cover the basics of git, \LaTeX{}, and we'll end on the steps you need to take to make a contribution.
+
+All suggestions, corrections, or new material is very welcome, no matter how small. The \textit{beauty} of open-source is that all contributions make a permanent difference. If you have no experience with any of these things don't be intimidated! Feel free to reach out for any clarification or help you need. I'm so happy you've even considered helping.
+\end{abstract}
+
+% Add additional sections here
+\input{Sections/Introduction-to-git}
+\input{Sections/Introduction-to-LaTeX}
+\input{Sections/Drawing-in-LaTeX}
+\input{Sections/Making-a-pull-request}
+
+\begin{appendices}
+	\input{Sections/Introduction-to-Jekyll}
+	\input{Sections/LaTeX-Appendix}
+	\clearpage
+	%\input{Sections/TikZ-Appendix}
+\end{appendices}
+
+%---------------------------------------------
+
+%% The following is for an optional glossary section
+
+%\clearpage
+%\glsaddall
+%\printglossary[title={Variables Definitions}]
+
+%% The following is for an optional references section
+
+%\newpage
+%\bibliography{References}
+%\addcontentsline{toc}{section}{References}
+%\bibliographystyle{apalike}
+\end{document}

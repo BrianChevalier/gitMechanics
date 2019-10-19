@@ -1,0 +1,109 @@
+% Basic document class
+\documentclass[landscape, twocolumn, 12pt]{article}
+
+% General public packages loaded here:
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{pdfpages}
+\usepackage{gensymb}
+\usepackage{tikz}
+\usetikzlibrary{math}
+
+% Custom .sty files loaded here:
+\usepackage{../../TitlePage}
+\usepackage{../../mathshortcuts}
+
+\newcommand{\fig}[2]{
+\begin{figure}
+  \centering
+  \includegraphics[width=0.7\columnwidth]{Figures/#1}
+  \caption{#2}
+  \label{Fig:#1}
+\end{figure}
+}
+
+% Title Page commands
+% Check TitlePage.sty for documentation
+
+\title{Taylor Series}
+\subtitle{Approximating Functions with Polynomials}
+\coursenum{CEE384}
+\coursetitle{Numerical Methods}
+\university{Arizona State University}
+
+%\titleimage{}
+\author{Brian Badahdah}
+\date{\today}
+
+%-------------------------------------------
+\begin{document}
+
+\maketitle
+\section{Motivation}
+
+There are many functions that are just a bit annoying. Instead of dealing with the actual function we want to deal with a much simpler polynomial approximation of that function. For instance, the familiar trigonometric functions have known values at discrete points but calculating the cosine of a value, for instance, not at a particular point defined by the unit circle is not directly possible without a numerical approximation. 
+
+\section{Approximating sin}
+We will begin by looking at the sin function. Essentially we want to make the function sin equal to some polynomial:
+
+\begin{equation}
+  \sin(x)\approx a_0 + a_1x+a_2x^2 + a_3x^3
+\end{equation}
+
+We have two problems. 1) we don't currently have a value for $x$ and 2) We don't have enough equations to determine the coefficients in the Taylor polynomial.
+
+Problem one is pretty easy to solve. We just need to pick a point, $x$, to center our approximation about. This should be a convenient point that we know the value of the function at. $x=0$ will do for this example.
+
+The second problem can be solved by generating more equations. We know the derivatives of sin, and we can take the derivatives of the polynomial to generate as many equations as we need.
+
+\begin{align}
+  \cos(x)  &\approx 0   +a_1  +2a_2x  +3a_3x^2\\
+  -\sin(x) &\approx 0   +0    +2a_2   +(3)(2)a_3x\\
+  -\cos(x) &\approx 0   +0    +0      +(3)(2)a_3
+\end{align}
+
+We now have a system of equations with exactly four equations and four unknowns. We know $\sin(0)=0$ and $\cos(0)=1$.
+
+\begin{align}
+  0 &= a_0\\ 
+  1  &=a_1 \\
+  0 &=2a_2\\
+  -1 &=(3)(2)a_3
+\end{align}
+
+Based on the previous equations we solve for the coefficients which are:
+
+\begin{align*}
+  a_0&=0 \\ a_1&=1 \\ a_2&=0 \\ a_3&=-\frac{1}{6}
+\end{align*}
+
+The third order Taylor Polynomial is therefore:
+
+\begin{equation}
+  f(x) = x - \frac{1}{6}x^3
+\end{equation}
+
+ This equation is plotted along with the true sine plot in Figure \ref{Fig:3ordersin}.
+
+\fig{3ordersin}{3rd order Taylor Polynomial for sin}
+
+\section{Generalizing Some Findings}
+As you can see the Taylor Polynomial we created for $\sin(x)$ uses the known point at $x=0$ and the derivative information about that point. This gives us information about the function \textit{near} the point that we centered the polynomial about by matching the derivatives of the polynomial with the derivatives of the function \cite{3Brown1Blue-taylorseries}. As $x$ increases away from the chosen center, the polynomial becomes less accurate.
+
+The derivatives of $\sin(x)$ are also cyclic, meaning that the number of terms of the polynomial can be increased infinitely without requiring any derivative information that we have not discussed. Figure \ref{Fig:135ordersin} shows an additional non-trivial Taylor polynomial term.
+
+\fig{135ordersin}{1st, 3rd, and 5th order polynomial}
+
+%---------------------------------------------
+%\clearpage
+%\glsaddall
+%\printglossary[title={Variables Definitions}]
+
+\newpage
+\bibliography{../../assets/bibtex}
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{apalike}
+\end{document}

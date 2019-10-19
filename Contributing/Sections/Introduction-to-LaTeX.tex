@@ -1,0 +1,257 @@
+\section{Introduction to \LaTeX{}}
+\LaTeX{} (pronounced lay-teck) is a free, open-source high-quality document preparation system (this document is written and compiled with \LaTeX{}!). \TeX{} was written and designed by Donald Knuth in 1978. \LaTeX{} builds on top of the work of Knuth providing more functionality through a more advanced set of macros.
+
+\subsection{Vernacular}
+
+\begin{description}
+	\item[Macro] A macro is a \LaTeX{} command that can take input and does something with it. You can define any number of custom macros (also called commands) that can speed up your document preparation and make your style more consistent.
+	\item[Package] A package is a set of predefined \LaTeX{} macros packaged up for your use. Users can create their own packages. gitMechanics relies on a few custom packages.
+	\item[Document class] There are many document classes that you can use, and you can even define your own classes. Classes include: article, standalone, beamer (slide presentation format), report, book, etc. Each class provides a set of commands to typeset your work.
+	\item[Environments] Text in an environment is processed in a particular way by the compiler. Inside an environment particular types of commands are available for use. The entire body of the document is wrapped in the document environment. There are also list environments, math environments, floating environments, and of course you can define custom environments.
+	\item[WYSIWYG] Pronounced wizzy-wig. This stands for what you see is what you get. This is what GUI editors do. Some people refer to \LaTeX{} as what you see is what you want.
+\end{description}
+
+\subsection{Getting \LaTeX{} on Your Machine}
+Your first step is to install a distribution of \LaTeX{}. This will be different depending on your platform, however it is available on all platforms (you can use the Linux distribution on ChromeOS. On iOS you can get a dedicated app, I reccomend TeX Writer). The following URL includes links on where to install the different distributions.
+
+\begin{center}
+	\url{https://www.latex-project.org/get/}
+\end{center}
+
+Most also come with a GUI editor and built in methods for compiling your documents so you don't have to touch the command line. Each editor will be slightly different so you'll have to spend a while getting to know your editor. Note that you can also opt to use your own text editor and compile from the command line using pdflatex. Regardless, make sure your text editor has good code completion support for \LaTeX{} otherwise it will make learning commands a nightmare.
+
+
+\subsection{Compiling Your First Document}
+
+The most basic document needs two things. First you have to define your ``document class''. As discussed before, there are many classes. Document classes can also take optional inputs in square brackets before the actual document class. This document is an article class document and the options are landscape, twocolumn, and 12pt. The options must be separated by commas. The example code below typsets a blank document. Note that the article declaration is on the second line, which is completely valid, but is also done to fit within the column margins. Also note that your document will be within the document environment, and that the \% sign indicates a comment.
+
+\begin{center}
+\begin{latexcode}
+\documentclass[landscape, twocolumn, 12pt]
+{article}
+
+\begin{document}
+% Your document goes here
+\end{document}
+\end{latexcode}
+\end{center}
+
+\subsection{Document Structure}
+
+Documents are split into different pieces. This includes (from highest level, to lowest): part, chapter, section, subsection, subsubsection, paragraph, subparagraph. The highest level in this document is a section and then subsection. Table \ref{Tab:HeaderLevels} shows the various header types available. Note that ``part'' is only available in books and reports.
+
+\begin{table}[H]
+\centering
+\caption{Header levels}
+\label{Tab:HeaderLevels}
+% repeat syntax
+% number of religions
+% string to repeat
+% *{num}{str}
+\begin{tabular}{|l|*{2}{c|}}
+\hline
+Header        & Level \\\hline
+part          & -1    \\
+chapter       & 0     \\ 
+section       & 1     \\ 
+subsection    & 2     \\ 
+subsubsection & 3     \\ 
+paragraph     & 4     \\ 
+subparagraph  & 5 \\\hline
+\end{tabular}
+\end{table}
+
+New headers can be added similar to the following:
+
+\begin{center}
+\begin{latexcode}
+\section{section name}
+\subsection*{subsection name}
+\end{latexcode}
+\end{center}
+
+This code adds a new numbered section with the name ``section name'' and unnumbered subsection that does not show up in the table of contents called ``subsection name''.
+
+
+
+Note: subsubsections are used in this document, however they are suppressed from the table of contents since it would make the table of contents too long. You can choose the level shown in the table of contents by the following:
+
+\begin{center}
+\begin{latexcode}
+\setcounter{tocdepth}{2}
+\end{latexcode}
+\end{center}
+
+where the number is the lowest depth the table of contents goes to.
+
+\subsection{Text Commands}
+\LaTeX{} has a markup syntax similar to what you might be familiar with HTML. In a text environment (document environment, itemize, etc.) You can use: 
+
+\begin{center}
+\begin{latexcode}
+\textit{}
+\end{latexcode}
+\end{center}
+
+to \textit{italicize} text. You can use
+
+\begin{center}
+\begin{latexcode}
+\textbf{}
+\end{latexcode}
+\end{center}
+
+to write \textbf{bold face} text.
+
+\subsection{Text Environments}
+There are many text environments available in \LaTeX{} to typeset lists. You can typeset a basic bullet-point list with the following itemize environment:
+
+\begin{center}
+\begin{latexcode}
+\begin{itemize}
+\item Item 1
+\item Item 2
+\end{itemize}
+\end{latexcode}
+\end{center}
+
+Note that each item must be prepended with the item command followed by a space then the item. You can typeset a numbered list in the enumerate environment:
+
+\begin{center}
+\begin{latexcode}
+\begin{enumerate}
+\item Item 1
+\item Item 2
+\end{enumerate}
+\end{latexcode}
+\end{center}
+
+You can nest lists by adding the environment you want nested. You can also customize the bullet points and how the list is typeset.
+
+You can typeset a list of definitions using the \textit{description} environment. Each item is the optional input item in the item command like the following:
+
+\begin{center}
+\begin{latexcode}
+\begin{description}
+\item[Word] Description 1
+\item[Phrase] Description 2
+\end{description}
+\end{latexcode}
+\end{center}
+
+\subsection{Loading Packages}
+Standard \LaTeX{} is good, however, you will likely need to load additional packages to extend the language. You can import a package like the following:
+
+\begin{center}
+\begin{latexcode}
+\usepackage{amsmath}
+\end{latexcode}
+\end{center}
+You will want to typically use the AMSMath package since it adds many commonly used math symbols. You can find full documentation on the package at:
+
+\begin{center}
+	\url{https://www.ctan.org/pkg/amsmath}
+\end{center}
+
+The Comprehensive \TeX{} Archive Network (CTAN) has many packages and documentation for packages that are typically already included with your \LaTeX{} distribution. Most packages have the full documentation in PDF format available on CTAN.
+
+
+\subsection{Equations in \LaTeX{}}
+If there's one thing \LaTeX{} is known for it's typesetting math and equations. We're going to get into that now. For math to be added to your document you have to be in some sort of math mode. This means you could be in a math environment or have your math inline with delimiters. 
+
+Math environments include: align, equation, or a few more. Equations in this environment will automatically be centered and numbered. You can suppress numbering of these environments by adding ``*'' after the environment name. The following equation is typeset using the equation environment:
+
+\begin{equation}
+	\int_{0}^{L} f(x) dx
+\end{equation}
+
+\begin{center}
+\begin{latexcode}
+\begin{equation}
+\int_{0}^{L} f(x) dx
+\end{equation}
+\end{latexcode}
+\end{center}
+
+Note that the braces around the limits of integration are not strictly needed for single character limits, however it is best practice to keep them in braces to avoid confusion and be consistent for more complicated equations.
+
+The next important math environment is the align environment. The align environment allows typesetting multiple consecutive equations aligned. The following is an example of that:
+
+\begin{align}
+y &= mx + b\\ 
+  &= \frac{\Delta y}{\Delta x}x + b
+\label{Eq:ex1}
+\end{align}
+
+The syntax looks like:
+
+\begin{center}
+\begin{latexcode}
+\begin{align}
+y &= mx + b\\ 
+  &= \frac{\Delta y}{\Delta x}x + b
+\label{Eq:ex1}
+\end{align}
+\end{latexcode}
+\end{center}
+
+Things to note: the equations are aligned based on the location of the ``\&'' and new lines are entered with ``\textbackslash''. Greek letters and other commands also require a space after the command name otherwise it will throw an error.
+
+You can insert any equation \textit{inline} anywhere in your document simply by wrapping the equation in dollar signs. For instance, you can reference equation \ref{Eq:ex1} and say the variable $\Delta$ means the change in the following variable.
+
+\subsubsection{Lableing and Referencing}
+One of the benefits with \LaTeX{} is that it has automated equation numbering, referencing and hyperlinking. When you write an equation, within the equation environment you need to provide a label with a name for that object like the following:
+
+\begin{center}
+\begin{latexcode}
+\label{label-name}
+\end{latexcode}
+\end{center}
+
+Once you have labeled an equation you can reference that equation number in your text with the following:
+
+\begin{center}
+\begin{latexcode}
+\ref{label-name}
+\end{latexcode}
+\end{center}
+
+It is best practice to begin an equation label with ``Eq:'' since labels include table and figure labels (same for ``Tab'' and ``Fig''). The process for labeling and referencing figures and tables is the same. Add a label within the respective environment, then reference the object somewhere in your text.
+
+Note that you may have to run \LaTeX{} more than once for the object number to appear in your text. This is because \LaTeX{} builds a file in your current working directory with the information about your labeled information. Just run \LaTeX{} again and it will update your text. The same is true for the table of contents.
+
+All internal references can automatically become hyperlinked by importing the ``hyperref'' package. This will make the table of contents and any referenced object clickable and will redirect to the referenced object. This is already imported by default in gitMechanics documents since the custom TitlePage package uses the hyperref package so there's no need to add that to your preamble.
+
+\subsubsection{Greek Letters}
+Most Greek letters can be included in math mode typically by typing ``\textbackslash'' followed by the name of the letter such as typesetting the letter beta: $\beta$. The following PDF lists many Greek letters and math mode symbols.
+
+\begin{center}
+	\url{https://wch.github.io/latexsheet/latexsheet.pdf}
+\end{center}
+
+\subsubsection{Operators}
+There are many common math operators such as trigonometric functions: 
+
+\begin{center}
+\begin{latexcode}
+\sin \csc
+\cos \sec
+\tan \cot
+\end{latexcode}
+\end{center}
+
+\subsubsection{Typsetting Tables}
+Tables in \LaTeX{} can be difficult to produce and debug. This would be a great reason to employ a WYSIWYG table generator such as:
+\begin{center}
+	\url{https://tablesgenerator.com}
+\end{center}
+
+I have my own custom iOS extension that converts .csv files into \LaTeX{} markup (available upon request, maybe one day I'll write a blog post). 
+
+
+
+
+
+
+
+

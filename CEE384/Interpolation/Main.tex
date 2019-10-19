@@ -1,0 +1,53 @@
+% Basic document class
+\documentclass[landscape, twocolumn, 12pt]{article}
+
+% General public packages loaded here:
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{pdfpages}
+\usepackage{gensymb}
+\usepackage{tikz}
+\usetikzlibrary{math}
+
+% Custom .sty files loaded here:
+\usepackage{../../TitlePage}
+\usepackage{../../mathshortcuts}
+
+\usepackage{blkarray}
+
+% Add to glossary
+% Check mathshortcuts.sty for documentation
+
+
+% Title Page commands
+% Check TitlePage.sty for documentation
+
+\title{Interpolation}
+\subtitle{Interpolation of Discrete Datasets}
+\coursenum{CEE384}
+\coursetitle{Numerical Methods}
+\university{Arizona State University}
+
+%\titleimage{Figures/Title.png}
+\author{Brian Chevalier}
+\date{\today}
+
+%-------------------------------------------
+\begin{document}
+
+\maketitle
+\input{Sections/Interpolation}
+\input{Sections/Splines}
+
+%---------------------------------------------
+%\newpage
+%\glsaddall
+%\printglossary[title={Variables Definitions}]
+%\newpage
+%\bibliography{References}
+%\addcontentsline{toc}{section}{References}
+%\bibliographystyle{apalike}
+\end{document}

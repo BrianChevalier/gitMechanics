@@ -1,0 +1,211 @@
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mathshortcuts}
+\RequirePackage{tikz}
+
+\newcommand{\ei}{\vec{e_1}}   %e1 shortcut
+\newcommand{\ej}{\vec{e_2}}   %e2 shortcut
+\newcommand{\ek}{\vec{e_3}}   %e3 shortcut
+\newcommand{\n}{\vec{n}}
+\newcommand{\m}{\vec{m}}
+\newcommand{\x}{\vec{x}}
+\newcommand{\dtheta}{\dot{\theta}}
+\newcommand{\ddtheta}{\ddot{\theta}}
+
+\newcommand{\sig}{\sigma} %sigma shortcut
+\newcommand{\ep}{\varepsilon} %epsilon shotcut
+
+% Make vectors bold
+\renewcommand{\vec}[1]{\mathbf{#1}}
+
+\everymath{\displaystyle}
+
+
+%---------
+% Points of interest
+% just makes a lil white outlined dot
+\newcommand{\poi}[1]{
+\filldraw[ultra thick,fill=white] (#1) circle (0.1cm);
+}
+
+
+%---------
+% TikZ styles:
+\tikzstyle{basevec}=[->, red, very thick]
+\tikzstyle{label}=[draw, rounded corners=5 pt, midway, right=4pt, fill=white]
+\tikzstyle{guide}=[thin, dashed]
+
+
+%---------
+% Custom Colors
+\definecolor{space}{HTML}{18B092}
+\definecolor{mattegreen}{rgb}{0.84,0.89,0.74}
+\definecolor{flatp}{rgb}{0.56,0.54,0.63}
+
+
+%---------
+% TikZ commands:
+\newcommand{\basevec}[4]{
+% 1: point
+% 2: angle
+
+\draw [basevec]
+(#1)
+-- +
+(#2+90:1cm)
+node[above]{$\vec{#3}$}
+;
+
+\draw[basevec]
+(#1) -- +(#2:1cm) node[above]{$\vec{#4}$};
+
+}
+
+\newcommand{\nandm}[2]{
+\basevec{#1}{#2}{n}{m}
+}
+
+
+
+% For help with drawing tikz Bézier curves
+% Source: https://tex.stackexchange.com/questions/255234/how-does-one-pick-control-points-to-control-bézier-curves-in-tikz
+%\tikzset{
+%  ctrlpoint/.style={%
+%    draw=gray,
+%    circle,
+%    inner sep=0,
+%    minimum width=1ex,
+%  }
+%}
+%\newcommand\Bezier[4]{% \bezier (lowercase 'b') was already defined %elsewhere
+%  \node (p1) [ctrlpoint,label=90:$P_1$] at (#1) {};
+%  \node (p2) [ctrlpoint,label=90:$P_2$] at (#2) {};
+%  \node (p3) [ctrlpoint,label=90:$P_3$] at (#3) {};
+%  \node (p4) [ctrlpoint,label=90:$P_4$] at (#4) {};
+%  \draw [gray] (p1) -- (p2) -- (p3) -- (p4);
+%  \draw [blue] (#1) .. controls (#2) and (#3) .. (#4);
+%}
+
+
+%%------------------------------
+\RequirePackage{empheq}
+\RequirePackage[most]{tcolorbox}
+%\tcbuselibrary{listings}
+% Box commands
+\newtcbox{\purplebox}[1][]{
+	nobeforeafter,
+	math upper,
+	tcbox raise base,
+	enhanced,
+	colframe=blue!30,
+	colback=blue!30,
+	boxrule=1pt,
+}
+
+% purple box shortcut
+\newcommand{\pbox}[1]{
+	\begin{empheq}[
+		box=\purplebox]{align}
+		#1
+	\end{empheq}
+}
+
+\newtcbox{\greenbox}[1][]{
+	nobeforeafter,
+	math upper,
+	tcbox raise base,
+	enhanced,
+	colframe=mattegreen,
+	colback=mattegreen,
+	boxrule=1pt,
+}
+
+% purple box shortcut
+\newcommand{\gbox}[1]{
+	\begin{empheq}[
+		box=\greenbox]{align}
+		#1
+	\end{empheq}
+}
+
+%% Pseudo-code box
+% tcolorbox documentation:
+% http://texdoc.net/texmf-dist/doc/latex/tcolorbox/tcolorbox.pdf#page39
+
+\newenvironment{pseudocode}{
+\begin{center}
+\begin{tcolorbox}[
+	width=0.95\columnwidth,
+	colback={mattegreen},
+	title={\textbf{Pseudocode}},
+	toprule = 10pt, %padding above title
+	rightrule = 5pt,
+	leftrule = 5pt,
+	colbacktitle= mattegreen,
+	coltitle=black,
+	colframe=mattegreen,
+	rounded corners,
+	arc=10pt]
+
+	\begin{enumerate}
+}
+{
+\end{enumerate}
+\end{tcolorbox}
+\end{center}
+}
+
+\newenvironment{greenfig}{
+\begin{tcolorbox}[
+	width=1.05\columnwidth,
+	colback={mattegreen},
+	title={},
+	toprule = 0pt, %padding above title
+	rightrule = 0pt,
+	leftrule = 0pt,
+	colbacktitle= mattegreen,
+	coltitle=black,
+	colframe=mattegreen,
+	rounded corners,
+	arc=10pt]
+
+}
+{
+\end{tcolorbox}
+}
+
+% Glossary commands
+\RequirePackage[toc]{glossaries}
+%
+\makeglossaries
+
+%
+\newcommand{\glo}[3]{
+% #1: name
+% #2: code
+% #3: definition
+\newglossaryentry{#1}{
+	name={\ensuremath{#2}},
+	description={#3}}
+ 
+	\expandafter\newcommand\csname #1\endcsname{\ensuremath{#2}}
+%
+}
+
+
+\newtcblisting{latexcode}{
+  listing only,
+  hbox,
+  colframe=mattegreen,
+  colback=mattegreen,
+  listing options={
+    language=TeX,
+    basicstyle=\small\ttfamily,
+    breaklines=true,
+    columns=fullflexible,
+    boxpos=c
+  },
+}
+
+
+\endinput

@@ -1,0 +1,91 @@
+%!TEX root=../Main.tex
+\section{Introduction to git}
+
+\newtcbox{\urls}{
+	boxrule=0pt,
+	leftrule=0pt,
+	rightrule=0pt,
+	bottomrule=0pt,
+	toprule=0pt,
+	colframe=lightgray,
+	colback=lightgray,
+	halign=left,
+	arc=10pt}
+
+
+Git is an open-source, distributed \textit{version control system} originally built by Linus Torvalds for managing contributions to Linux. Git is now one of the world's most used version control systems (all of Windows is now managed with git), one of the primary places git repositories are stored is on github.com (which is where this document lives). At it's core all git does is keep track of changes in files, but particularly plain text files. Plain text files can have many file extensions such as txt, md, tex, etc. We'll talk about these more later.
+
+Github offers many courses on using the service. They features videos, text content, and interactive learning. You can check them out here:
+
+\begin{center}
+	\url{https://lab.github.com/courses}
+\end{center}
+
+Git can be used through two primary ways: via a graphical user interface (GUI) or through the command line. Git is available on all platforms (even iOS, Android, and chromeOS. On iOS I highly recommend Working Copy). Before we talk about actually using git we'll look at some basic terminology.
+
+
+\subsection{Vernacular}
+
+There are a few concepts that you'll want to understand in general before getting started with the particulars of using git. Some of these words can be very confusing for beginners so we're going to lay out some words that you'll want to be familiar with.
+
+\begin{description}
+	\item[Repository] Also called a ``repo''. This is a directory that stores your source files. There is a special folder called ``.git'' which contains the metadata about the repo. Folders that start with a dot will be hidden in most files systems.
+	\item[Clone] When you see a project on github you can clone that project. This is a full copy of a repository. Every repo is a clone which is why git is a distributed version control system.
+	\item[Fork] A fork is a copy of a repo that is associated with your github account. This gives you a repo that you can edit and push changes to. Typically you will \textit{fork} someone's repo on github.com, then \textit{clone} that repo to your local machine. In effect, all repos are clones and forks because it is a distributed network.
+	\item[Commit] After you make changes to a repo you'll want to commit those changes. This is essentially like a bookmark in your repo that holds the state of your repo. Every commit must be made with a message (make sure it's useful!) and optional additional comments.
+	\item[Stage] Before you actually make a commit you will will have to ``stage'' or decide which files will be included with the commit. If you're using a GUI git tool this may just be a step while making a commit. On the command line you have to stage the files you are going to commit (this is done with git add filename or git add -a for all files in the repo to be added) and then commit them.
+	\item[Fetch] When you're working with a repo you typically have a version of that repo on a server that you want to route your changes through. If someone else has made changes to that repo or you made changes on another device you have to fetch changes, then merge them into your repo and push those changes back to the server.
+	\item[Push] You push changes to a server. You can push multiple commits at a time, so you don't have to push every time you make a commit or change a file.
+	\item[Pull] A pull is a combination of fetch and merge. You'll typically want to avoid pulling changes into your repo because you want to manually fetch and then merge in changes.
+	\item[Pull Request] This is a request made by someone to suggest changes to a repo that they do not have write access to. This is very common for open source projects so changes to the canonical source code is vetted by project maintainers.
+	\item[Branch] A repo starts with one branch called the master. You can create as many branches as you want. For instance, you may want to make a new branch that includes 
+	\item[Merge Conflict] This is the error that occurs when two that git attempts to combine have different text on the same line number that it cannot reconcile. This requires manual fixing but does not often happen.
+	\item[Diff] A diff is to show the differences between two or more files. Depending on your knowledge, a GUI is likely better for seeing diffs since it will be easier to understand.
+	\item[Checkout] The power of git is that you can checkout previous commits of a repo. As long as all the files in your repo are already committed, you can checkout another branch or another commit. This eliminates the fear of making destructive changes. As long as you commit changes regularly and make descriptive commit messages you will always be able to return to a known change.
+	\item[Cherrypick] Sometimes when you're working with multiple branches you'll want to choose a commit from one branch and apply it onto another. This is what a cherrypick does. You will not likely need to do this.
+	%\item[Rebase]
+\end{description}
+
+\subsection{Git on the Command Line}
+
+If you choose to use a command line tool for git it is very important you understand what these words mean as many of them are the names of commands you'll want to use when managing your repo. The most common are clone, add, commit, fetch and push. The typical steps you make when working on a repo is: clone someone else's repo. Make changes. Fetch changes from the server to see if any changes have been made there and merge in the changes. Add your files to a commit, then make the commit. Finally, you can push your files to the server. This can be accomplished by the following commands:
+
+\begin{lstlisting}[language=bash]
+	git clone [URL]
+	git fetch
+	git merge
+	git add --all
+	git commit -m "commit message"
+	git push
+\end{lstlisting}
+
+Note that you'll want to replace [URL] with the URL of the repo that you are cloning. You will enter each line for each part of the process.
+
+Here is a great video on YouTube with an in depth example on using git from the command line. Even if you don't use the command line it is great for understanding how git works.
+\begin{center}
+	\url{https://youtu.be/0fKg7e37bQE}
+\end{center}
+
+\subsection{GUI git Clients}
+Many text editors include git integration out of the box including MATLAB and VSCode. 
+
+Github provides a GUI client for users on macOS and Windows:
+\begin{center}
+\url{https://desktop.github.com}
+\end{center}
+
+and provides full guides on using their application:
+\begin{center}
+	\url{https://help.github.com/desktop/guides/}
+\end{center}
+
+
+\subsection{Making a Pull Request}
+
+Now we will take a look at making a \textit{pull request}. A pull request is your method of suggesting changes to someone's work. Typically, big open-source projects are not just a Wikipedia-style free-for-all. Only project maintainers have \textit{write access} to the canonical version of Python, for instance. However, community members \textit{are} able to fork a copy of the repository to their own github. This allows write access to your own version of the repo. After you make changes to your code, you can then make a pull request on the original repo. This ensures that the code can be vetted by automated testing (i.e. continuous integration), and further tested by humans.
+
+The following video shows how to fork a public repo, make changes to that repo where you have write access, then suggest changes via a pull request to a project.
+
+\begin{center}
+	\url{https://youtu.be/YTbRzhQju4c}
+\end{center}

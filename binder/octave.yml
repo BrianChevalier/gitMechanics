@@ -1,0 +1,14 @@
+name: octaveenv
+channels:
+  - bioconda
+  - conda-forge
+  - anaconda
+dependencies:
+  - python=3.6
+  - octave=4.2.1
+  - octave_kernel=0.28.4
+  - metakernel
+  - jupyter
+  - nbconvert=5.4
+  - nb_conda_kernels
+  - nb_conda

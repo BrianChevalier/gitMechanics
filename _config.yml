@@ -1,0 +1,27 @@
+markdown: kramdown
+exclude:
+  - CNAME
+  - README
+  - "*.tex"
+title: gitMechanics
+description: Open-source Mechanics Knowledge-base
+markdown: kramdown
+google_analytics: UA-127468533-1
+repository: gitMechanics
+collections:
+  jupyterblog:
+    output: true
+  octaveblog:
+    output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: "jupyterblog"
+    values:
+      layout: notebook
+  - scope:
+      path: ""
+      type: "octaveblog"
+    values:
+      layout: notebook

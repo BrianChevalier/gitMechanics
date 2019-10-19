@@ -1,0 +1,138 @@
+% Copyright note: This package defines how titles should
+% be typeset at the columbidae University
+% Please check for updates
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{TitlePage}
+\RequirePackage{graphicx}
+\RequirePackage{multicol}
+
+% Provides basic commands for section headers
+% See: https://ctan.org/pkg/sectsty?lang=en
+\RequirePackage{sectsty}
+% Two column layout
+% These commands will adjust the two column layout to look a bit better
+% see: http://scholardox.com/pubs/Landscape.pdf
+% Link broken :/
+% The original article was:
+% Advocating two-column landscape format for scholarly online articles
+% By James D. Wells.
+% CERN Theoretical Physics
+% June 2,2013
+\setlength{\textheight}{17cm}
+\setlength{\textwidth}{23cm}
+\setlength{\topmargin}{-1.5cm} % -2.2cm
+\setlength{\oddsidemargin}{0.0cm}
+\setlength{\evensidemargin}{\oddsidemargin}
+\setlength{\parskip}{0cm}
+\setlength{\columnsep}{1cm}
+\sectionfont{\normalsize}
+\subsectionfont{\normalsize}
+
+% Fancy Header Commands
+\RequirePackage{fancyhdr}
+\pagestyle{fancy}
+\setlength{\headheight}{20pt}%15.2
+\fancyhf{}
+\lhead{\leftmark}
+\rhead{\@coursenum -- \@coursetitle}
+\lfoot{\small\textit{\@author}}
+\cfoot{\thepage}
+
+% Make links clickable
+\RequirePackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=blue
+}
+
+% Reduce figure padding
+\setlength{\intextsep}{2.0 pt plus 2.0pt minus 2.0pt}
+\setlength{\belowcaptionskip}{-20pt}
+
+% Stop indenting, add paragraph spacing
+% between new paragraphs
+\setlength\parindent{0pt}
+\setlength{\parskip}{\baselineskip}
+
+% This provides the "strip" command which allows an equation to be one column.
+% Note figures and tables can span both columns by adding a "*"
+%\RequirePackage{cuted}
+
+% Dont indent new paragraphs
+% Add extra space between them.
+\setlength\parindent{0pt}
+\setlength{\parskip}{\baselineskip}
+
+% Give space for captions
+\captionsetup{belowskip=12pt, aboveskip=4pt}
+
+% Define needed new commands for title page
+\newcommand*{\coursenum}[1]{\gdef\@coursenum{#1}}
+\newcommand*{\@coursenum}{\texttt{\string\coursenum} currently not set. Please define this.}
+
+\newcommand*{\coursetitle}[1]{\gdef\@coursetitle{#1}}
+\newcommand*{\@coursetitle}{\texttt{\string\coursetitle} currently not set. Please define this.}
+
+\newcommand*{\subtitle}[1]{\gdef\@subtitle{#1}}
+\newcommand*{\@subtitle}{\texttt{\string\subtitle} currently not set. Please define this.}
+
+\newcommand*{\titleimage}[1]{\gdef\@titleimage{#1}}
+\newcommand*{\@titleimage}{../../default-title-image.pdf}
+%\newcommand*{\@titleimage}{example-image-c} %if image not set
+
+\newcommand*{\university}[1]{\gdef\@university{#1}}
+\newcommand*{\@university}{\texttt{\string\university} currently not set. Please define this.}
+
+\renewcommand*{\maketitle}{%
+
+\begin{titlepage}
+
+\begin{multicols}{2}
+
+\centering
+
+\vspace{0.1cm}
+
+{\small\bfseries\@coursenum\unskip\strut\par}
+\vspace{0.1cm}
+{\Large\bfseries\@title\unskip\strut\par}
+\vspace{0.1cm}
+{\large\itshape\@subtitle\unskip\strut\par}
+
+\vfill
+\begin{center}
+	\includegraphics[width = 0.6\columnwidth]{\@titleimage}
+\end{center}
+\vfill
+
+{\scshape\LARGE \@university \par}
+\vspace{0.1cm}
+{\Large\itshape\@author\unskip\strut\par}
+\vspace{0.1cm}
+{\large Updated: \@date\par}
+
+\columnbreak
+
+\vfill
+\begin{tcolorbox}[
+	height=0.9\textheight,
+	width=\columnwidth,
+	colframe=lightgray,
+	colback=lightgray,
+	halign=left,
+	arc=10pt]
+
+	\tableofcontents
+
+\end{tcolorbox}
+\vfill
+
+\end{multicols}
+
+\end{titlepage}
+
+}
+\endinput

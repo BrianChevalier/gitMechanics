@@ -1,0 +1,90 @@
+% Basic document class
+\documentclass[landscape, twocolumn, 12pt]{article}
+
+% General public packages loaded here:
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{pdfpages}
+\usepackage{gensymb}
+\usepackage{tikz}
+\usetikzlibrary{math}
+
+% Custom .sty files loaded here:
+\usepackage{../TitlePage}
+\usepackage{../mathshortcuts}
+
+% Add to glossary
+% Check mathshortcuts.sty for documentation
+\glo{Mu}{M_{u}}{Factored ultimate moment in the beam}
+\glo{Mn}{M_n}{Nominal moment strength}
+\glo{As}{A_s}{Area of tension reinforcing steel}
+\glo{bb}{b}{Width of compression zone in a beam}
+\glo{dd}{d}{Distance from the extreme fiber in compression}
+
+\glo{rhob}{\rho_b}{The reinforcement ratio of concrete at the balance condition}
+
+\glo{fy}{f_y}{Yield stress of steel}
+\glo{fs}{f_s}{Stress of the steel}
+\glo{fc}{f'_c}{Yield stress of concrete}
+\glo{betao}{\beta_1}{ACI variable}
+
+\glo{ecu}{\varepsilon_{cu}}{Ultimate compressive strain of concrete}
+\glo{ey}{\varepsilon_y}{Yield strain of steel}
+\glo{es}{\varepsilon_s}{Strain of tension steel}
+
+% Title Page commands
+% Check TitlePage.sty for documentation
+
+\title{Concrete Beam Design}
+\subtitle{Beam Design}
+\coursenum{CEE421}
+\coursetitle{Concrete Structures}
+\university{Arizona State University}
+
+\titleimage{Figures/Title.png}
+\author{Brian Badahdah}
+\date{\today}
+
+%-------------------------------------------
+\begin{document}
+
+\maketitle
+
+\input{Sections/beamanalysis}
+\input{Sections/beamdesign}
+\input{Sections/tsection}
+
+Table \ref{Tab:bars} shows the dimensions of reinforcing steel bars.
+
+\begin{table}[h]
+\centering
+\caption{Areas, Weights, and Dimensions of Reinforcing Bars}
+\label{Tab:bars}
+\begin{tabular}{|c|c|c|c|}\hline
+Bar Size (No.)&Weight (lb/ft)&Diameter(in.)&Area (in.$^2$) \\ \hline
+3&0.376&0.375&0.11 \\ \hline
+4&0.668&0.500&0.20 \\ \hline
+5&1.043&0.625&0.31 \\ \hline
+6&1.502&0.750&0.44 \\ \hline
+7&2.044&0.875&0.60 \\ \hline
+8&2.67&1.000&0.79 \\ \hline
+9&3.40&1.128&1.00 \\ \hline
+10&4.30&1.270&1.27 \\ \hline
+11&5.31&1.410&1.56 \\ \hline
+14&7.65&1.693&2.25 \\ \hline
+18&13.60&2.257&4.00 \\ \hline
+\end{tabular}
+\end{table}
+
+%---------------------------------------------
+%\clearpage
+%\glsaddall
+%\printglossary[title={Variables Definitions}]
+%\newpage
+%\bibliography{References}
+%\addcontentsline{toc}{section}{References}
+%\bibliographystyle{apalike}
+\end{document}
