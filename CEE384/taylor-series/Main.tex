@@ -1,32 +1,5 @@
 % Basic document class
-\documentclass[landscape, twocolumn, 12pt]{article}
-
-% General public packages loaded here:
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{graphicx}
-\usepackage{caption}
-\usepackage{float}
-\usepackage{pdfpages}
-\usepackage{gensymb}
-\usepackage{tikz}
-\usetikzlibrary{math}
-
-% Custom .sty files loaded here:
-\usepackage{../../TitlePage}
-\usepackage{../../mathshortcuts}
-
-\newcommand{\fig}[2]{
-\begin{figure}
-  \centering
-  \includegraphics[width=0.7\columnwidth]{Figures/#1}
-  \caption{#2}
-  \label{Fig:#1}
-\end{figure}
-}
-
-% Title Page commands
-% Check TitlePage.sty for documentation
+\documentclass{../../KDHnotes}
 
 \title{Taylor Series}
 \subtitle{Approximating Functions with Polynomials}
@@ -34,13 +7,14 @@
 \coursetitle{Numerical Methods}
 \university{Arizona State University}
 
-%\titleimage{}
-\author{Brian Badahdah}
+\titleimage{../../default-title-image}
+\author{Brian Chevalier}
 \date{\today}
+
 
 %-------------------------------------------
 \begin{document}
-
+ 
 \maketitle
 \section{Motivation}
 
@@ -50,7 +24,8 @@ There are many functions that are just a bit annoying. Instead of dealing with t
 We will begin by looking at the sin function. Essentially we want to make the function sin equal to some polynomial:
 
 \begin{equation}
-  \sin(x)\approx a_0 + a_1x+a_2x^2 + a_3x^3
+  \sin(x)\approx a_0 x^0 + a_1x^1+a_2x^2 + a_3x^3
+  \label{Eq:sin}
 \end{equation}
 
 We have two problems. 1) we don't currently have a value for $x$ and 2) We don't have enough equations to determine the coefficients in the Taylor polynomial.
@@ -97,13 +72,49 @@ The derivatives of $\sin(x)$ are also cyclic, meaning that the number of terms o
 
 \fig{135ordersin}{1st, 3rd, and 5th order polynomial}
 
-%---------------------------------------------
-%\clearpage
-%\glsaddall
-%\printglossary[title={Variables Definitions}]
+There is a clear pattern in Equation \ref{Eq:sin}. For the $i$th term in the polynomial, there is a coefficient $a_i$ and $x$ raised to the $i$ power. So the question is, how do we generalize the pattern in the coefficients that we have derived. 
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline 
+$i$ & $a_i$ \\ 
+\hline 
+0 & 0 \\ 
+\hline 
+1 & 1 \\ 
+\hline 
+2 & 0 \\ 
+\hline 
+3 & $-\frac{1}{(3)(2)}$ \\ 
+\hline 
+\end{tabular} 
+\end{center}
+
+Each even term is equal to zero so these terms should be skipped, all other terms can be described by the following Equation:
+
+\begin{equation}
+	a_{2n+1} = (-1)^n \frac{1}{(2n+1)!}
+	\label{Eq:a}
+\end{equation}
+
+where $n$ is an integer to calculate the $n$th non-zero term. The first term of the Equation alternates negative and positive signs. The factorial in the second term follows the pattern found in the denominator of $a_3$.
+
+
+We can write Equation \ref{Eq:sin} as an infinite sum:
+
+\begin{equation}
+	\sin(x) = \sum _{n=0} ^ {\infty} a_{2n+1}x^{2n+1}
+\end{equation}
+
+Finally, we can plug in Equation \ref{Eq:a}:
+
+\gbox{
+	\sin(x) = \sum _{n=0} ^ {\infty}  (-1)^n \frac{1}{(2n+1)!} x^{2n+1}
+}
+
 
 \newpage
 \bibliography{../../assets/bibtex}
 \addcontentsline{toc}{section}{References}
-\bibliographystyle{apalike}
+\bibliographystyle{IEEEtran}
 \end{document}
