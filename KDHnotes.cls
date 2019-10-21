@@ -28,7 +28,6 @@
 \RequirePackage{tcolorbox}
 \RequirePackage[toc,page]{appendix}
 \RequirePackage{listings}
-\RequirePackage[nottoc,numbib]{tocbibind}
 
 % Provides basic commands for section headers
 % See: https://ctan.org/pkg/sectsty?lang=en
