@@ -15,4 +15,7 @@ archive_link: CEE384
 ## Interpolation
 * [Interpolation](/CEE384/Interpolation/Main.pdf)
 
+## Interpolation
+* [Interpolation](/CEE384/gauss-elimination/Main.pdf)
+
 </div>
