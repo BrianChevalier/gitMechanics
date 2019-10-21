@@ -1,0 +1,156 @@
+% Basic document class
+\documentclass{../../KDHnotes}
+
+\title{Naive Gauss Elimination}
+\subtitle{Solving Linear Systems of Equations}
+\coursenum{CEE384}
+\coursetitle{Numerical Methods}
+\university{Arizona State University}
+
+\titleimage{../../default-title-image}
+\author{Brian Chevalier}
+\date{\today}
+
+\usepackage{xcolor}
+
+\newcommand{\rhigh}[1]{%
+  \ooalign{\hss\makebox[0pt]{\colorbox{red!30}{$#1$}}\hss\cr\phantom{$#1$}}%
+}
+
+\newcommand{\bhigh}[1]{%
+  \ooalign{\hss\makebox[0pt]{\colorbox{blue!30}{$#1$}}\hss\cr\phantom{$#1$}}%
+}
+
+%-------------------------------------------
+\begin{document}
+ 
+\maketitle
+
+
+\section{Naive Gauss Elimination}
+
+Naive Gauss Elimination is a linear algebra method to solve matrix equations of the following form:
+
+\begin{equation}
+	\vec{A} \vec{x} = \vec{b}
+\end{equation}
+
+This method is similar to a method called Reduced Row Echelon Form that you may be familiar with from previous courses.
+
+\bbox{
+	\vec{A} = 
+	\begin{bmatrix}
+		A_{0,0} & A_{0,1} & A_{0,2} & A_{0,3}\\
+		A_{1,0} & A_{1,1} & A_{1,2} & A_{1,3}\\
+		A_{2,0} & A_{2,1} & A_{2,2} & A_{2,3}\\
+		A_{3,0} & A_{3,1} & A_{3,2} & A_{3,3}\\
+	\end{bmatrix}
+}
+
+Note: the indexing used here is zero-indexing. That is, numbering begins at zero, not at one like typical linear algebra. That is because almost all programming languages use zero-indexing.
+
+\subsection{Forward Elimination}
+Forward elimination is the process by which a matrix is converted into an upper triangular matrix, which is where all elements below the diagonal are zero.
+
+Let's take a look at the first step in the process. We want to make element $A_{1, 0}$ equal to zero such as in Equation \ref{Eq:Step1}
+
+\begin{equation}
+	\vec{A} = 
+	\begin{bmatrix}
+		\bhigh{A_{0,0}} & A_{0,1} & A_{0,2} & A_{0,3}\\
+		\rhigh{A_{1,0}} & A_{1,1} & A_{1,2} & A_{1,3}\\
+		A_{2,0} & A_{2,1} & A_{2,2} & A_{2,3}\\
+		A_{3,0} & A_{3,1} & A_{3,2} & A_{3,3}\\
+	\end{bmatrix}
+	\label{Eq:Step1}
+\end{equation}
+
+
+To accomplish this, we take the row with the element we want to eliminate (row 1), and subtract row 0 by some scaled amount that will guarantee $A_{1,0}$ will become zero.
+
+\begin{equation}
+	A_{1,:} = A_{1, :} - \frac{
+		\rhigh{A_{1,0}}
+	} {
+		\bhigh{A_{0,0}}
+	}
+	A_{0,:}
+\end{equation}
+
+Note: the notation $A_{1,:}$ reads as ``row one, all of the columns''. Similarly, $A_{:, 0}$ would read as ``all of the rows of the zero column''. In linear algebra classes this may be written as ``$R_1$'', however the notation used here makes it easier to jump into programming the logic later.
+
+
+We are now left with a zero in position $A_{1,0}$.
+
+\begin{equation}
+	\vec{A} = 
+	\begin{bmatrix}
+		\bhigh{A_{0,0}} & A_{0,1} & A_{0,2} & A_{0,3}\\
+		0 & A_{1,1} & A_{1,2} & A_{1,3}\\
+		\rhigh{A_{2,0}} & A_{2,1} & A_{2,2} & A_{2,3}\\
+		A_{3,0} & A_{3,1} & A_{3,2} & A_{3,3}\\
+	\end{bmatrix}
+\end{equation}
+
+
+ Next, eliminate $A_{2,0}$ with the same method as before.
+
+\begin{equation}
+	A_{2,:} = A_{2, :} - \frac{
+		\rhigh{A_{2,0}}
+	} {
+		\bhigh{A_{0,0}}
+	}
+	A_{0,:}
+\end{equation}
+
+
+\gbox{
+	A_{i,:} -= \frac{A_{i,j}}{A_{j,j}} 
+	A_{j,:}
+	\quad
+	(1\leq i < n)
+	\quad
+	(0 \leq j < i)
+}
+
+\gbox{
+	b_i -= \frac{A_{i,j}}{A_{j,j}} b_j
+		\quad
+	(1\leq i < n)
+	\quad
+	(0 \leq j < i)
+}
+
+
+\subsection{Backward Substitution}
+
+\gbox{
+	x_i = \frac
+	{
+		b_i - \sum _{j=i+1}^n A_{i,j} x_j	
+	}
+	{
+		A_{i, i}
+	}
+	\quad	
+	( n-1 \leq i < 0 )
+}
+
+
+\subsection{Limitations}
+There may be instances during the process of forward elimination where the order of the rows in the matrix $A$ require division by zero (i.e. when $A_{0,0}$ is zero). To avoid this problem we use a method called ``partial pivoting''. This means rearranging the rows such that division by zero errors are not encountered.
+
+Furthermore, there may be instances where division by very small (almost zero) values occur. This will cause greater numerical errors that could be significant. We can use ``full pivoting'' to arrange the rows such division always occurs with the greatest possible denominator to minimize this error.
+
+Finally, there are times we may want to analyze a system of equations with many $\vec{b}$ vectors, as is the case when a structure is subjected to many load cases. Using Gauss Elimination would require redoing work each time a new load case should be analyzed.
+
+\nocite{3Brown1Blue-taylorseries}
+
+\newpage
+\bibliography{../../assets/bibtex}
+
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{IEEEtran}
+
+\end{document}
