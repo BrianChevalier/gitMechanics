@@ -104,6 +104,59 @@ We are now left with a zero in position $A_{1,0}$.
 	A_{0,:}
 \end{equation}
 
+For one last time, let's eliminate $A_{2,1}$.
+
+\begin{equation}
+	\vec{A} = 
+	\begin{bmatrix}
+		A_{0,0} & A_{0,1} & A_{0,2} & A_{0,3}\\
+		0 & \bhigh{A_{1,1}} & A_{1,2} & A_{1,3}\\
+		0 & \rhigh{A_{2,1}} & A_{2,2} & A_{2,3}\\
+		A_{3,0} & A_{3,1} & A_{3,2} & A_{3,3}\\
+	\end{bmatrix}
+\end{equation}
+
+The equation applied is:
+\begin{equation}
+	A_{2,:} = A_{2, :} - \frac{
+		\rhigh{A_{2,1}}
+	} {
+		\bhigh{A_{1,1}}
+	}
+	A_{1,:}
+\end{equation}
+
+%---------------------------------------------------
+
+\paragraph{Matching the Pattern.} 
+With just three iterations a clear pattern emerges, as shown in Table \ref{Tab:PatternMatch}. Putting the expressions in a table along with the current row and column number allows us to match the indicies in the expression as a function of the current row, $i$, and current column, $j$.
+Equation \ref{Eq:GeneralAElimination} summarizes this expression for every row and column. 
+
+\begin{table}[h!]
+\centering
+\caption{Matching the Pattern}
+\label{Tab:PatternMatch}
+\begin{tabular}{|c|c|c|}
+\hline 
+Row ($i$) & Col. ($j$) & Expression \\ 
+\hline 
+1 & 0 & $\displaystyle A_{1,:} = A_{1, :} - \frac{A_{1,0}} {A_{0,0}} A_{0,:}$ \\ 
+\hline 
+2 & 0 & $\displaystyle 	A_{2,:} = A_{2, :} - \frac{A_{2,0}} {A_{0,0}} A_{0,:}$ \\ 
+\hline 
+2 & 1 & $\displaystyle 	A_{2,:} = A_{2, :} - \frac{A_{2,1}} {A_{1,1}} A_{1,:}$ \\
+\hline
+\end{tabular} 
+\end{table}
+
+
+
+
+\paragraph{Establishing the Bounds}
+We also need to establish the bounds where this expression is valid (i.e. which rows and columns should we apply this to?) The expression was first applied to row 1 (skipping row 0), and continues to less than $n$, where $n$ is the number of rows in the matrix (in this case 4). So in our case $i$ would vary from and include 1 and go to but not include 4. Next, the columns are dependent on the current row. We will look at rows 0 up to but not including the $i$ column. 
+
+
+%------------------------
 
 \gbox{
 	A_{i,:} -= \frac{A_{i,j}}{A_{j,j}} 
@@ -112,7 +165,13 @@ We are now left with a zero in position $A_{1,0}$.
 	(1\leq i < n)
 	\quad
 	(0 \leq j < i)
+	\label{Eq:GeneralAElimination}
 }
+
+
+
+%------------------------
+All of the changes made to each row of $\vec{A}$ must also be applied to each row of $\vec{b}$. This pattern is the same before, but modifications are made to the $i$ row of $\vec{b}$. This is given in Equation \ref{Eq:GeneralbElimination}.
 
 \gbox{
 	b_i -= \frac{A_{i,j}}{A_{j,j}} b_j
@@ -120,10 +179,62 @@ We are now left with a zero in position $A_{1,0}$.
 	(1\leq i < n)
 	\quad
 	(0 \leq j < i)
+	\label{Eq:GeneralbElimination}
 }
 
 
+
+
+
+
 \subsection{Backward Substitution}
+
+After completing the process of forward elimination we are left with a matrix equation that looks like the following:
+
+\bbox{
+	\begin{bmatrix}
+		A_{0,0} & A_{0,1} & A_{0,2} & A_{0,3}\\
+		0 & A_{1,1} & A_{1,2} & A_{1,3}\\
+		0 & 0 & A_{2,2} & A_{2,3}\\
+		0 & 0 & 0 & A_{3,3}\\
+	\end{bmatrix}
+	\begin{Bmatrix}
+	x_0\\ x_1\\ x_2\\ x_3
+	\end{Bmatrix}
+	=
+	\begin{Bmatrix}
+	b_0\\ b_1\\ b_2\\ b_3
+	\end{Bmatrix}
+}
+
+
+To find the elements of $\vec{x}$ we must work backward starting with the last row and rearrange each equation to solve for $x_i$.
+
+\paragraph{Matching the Pattern.}
+There are two patterns within this expression. The $b$ term in the numerator is always $b_i$, and the term in the denominator is always $A_{i,i}$.
+In the numerator there is also a summation term that grows with each iteration. This term is summing the $A$ terms in the current row with each $x$ term that matches its respective column.
+Equation \ref{Eq:BackSubGen} summarizes the pattern for backward substitution.
+
+\begin{table}[h!]
+\centering
+\caption{Matching the Pattern}
+\label{Tab:PatternMatch}
+{\renewcommand{\arraystretch}{2}
+\begin{tabular}{|c|l|}
+\hline 
+Row ($i$) & Expression \\ \hline
+3 & $\displaystyle x_3 = \frac{b_3}{A_{3,3}}$ \\ \hline
+2 & $\displaystyle x_2 = \frac{b_2 - [A_{2,3}x_3]}                      {A_{2,2}}$\\ \hline
+1 & $\displaystyle x_1 = \frac{b_1 - [A_{1,2}x_2 + A_{1,3}x_3]} {A_{1,1}}$\\ \hline
+0 & $\displaystyle x_0 = \frac{b_0 - [A_{0,1}x_1+A_{0,2}x_2+A_{0,3}x_3]} {A_{0,0}}$ \\
+\hline
+\end{tabular} 
+}
+\end{table}
+
+\paragraph{Establishing the Bounds.}
+The bounds of this expression range from row 0 up to but not including the number of rows (4). This is given below.
+
 
 \gbox{
 	x_i = \frac
@@ -134,18 +245,23 @@ We are now left with a zero in position $A_{1,0}$.
 		A_{i, i}
 	}
 	\quad	
-	( n-1 \leq i < 0 )
+	( 0 \leq i < n )
+	\label{Eq:BackSubGen}
 }
+
+Note: if you are implementing this in a programming language with a zero-based index you should reverse the value range. Reversing with a built in function is the easiest way, otherwise start with $n-1$ decrementing by 1, down to but not including -1.
 
 
 \subsection{Limitations}
-There may be instances during the process of forward elimination where the order of the rows in the matrix $A$ require division by zero (i.e. when $A_{0,0}$ is zero). To avoid this problem we use a method called ``partial pivoting''. This means rearranging the rows such that division by zero errors are not encountered.
+\begin{enumerate}
+\item There may be instances during the process of forward elimination where the order of the rows in the matrix $A$ require division by zero (i.e. when $A_{0,0}$ is zero). To avoid this problem we use a method called ``partial pivoting''. This means rearranging the rows such that division by zero errors are not encountered.
 
-Furthermore, there may be instances where division by very small (almost zero) values occur. This will cause greater numerical errors that could be significant. We can use ``full pivoting'' to arrange the rows such division always occurs with the greatest possible denominator to minimize this error.
+\item There may be instances where division by very small (almost zero) values occur. This will cause greater numerical errors that could be significant. We can use ``full pivoting'' to arrange the rows such division always occurs with the greatest possible denominator to minimize this error.
 
-Finally, there are times we may want to analyze a system of equations with many $\vec{b}$ vectors, as is the case when a structure is subjected to many load cases. Using Gauss Elimination would require redoing work each time a new load case should be analyzed.
+\item There are times we may want to analyze a system of equations with many $\vec{b}$ vectors, as is the case when a structure is subjected to many load cases. Using Gauss Elimination would require redoing work each time a new load case should be analyzed.
+\end{enumerate}
 
-\nocite{3Brown1Blue-taylorseries}
+\nocite{NumMethods}
 
 \newpage
 \bibliography{../../assets/bibtex}
