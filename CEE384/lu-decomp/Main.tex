@@ -1,0 +1,53 @@
+% Basic document class
+\documentclass{../../KDHnotes}
+
+\title{LU Decomposition}
+\subtitle{Solving Linear Systems of Equations}
+\coursenum{CEE384}
+\coursetitle{Numerical Methods}
+\university{Arizona State University}
+
+\titleimage{../../default-title-image}
+\author{Brian Chevalier}
+\date{\today}
+
+\usepackage{xcolor}
+
+\newcommand{\rhigh}[1]{%
+  \ooalign{\hss\makebox[0pt]{\colorbox{red!30}{$#1$}}\hss\cr\phantom{$#1$}}%
+}
+
+\newcommand{\bhigh}[1]{%
+  \ooalign{\hss\makebox[0pt]{\colorbox{blue!30}{$#1$}}\hss\cr\phantom{$#1$}}%
+}
+
+%-------------------------------------------
+\begin{document}
+ 
+\maketitle
+
+\section{Overview}
+
+\begin{equation}
+	\vec{L} \vec{U} = \vec{A}
+\end{equation}
+
+
+\begin{align}
+	\vec{A} \vec{x} &= \vec{b} \\
+	\vec{P} \vec{A} \vec{x} &= \vec{P} \vec{b} \equiv \vec{d}\\
+	\vec{L} \vec{y} &= \vec{d}, \vec{y} \equiv \vec{U} \vec{x}\\
+	\vec{U} \vec{x} &= \vec{y}
+\end{align}
+
+
+\nocite{NumMethods}
+\nocite{holisticnumericalmethods}
+
+\newpage
+\bibliography{../../assets/bibtex}
+
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{IEEEtran}
+
+\end{document}
