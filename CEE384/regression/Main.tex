@@ -1,0 +1,218 @@
+\documentclass{../../KDHnotes}
+
+
+\title{Regression}
+\subtitle{Least Square Regression}
+
+\author{Brian Chevalier}
+\date{\today}
+
+\coursenum{CEE384}
+\coursetitle{Numerical Methods}
+\university{Arizona State University}
+
+\usepackage{blkarray}
+
+\begin{document}
+\maketitle
+
+\section{Linear Regression}
+
+A general linear equation takes the form:
+
+\begin{equation}
+	y = a_0 + a_1x
+\end{equation}
+
+where $y$ is the function output, $a_0$ is the constant term, $a_1$ is the slope, and $x$ is the function input. This equation can be used to interpolate between two points, or create a series of linear spline interpolation equations. However, here we will be looking not at precisely crossing all points in a data set, but instead, minimizing the error associated with creating a linear model for a set of data.
+
+The data are a series of $x$ and $y$ coordinates in the form shown in the following equations:
+\begin{equation}
+	\vec{x} = \begin{bmatrix}
+	x_0 & x_1 & \dots & x_{n-1}
+	\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+	\vec{y}=
+	\begin{bmatrix}
+	y_0 & y_1 & \dots & y_{n-1}
+	\end{bmatrix}
+\end{equation}
+
+where $n$ is the number of elements in the data set.
+
+The linear regression equation is:
+\begin{align}
+	y &= a_0 + a_1 x + e
+\end{align}
+
+where $e$ is the error (sometimes called the residual), or the difference between the equation and the actual data set. Now, we want to \textit{minimize} the sum of the squares of the error.
+
+\begin{equation}
+S_r = \sum_{k=0}^{k<n} (e_k)^2 = \sum_{k=0}^{k<n} (y_k - a_0 - a_1 x_k)^2
+\end{equation}
+
+where the subscript $k$ denotes the $k$th element of the $x$ and $y$ data set.
+Taking the derivative with respect to each coefficient term yields:
+
+\begin{align}
+	\frac{\partial S_r}{\partial a_0} &= -2 \sum_{k=0}^{k<n} (y_k - a_0 - a_1x_k) = 0 \\
+	\frac{\partial S_r}{\partial a_1} &= -2 \sum_{k=0}^{k<n} x_k(y_k - a_0 - a_1x_k) = 0
+\end{align}
+
+Distributing the sum and rearranging:
+\begin{align}
+	na_0 + a_1 \sum x_k &= \sum y_k\\
+	a_0 \sum x_k + a_1 \sum x_k^2 &= \sum x_k y_k
+\end{align}
+
+Note that the bounds on the summations have been dropped for the sake of brevity and is short for $\sum_{k=0}^{k<n}$.
+
+Putting the system of equations in matrix form:
+\begin{equation}
+	\begin{bmatrix}
+		n & \sum x_k\\
+		\sum x_k & \sum x_k^2
+	\end{bmatrix}
+	\begin{Bmatrix}
+		a_0\\ a_1
+	\end{Bmatrix}
+	=
+	\begin{Bmatrix}
+		\sum y_k\\
+		\sum x_k y_k
+	\end{Bmatrix}
+\end{equation}
+
+
+Solving the system of equations yields:
+\gbox{
+a_1 =
+	\frac{
+		n \sum x_k y_k - \sum x_k \sum y_k
+	}{
+		n \sum x_k^2 - (\sum x_k)^2
+	}
+}
+
+\gbox{
+a_0 = \bar{y} - a_1 \bar{x}
+}
+where $\bar{y}=\frac{\sum y_k}{n}$ and $\bar{x}=\frac{\sum x_k}{n}$.
+
+
+\section{General Polynomial Regression}
+
+To establish the general n-order polynomial equations, we will derive the quadratic equations and find the pattern between these and the linear equations.
+The quadratic regression formulas can be derived through the same method as their linear counterparts.
+
+\begin{equation}
+	y = a_0 + a_1x + a_2x^2 + e
+\end{equation}
+
+\begin{equation}
+	S_r = \sum_{k=0}^{k<n} (y_k - a_0 - a_1x_k - a_2x_k^2)^2
+\end{equation}
+
+
+
+Taking the derivative with respect to each coefficient:
+\begin{align}
+	\frac{\partial S_r}{\partial a_0} &= -2 \sum (y_k - a_0 - a_1x_k - a_2 x_k^2)\\
+	\frac{\partial S_r}{\partial a_1} &= -2 \sum x_k(y_k - a_0 - a_1x_k - a_2 x_k^2)\\
+	\frac{\partial S_r}{\partial a_2} &= -2x_k^2 \sum x_k(y_k - a_0 - a_1x_k - a_2 x_k^2)
+\end{align}
+
+
+Expanding the equations:
+\begin{align}
+	a_0n + a_1 \sum x_k + a_2 \sum x_k^2 &= \sum y_k\\
+	a_0\sum x_k + a_1 \sum x_k^2 + a_2 \sum x_k^3 &= \sum x_k y_k\\
+	a_0 \sum x_k^2 + a_1 \sum x_k^3 + a_2 \sum x_k^4 &= \sum x_k^2 y_k
+\end{align}
+
+\begin{equation}
+\underbrace{
+	\begin{blockarray}{cccc}
+	& 0 & 1 & 2\\
+	\begin{block}{c[ccc]}
+	0 & n & \sum x_k & \sum x_k^2\\
+	1 & \sum x_k & \sum x_k^2 & \sum x_k^3\\
+	2 & \sum x_k^2 & \sum x_k^3 & \sum x_k^4\\
+	\end{block}
+	\end{blockarray}
+}_{\vec{A}}
+\underbrace{
+	\begin{Bmatrix}
+		a_0\\ a_1\\ a_2
+	\end{Bmatrix}
+}_{\vec{x}}
+	=
+\underbrace{
+	\begin{Bmatrix}
+		\sum y_k\\ 
+		\sum x_k y_k\\
+		\sum x_k^2 y_k
+	\end{Bmatrix}
+}_{\vec{b}}
+\end{equation}
+
+\paragraph{Matching the pattern.}
+There is a very clear pattern for the elements other than $A_{0,0}$ and $b_0$. However, replacing element $A_{0,0}$ with $\sum x_k^0$, and element $b_0$ with $\sum x_k^0y_k$, creates a much clearer pattern to follow. The system of equations becomes:
+
+\begin{equation}
+\underbrace{
+	\begin{blockarray}{cccc}
+	& 0 & 1 & 2\\
+	\begin{block}{c[ccc]}
+	0 & \sum x_k^0 & \sum x_k^1 & \sum x_k^2\\
+	1 & \sum x_k^1 & \sum x_k^2 & \sum x_k^3\\
+	2 & \sum x_k^2 & \sum x_k^3 & \sum x_k^4\\
+	\end{block}
+	\end{blockarray}
+}_{\vec{A}}
+\underbrace{
+	\begin{Bmatrix}
+		a_0\\ a_1\\ a_2
+	\end{Bmatrix}
+}_{\vec{x}}
+	=
+\underbrace{
+	\begin{Bmatrix}
+		\sum x_k^0 y_k\\ 
+		\sum x_k^1 y_k\\
+		\sum x_k^2 y_k
+	\end{Bmatrix}
+}_{\vec{b}}
+\end{equation}
+
+
+
+Building the equations in a matrix equation can be summarized with the following two equations:
+
+\gbox{
+	A_{i,j} = \sum_{k=0}^{k<n} x_k^{i+j} \quad (0 \leq i<n) \quad (0 \leq j <n)
+}
+
+where $i$ is the row index, and $j$ is the column index.
+
+\gbox{
+	b_i = \sum_{k=0}^{k<n} x_k^i y_k \quad (0 \leq i<n) 
+}
+
+These equations can now be programmed, and solved using linear algebra techniques (i.e. gauss elimination).
+
+
+\nocite{NumMethods}
+\nocite{holisticnumericalmethods}
+
+\newpage
+\bibliography{../../assets/bibtex}
+
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{IEEEtran}
+
+
+
+\end{document}

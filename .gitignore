@@ -29,3 +29,4 @@ _jupyterblog/*.pdf
 /_octaveblog/*.png
 /_layouts/localStorage.json
 
+/_octaveblog/*_files/*
