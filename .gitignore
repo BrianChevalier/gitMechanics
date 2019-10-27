@@ -35,3 +35,4 @@ _jupyterblog/*.pdf
 /_jupyterblog/*.md
 *.pdf
 *.gz
+/CEE384/regression/blkarray.sty
