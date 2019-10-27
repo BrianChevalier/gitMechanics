@@ -1,0 +1,21 @@
+\section{Newton Interpolating Polynomials}
+
+The general newton interpolating polynomial can be expressed as:
+\begin{equation}
+f_n(x) = b_0 + b_1(x-x_0) + \dots + b_n(x-x_0) \dots (x-x_{n-1})
+\end{equation}
+
+or in summation form as:
+
+\begin{equation}
+f_n(x) = b_0 + \sum_{i=1}^{i<n} b_i \prod_{j=0}^{j<i} (x-x_j)
+\end{equation}
+
+We can build an upper triangular matrix, where the diagonal of the matrix will be the coefficient $b_i$
+
+\gbox{
+	A_{i,j} = \frac{b_{i-1,j} - b_{i-1,j-1}}{x_j-x_{j-i-1}}
+	\quad
+	(0 \leq i < n)
+	(0 \leq j < i)
+}
