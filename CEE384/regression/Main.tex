@@ -26,6 +26,22 @@ A general linear equation takes the form:
 
 where $y$ is the function output, $a_0$ is the constant term, $a_1$ is the slope, and $x$ is the function input. This equation can be used to interpolate between two points, or create a series of linear spline interpolation equations. However, here we will be looking not at precisely crossing all points in a data set, but instead, minimizing the error associated with creating a linear model for a set of data.
 
+The data are a series of $x$ and $y$ coordinates in the form shown in the following equations:
+\begin{equation}
+	\vec{x} = \begin{bmatrix}
+	x_0 & x_1 & \dots & x_{n-1}
+	\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+	\vec{y}=
+	\begin{bmatrix}
+	y_0 & y_1 & \dots & y_{n-1}
+	\end{bmatrix}
+\end{equation}
+
+where $n$ is the number of elements in the data set.
+
 The linear regression equation is:
 \begin{align}
 	y &= a_0 + a_1 x + e
@@ -123,7 +139,7 @@ Expanding the equations:
 	\begin{block}{c[ccc]}
 	0 & n & \sum x_k & \sum x_k^2\\
 	1 & \sum x_k & \sum x_k^2 & \sum x_k^3\\
-	2 & \sum x_k^2 & \sum x_k^3 & \sum x_k^4
+	2 & \sum x_k^2 & \sum x_k^3 & \sum x_k^4\\
 	\end{block}
 	\end{blockarray}
 }_{\vec{A}}
@@ -152,7 +168,7 @@ There is a very clear pattern for the elements other than $A_{0,0}$ and $b_0$. H
 	\begin{block}{c[ccc]}
 	0 & \sum x_k^0 & \sum x_k^1 & \sum x_k^2\\
 	1 & \sum x_k^1 & \sum x_k^2 & \sum x_k^3\\
-	2 & \sum x_k^2 & \sum x_k^3 & \sum x_k^4
+	2 & \sum x_k^2 & \sum x_k^3 & \sum x_k^4\\
 	\end{block}
 	\end{blockarray}
 }_{\vec{A}}
@@ -173,17 +189,16 @@ There is a very clear pattern for the elements other than $A_{0,0}$ and $b_0$. H
 
 
 
-
 Building the equations in a matrix equation can be summarized with the following two equations:
 
 \gbox{
-	A_{i,j} = \sum x_k^{i+j}
+	A_{i,j} = \sum_{k=0}^{k<n} x_k^{i+j} \quad (0 \leq i<n) \quad (0 \leq j <n)
 }
 
 where $i$ is the row index, and $j$ is the column index.
 
 \gbox{
-	b_i = \sum x_k^i y_k
+	b_i = \sum_{k=0}^{k<n} x_k^i y_k \quad (0 \leq i<n) 
 }
 
 These equations can now be programmed, and solved using linear algebra techniques (i.e. gauss elimination).
