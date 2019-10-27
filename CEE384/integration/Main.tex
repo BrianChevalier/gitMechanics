@@ -1,0 +1,44 @@
+% Basic document class
+\documentclass{../../KDHnotes}
+
+
+\title{Integration}
+\subtitle{Numerical Integration}
+\coursenum{CEE384}
+\coursetitle{Numerical Methods}
+\university{Arizona State University}
+
+%\titleimage{Figures/Title.png}
+\author{Brian Chevalier}
+\date{\today}
+
+%-------------------------------------------
+\begin{document}
+
+\maketitle
+\section{Trapezoidal Rule}
+
+
+\gbox{
+  \int_{a}^{b} f(x) \approx \frac{\Delta x}{2} \left[f(a) + \sum_{i=1}^{i<n-1} 2 f(i\Delta x) + f(b)\right]
+}
+% def f(x):
+%     return x**2
+
+% def Trap(f, a, b, n):
+%      # n: npts
+%      dx = b-a/(npts - 1)
+%      return dx/2 * ( f(a) + sum([ 2*f(i*dx) for i in range(1, n-1)]) + f(b) )
+
+\section{Simpson's Rule}
+
+\nocite{NumMethods}
+\nocite{holisticnumericalmethods}
+
+\newpage
+\bibliography{../../assets/bibtex}
+
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{IEEEtran}
+
+\end{document}
