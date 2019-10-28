@@ -188,7 +188,7 @@
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc} %Added for upquote option
 \RequirePackage{listings}
-\tcbuselibrary{listings}
+\tcbuselibrary{listings,breakable}
 
 % Custom colors
 \RequirePackage{color}
@@ -208,14 +208,16 @@
 	upquote=true, %Use straight quotes, not curly
 	framerule=0.05pt,
 	basicstyle=\ttm,
-	otherkeywords={self},             % Add keywords here
+	otherkeywords={def,self,Class,__init__, as, with},             % Add keywords here
 	keywordstyle=\ttb\color{deepblue},
-	emph={MyClass,__init__},          % Custom highlighting
+	emph={},          % Custom highlighting
 	emphstyle=\ttb\color{deepred},    % Custom highlighting style
 	stringstyle=\color{deepgreen},
 	breaklines = true, %Break lines if they're too long
 	showspaces=false,
 	showtabs=false,
+	identifierstyle  = \color{purple},
+  commentstyle     = \color{olive},
 	%configure line numbers
 	numbers=left,
 	numberstyle=\scriptsize\color{gray},

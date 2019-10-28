@@ -1,0 +1,256 @@
+% Basic document class
+\documentclass{../../KDHnotes}
+
+
+\title{Numerical Methods in Python}
+\subtitle{Expressing Mathematical Functions in Python}
+\coursenum{CEE384}
+\coursetitle{Numerical Methods}
+\university{Arizona State University}
+
+%\titleimage{Figures/Title.png}
+\author{Brian Chevalier}
+\date{\today}
+
+%-------------------------------------------
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+
+This note set assumes you have a basic understanding of Python syntax including: \texttt{functions}, \texttt{lists}, and \texttt{for} loops. We will be looking at common code patterns for translating mathematical expressions into good Python code.
+
+Using a \textit{functional} style of programming will be a focus of this set of notes.
+Minimizing \textit{state} and \textit{mutation} of state. Variables only exist in the scope of the function.
+
+\section{Sigma and Pi Notation}
+
+You are likely familiar with Summation (also known as Sigma notation). It is a shorthand for describing the calculation of terms to be added together. Similarly the Greek capital Pi can be used to notate the product of a sequence of terms.
+
+This section will look at how to express sums and products of terms elegantly in Python.
+
+\subsection{Sum}
+
+The simplest summation is the summation of all elements in a list. If a list of values is defined as $x  = [x_0, x_1, \dots, x_{n-1}]$ then the sum of all the elements of a list can be written as:
+
+\begin{equation}
+	\sum_{i=0}^{i<n} x_i
+\end{equation}
+
+where $i$ is the iteration number, and $n$ is the number of elements in the list.
+
+In Python we can define our own summation function such as the one below:
+
+\begin{python}
+def sum(x):
+    """
+    A function that takes in a list of elements and returns the sum of all the elements in the list    
+    """
+    total = 0         # initialize sum
+    for xi in x:      # iterate over elements
+        total += xi # add each item to the total
+    return total
+\end{python}
+
+
+Creating this function allows us to encapsulate the boiler-plate of summing elements in a list. Python even has a built in function called \texttt{sum} that does just this. The following is an example of how either would be used:
+
+\begin{python}
+s = sum([0, 1, 2, 3]) # will be equal to 6
+\end{python}
+
+You should prefer using the built in \texttt{sum} function whenever computing summations. Built in functions will almost always be faster than your implementation, reduce the bugs that you write (code you don't write can't have bugs), and makes your code more expressive and clearer in purpose
+
+\subsection{Product}
+
+Product notation is very similar to summation notation. The notation has a lower and upper bound, and a term described in terms of the iteration counter. The only difference is the terms are multiplied together instead of added. The product of a list of elements can be written mathematically as:
+
+\begin{equation}
+	\prod_{i=0}^{i<n} x_i
+\end{equation}
+
+This can be implemented in a Python function very similar to the sum function. The product starts at 1, and each term is sequentially multiplied by the total.
+
+\begin{python}
+def prod(x):
+    """
+    A function that takes in a list of elements and returns the product of all the elements in the list    
+    """
+    total = 1         # initialize product
+    for xi in x:      # iterate over elements
+        total *= xi  # mult. by each item
+    return total
+\end{python}
+
+Python does not have a way of taking the product of a list of elements, but is a feature of libraries in the standard library. \texttt{Numpy} offers the function \texttt{prod} which does this. This can be used as follows:
+
+\begin{python}
+import numpy as np
+p = np.prod([1, 2, 3, 4]) # will equal 24
+\end{python}
+
+
+You should use the \texttt{prod} function for the same reasons as using the built in \texttt{sum} function.
+
+
+\section{Creating a List of Values}
+
+We have looked at taking the sum and product of very simple expressions. What about more complicated sequences of terms?
+
+
+\subsection{Range}
+
+The easiest way to create a linearly spaced sequence of values is using the \texttt{range} function.
+Let's look at the case for a list of values beginning at 0, ending at 9, with a total of 10 values. This can be expressed mathematically in the following ways:
+
+\begin{align}
+x = [ 0, 1, \dots, 9 ] \\
+(0 \leq x < 10)
+\end{align}
+
+which can be described in Python as:
+
+\begin{python}
+x = range(10)
+\end{python}
+
+The \texttt{range} function will produce elements beginning at zero, up until just before 10. You can read the expression as ``return a range of 10 values''. Since a lower bound is omitted, it implicitly starts at zero.
+
+Note: Python is \textit{zero-indexed}, which means numbering starts at zero. The mathematical notation used here will match this and should make this a non-issue most of the time. There is much discourse about this topic that will not be covered here \cite{zeroindexing}.
+
+
+
+\subsection{List Comprehensions}
+
+\begin{equation}
+	x_i = i^2
+\end{equation}
+
+
+With Python you can initialize an empty list, then loop over some range, and then append the required value to the list.
+
+\begin{python}
+x = []
+for i in range(n):
+    x.append(i**2)
+\end{python}
+
+However, this is not best practice. There are many issues with this style. First: it must take at least three lines. Second: it requires \textit{mutating} a variable, $x$, and adding items. This can be a very common source of bugs.
+
+Instead we can use a very nice Python feature. With Python's built in `List Comprehension' feature, a list such as this can also be created in one concise statement.
+
+\begin{python}
+x = [ i**2 for i in range(n) ]
+\end{python}
+
+
+If we use list comprehensions, we can also very easily use Sigma and Pi notation within Python that will make our code look very similar to our math.
+
+\subsection{Examples}
+
+\subsubsection{The Sum of Squares}
+\begin{equation}
+\sum_{i=0}^{i<4} i^2
+\end{equation}
+
+\begin{python}
+x2sum = sum([i**2 for i in range(4)])
+\end{python}
+
+
+
+\subsubsection{Dot Product}
+
+Combining the ideas of summation and the list comprehension, we can construct a function that takes the dot product of two lists. The dot product is defined as:
+
+\begin{equation}
+	c = \sum_{i=0}^{i<n} a_i b_i
+\end{equation}
+where $a$, and $b$ are two arrays of length $n$, and $c$ is the result of the dot product.
+
+This can be implemented as a Python function:
+\begin{python}
+def dot(a, b):
+  n = len(a) # no. of elements in list
+  return sum([a[i]*b[i] for i in range(n)])
+\end{python}
+
+Of course, there is a function vended by \texttt{Numpy} that you should prefer to use, demonstrated below.
+
+\begin{python}
+import numpy as np
+a = np.array([1, 2, 3])
+b = np.array([1, 1, 1])
+np.dot(a, b)
+\end{python}
+
+
+
+\section{Building up a Matrix}
+
+We have seen how to take lists and produce a single value (sum and product), and how to compute a list with a list comprehension. What about generating a 2D array (a.k.a. matrix).
+
+\subsection{Tensor Product}
+The tensor product (also known as the outer product), takes two arrays and produces a matrix. The tensor product is defined as:
+
+\begin{equation}
+	C_{i, j} = a_i b_j \quad (0 \leq j < m) \quad (0 \leq i < n)
+\end{equation}
+
+where $C$ is the resulting matrix with a shape of $(n, m)$, $a$ and $b$ are input arrays with length $n$ and $m$, respectively.
+
+\begin{python}
+def tensor(a, b):
+  n = len(a)
+  m = len(b)
+  return [
+      [ a[i]*b[j] for j in range(m) ]
+            for i in range(n)
+  ]
+\end{python}
+
+
+\subsection{Matrix Multiplication}
+Matrix multiplication is defined in summation notation as:
+
+\begin{equation}
+	C_{i,j} = \sum_{k=0}^{k<n} A_{i,k} B_{k,j}
+	\quad
+	(0 \leq j < m)
+	\quad
+	(0 \leq i < n)
+\end{equation}
+
+
+\begin{python}
+def MatMult(A, B):
+  n = len(A)    # no. rows in A
+  Bn = len(B)    # no. rows in B & cols. in A
+  m = len(B[0]) # no. cols. in B
+  return [
+  [sum([ A[i][k]*B[k][j] for k in range(Bn)])
+            for j in range(m) ]
+        for i in range(n) ]
+\end{python}
+
+
+Of course there is a more compact way to compute matrix multiplication in Python. Using \texttt{Numpy} \texttt{array}s is the easiest way to do this.
+
+\begin{python}
+import numpy as np
+A = np.array(A)
+B = np.array(B)
+C = A @ B
+\end{python}
+
+\nocite{numpy}
+\nocite{python37}
+\newpage
+\bibliography{../../assets/bibtex}
+
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{IEEEtran}
+
+\end{document}
