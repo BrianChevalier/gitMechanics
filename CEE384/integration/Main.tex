@@ -16,11 +16,16 @@
 \begin{document}
 
 \maketitle
+
+\bbox{
+I \equiv \int_{a}^{b} f(x)dx
+}
+
 \section{Trapezoidal Rule}
 
 
 \gbox{
-  \int_{a}^{b} f(x) \approx \frac{\Delta x}{2} \left[f(a) + \sum_{i=1}^{i<n-1} 2 f(i\Delta x) + f(b)\right]
+   I \approx \frac{\Delta x}{2} \left[f(a) + \sum_{i=1}^{i<n-1} 2 f(i\Delta x) + f(b)\right]
 }
 % def f(x):
 %     return x**2
@@ -31,6 +36,14 @@
 %      return dx/2 * ( f(a) + sum([ 2*f(i*dx) for i in range(1, n-1)]) + f(b) )
 
 \section{Simpson's Rule}
+
+\gbox{
+ I \approx \frac{\Delta x}{3} \Bigg[ f(a) &+ 4 \sum_{i=\{1,3,5,\dots\}}^{i<n}f(a + i \Delta x) \\
+   &+ 2 \sum_{i=\{2, 4, 6, \dots\}}^{i<n}f(a + i \Delta x) \nonumber \\
+   &+ f(b) \Bigg]\nonumber
+}
+
+
 
 \nocite{NumMethods}
 \nocite{holisticnumericalmethods}
