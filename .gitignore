@@ -36,3 +36,5 @@ _jupyterblog/*.pdf
 *.pdf
 *.gz
 /CEE384/regression/blkarray.sty
+*.tex.syncdb
+*.term
