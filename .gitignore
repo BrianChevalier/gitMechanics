@@ -30,3 +30,5 @@ _jupyterblog/*.pdf
 /_layouts/localStorage.json
 
 /_octaveblog/*_files/*
+/_octaveblog/*.md
+/_jupyterblog/*_files/*
