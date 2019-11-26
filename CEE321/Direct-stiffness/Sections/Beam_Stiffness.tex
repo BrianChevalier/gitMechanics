@@ -12,7 +12,7 @@ A beam element has four degrees of freedom. Two degrees of freedom at each node 
 
 \subsection{Bending Stiffness}
 
-We will isolate each degree of freedom by applying boundary conditions at each node, such that each beam will only have one unrestrained kinematic unknown. Figure \ref{fig:BCFrame} shows the various boundary conditions that will be used to determine the beam bending stiffness. This will allow us to derive the force-displacement relationship necessary to solve the beam.
+We will isolate each degree of freedom by applying boundary conditions at each node, such that each beam will only have one unrestrained kinematic unknown. Figures \ref{Fig:BeamIso1} and \ref{Fig:BeamIso2} show the various boundary conditions that will be used to determine the beam bending stiffness. This will allow us to derive the force-displacement relationship necessary to solve the beam.
 
 %\begin{figure}[H]
 %	\centerline{
@@ -45,6 +45,7 @@ We will isolate each degree of freedom by applying boundary conditions at each n
 
 \end{tikzpicture}
 \caption{Isolation of Deflection}
+\label{Fig:BeamIso1}
 \end{center}
 \end{figure}
 
@@ -73,6 +74,7 @@ We will isolate each degree of freedom by applying boundary conditions at each n
 	
 \end{tikzpicture}
 \caption{Isolation of Rotation}
+\label{Fig:BeamIso2}
 \end{center}
 \end{figure}
 
@@ -82,7 +84,7 @@ We will isolate each degree of freedom by applying boundary conditions at each n
 	w_L=0 &\text{	}  \theta_L=0
 \end{align*}
 
-The following variables will be used for notational conveninece when defining the beam stiffness matrix.
+The following variables will be used for notational convenience when defining the beam stiffness matrix.
 
 \begin{center}
 	\begin{tabular}{cccc}
@@ -96,6 +98,7 @@ The local element stiffness matrix for a beam is therefore:
 		V_0\\ M_0\\ \hline V_L\\ M_L
 	\end{Bmatrix}
 	=
+  \underbrace{
 	\left[
 	\begin{array}{cc|cc}
 		a & b & -a & b\\
@@ -104,6 +107,7 @@ The local element stiffness matrix for a beam is therefore:
 		b & d & -b & c
 	\end{array}
 	\right]
+  }_{\vec{k_{local}}}
 	\begin{Bmatrix}
 		w_0\\ \theta_0\\ \hline w_L\\ \theta_L
 	\end{Bmatrix}

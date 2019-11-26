@@ -1,8 +1,91 @@
-\section{Code}
+\section{Pseudocode}
 
-The structural analysis program will be implemented with an object oriented coding framework. This section will outline how this programming framework is applied to solving structural systems.
+The programming style used here is a style that mimics the physical node, element and truss objects. These objects have a set of properties, and derived properties that we can take advantage of. For instance, once an element `knows' it's start and end node, it can compute a unit vector along itself, it can compute its own length, and it can compute a unit vector pointing in the direction of itself. In addition, it is able to take the DoF counting of it's own start and end node and combine them when building the structure stiffness matrix.
+
+The following outlines the classes used for analyzing trusses with the direct stiffness method.
+
+\newenvironment{myitemize}
+{ \begin{itemize}
+    \setlength{\itemsep}{0pt}
+    \setlength{\parskip}{0pt}
+    \setlength{\parsep}{0pt}     }
+{ \end{itemize}                  }
+
+\subsection*{Node}
+
+\begin{itemize}
+
+\item Properties
+
+\begin{myitemize}
+  \item x: The $x$ position
+  \item y: The $y$ position
+  \item fixity: Boundary condition as a string ('pin', 'free', etc.)
+  \item id: An integer counter for each node. Starts out undefined
+  \item nDoF: The number of degrees of freedom at each node
+\end{myitemize}
+
+\item Derived Properties
+
+\begin{myitemize}
+  \item BC: The boundary conditions as boolean values looked up based on the fixity
+  \item DoF: The degree of freedom counting computed from the node number
+\end{myitemize}
+\end{itemize}
 
 
+\subsection*{Element}
+
+\begin{itemize}
+
+\item Properties
+\begin{myitemize}
+  \item SN: Start Node
+  \item EN: End Node
+  \item material: Some material with a Young's Modulus
+  \item cross\_section: Some cross section with an area
+\end{myitemize}
+
+\item Derived Properties
+\begin{myitemize}
+  \item vector: The vector along the element
+  \item length: The length (norm) of the vector
+  \item unit\_vector: The unit vector pointing in the direction of the element
+  \item kglobal: The global element stiffness matrix
+  \item DoF: The degree of freedom numbering of both the start node and end node
+  \item index\_grid: The DoF numbering as a grid. The elements of the structure stiffness matrix where the element stiffness matrix contributes to.
+\end{myitemize}
+
+\end{itemize}
+
+\subsection*{Truss}
+\begin{itemize}
+\item Properties
+\begin{myitemize}
+  \item nodes
+  \item elements
+\end{myitemize}
+
+\item Derived Properties
+\begin{myitemize}
+\item K: Structural stiffness matrix
+\item BC: Structure Boundary condition array, (combines all nodal boundary conditions)
+\end{myitemize}
+
+\item Functions
+\begin{myitemize}
+\item solve: Solve for the displacements of each node given some loading
+\item plot: plot the undeformed structure
+\end{myitemize}
+
+\end{itemize}
 
 
+This seems like quite a bit of work when compared to how this code can be structured in a more procedural way.
+However, the benefit to this is there is greater clarity in the overall purpose of the code.
+The code written in this way can also be directly shared when writing a frame analysis program, because many of the properties and computed properties are computed in the exact same way.
+
+This means reducing the total amount of code, and being able to reuse the same code verification strategies. It also means reducing the amount of code that needs to be copied and pasted between projects that rely on local variables.
+
+Furthermore, when using the code to test many structures, their behaviors, and reproducing results the exact details of how to procedurally solve a system are hidden and higher level tasks can be accomplished.
 

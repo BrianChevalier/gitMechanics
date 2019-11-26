@@ -28,6 +28,7 @@ Combining the \textit{local} element stiffness matricies for both a beam element
 		N_0\\ V_0\\ M_0\\ \hline N_L\\ V_L\\ M_L
 	\end{Bmatrix}
 	=
+  \underbrace{
 	\left[
 	\begin{array}{c|cc|c|cc}
 		e & 0 & 0 & -e & 0 & 0\\ \hline
@@ -38,39 +39,53 @@ Combining the \textit{local} element stiffness matricies for both a beam element
 		0 & b & d & 0 & -b & c
 	\end{array}
 	\right]
+  }_{\vec{k}_{local}}
 	\begin{Bmatrix}
 		u_0\\ w_0\\ \theta_0\\ \hline u_L\\ w_L\\ \theta_L
 	\end{Bmatrix}
 \end{align}
 
-\newpage
+
+\subsection{Global Structural Stiffness}
+
+
+\begin{table}[h]
+\centering
+\caption{Degree of Freedom Counting}
+\label{Tab:FrameDoFCount}
+\begin{tabular}{|c|c|c|c|}
+\hline
+Node Number & $x$ & $y$ & $\theta$ \\ \hline
+0 & 0 & 1 & 2\\ \hline
+1 & 3 & 4 & 5 \\ \hline
+2 & 6 & 7  & 8\\ \hline
+$i$ & $3i$ & $3i+1$ & $3i+2$\\ \hline
+\end{tabular}
+\end{table}
 
 
 
-\begin{strip}
-The global element stiffness matrix for a frame element is then:
-	\begin{equation}
-		\begin{Bmatrix}
-			N_0\\ V_0\\ M_0\\ \hline N_L\\ V_L\\ M_L
-		\end{Bmatrix}
-	=
-	\underbrace{
-		\left[
-		\begin{array}{c|cc|c|cc}
-			am^2 + el^2&-alm + elm&-bm&-am^2 - el^2&alm - elm&-bm\\ \hline
-			-alm + elm&al^2 + em^2&bl&alm - elm&-al^2 - em^2&bl\\
-			-bm&bl&c&bm&-bl&d\\ \hline
-			-am^2 - el^2&alm - elm&bm&am^2 + el^2&-alm + elm&bm\\ \hline
-			alm - elm&-al^2 - em^2&-bl&-alm + elm&al^2 + em^2&-bl\\
-			-bm&bl&d&bm&-bl&c\\
-		\end{array}
-		\right]
-		}_{\displaystyle{\vec{k}_{global}^{frame}}}
-		\begin{Bmatrix}
-			u_0\\ w_0\\ \theta_0\\ \hline u_L\\ w_L\\ \theta_L
-		\end{Bmatrix}
-	\end{equation}
-\end{strip}
+
+\subsection{Boundary Conditions}
+
+Table \ref{Tab:FrameSupports} shows a table of the possible boundary conditions for a frame node support.
+
+\begin{table}[h]
+\centering
+\caption{Frame Support Types}
+\label{Tab:FrameSupports}
+\begin{tabular}{|l|c|c|c|}
+\hline
+Support & $x$ & $y$ & $\theta$\\ \hline
+Pin     & 1 & 1 & 1\\ \hline
+Free    & 0 & 0 & 1\\ \hline
+Horizontal Roller & 0& 1 & 1 \\ \hline
+Vertical Roller & 1 & 0 & 1 \\ \hline
+Fixed & 0 & 0 & 0 \\ \hline
+Slide & 0 & 1 & 0 \\ \hline
+\end{tabular}
+\end{table}
+
 
 
 \subsection{Equivalent Nodal Loading}

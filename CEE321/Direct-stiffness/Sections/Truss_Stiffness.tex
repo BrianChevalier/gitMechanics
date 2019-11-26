@@ -5,22 +5,22 @@
 
 %Assumptions: In a truss external loading is only applied to the joints and there is only axial deformation with no bending.
 
-The \textit{Direct Stiffness Method} is a \textit{Finite Element Method} of analysis that models structural elements as springs. We will begin with deriving the axial stiffness of a structural element. \cite{Felippa2000}
+The \textit{Direct Stiffness Method} is a \textit{Finite Element Method} of analysis that models structural elements as springs. We will begin with deriving the axial stiffness of a structural element.
 
 \subsection{Axial Stiffness}
-Members in a truss are modelled as springs with only axial deformation. The axial force in the spring is modelled by Hooke's law:
+Members in a truss are modeled as springs with only axial deformation. The axial force in the spring is modeled by Hooke's law:
 
 \begin{equation}
 	N = k u
 \end{equation}
 
-where $N$ is the axial force, $k$ is the axial stiffness, and $u$ is the axial deformation. To define the axial stiffness we will look at a member of constant cross-secitonal area with only elastic deformation. The stress in such a member is defined by the stress-strain relationship:
+where $N$ is the axial force, $k$ is the axial stiffness, and $u$ is the axial deformation. To define the axial stiffness we will look at a member of constant cross-sectional area with only elastic deformation. The stress in such a member is defined by the stress-strain relationship:
 
 \begin{equation}
 	\sig = E \ep
 \end{equation}
 
-where $\sig$ is the stress, $E$ is the modulus of elasticity, and $\ep$ is the strain. Multiplying both sides of the equation by the cross-secional area, $A$, will convert the stress into a force.
+where $\sig$ is the stress, $E$ is the modulus of elasticity, and $\ep$ is the strain. Multiplying both sides of the equation by the cross-sectional area, $A$, will convert the stress into a force.
 
 \begin{figure}[h]	\centerline{\includegraphics[width=0.5\columnwidth]{Figures/Stress-Strain}}
 	\caption{Stress-Strain Relationship}
@@ -87,7 +87,7 @@ Next we will put these equations in matrix form in terms of the local coordinate
 			-1 & 0 & 1 & 0\\
 			0 & 0 & 0 & 0\\
 		\end{bmatrix}
-	}_{\vec{k}}
+	}_{\vec{k}_{local}}
 	\underbrace{
 		\begin{Bmatrix}
 			u_{1x'}\\ u_{1y'}\\ \hline u_{2x'}\\ u_{2y'}\\
@@ -145,33 +145,6 @@ where $\n$ is the unit vector along the element, and $\x_2$ and $\x_1$ are the c
 
 This gives us the relationship between the global deformation of nodes to the axial force. Enforcing the global nodal boundary conditions will allow solving the system of equations for the member forces. Expanding the equation for $\vec{k}_{global}$ looks like:
 
-\begin{align*}
-\vec{k}_{global}
-=
-\frac{AE}{L}
-	\begin{bmatrix}
-  		l & -m & 0 & 0\\
-  		m & l & 0 & 0\\
-  		0 & 0 & l & -m\\
-  		0 & 0 & m & l\\
-	\end{bmatrix}
-	\begin{bmatrix}
-  		1 & 0 & -1 & 0\\
-  		0 & 0 & 0 & 0\\
-  		-1 & 0 & 1 & 0\\
-  		0 & 0 & 0 & 0\\
-	\end{bmatrix}
-	\begin{bmatrix}
-  		l & m & 0 & 0\\
-  		-m & l & 0 & 0\\
-  		0 & 0 & l & m\\
-  		0 & 0 & -m & l\\
-\end{bmatrix}
-\end{align*}
-
-
-where $l$ and $m$ are $\cos\theta$ and $\sin\theta$, respectively. Therefore the global element stiffness matrix takes the form of:
-
 \begin{equation}
 \vec{k}_{global}
 =
@@ -184,11 +157,67 @@ where $l$ and $m$ are $\cos\theta$ and $\sin\theta$, respectively. Therefore the
 	\end{bmatrix}
 \end{equation}
 
-Notice that the $\vec{k}_{global}$ matrix is  symetric about the main diagonal. 
+where $l$ and $m$ are $\cos\theta$ and $\sin\theta$, respectively.
+Notice that the $\vec{k}_{global}$ matrix is  symetric about the main diagonal.
+
+
 
 \subsection{Global Structural Stiffness}
 
 Deriving the global structural stiffness matrix for a truss is a matter of combining the global element stiffness matricies.
 
+Each node has the ability to translate in the $x$ direction and translate in the $y$ direction. Each of these nodes is said to have $2$ degrees of freedom. In order to assemble the global structural stiffness matrix, each degree of freedom must be numbered at each node. The degree of freedom number is a function of the node number. Table \ref{Tab:TrussDoFCount} builds the relationship between the nodal number and the associated DoF number for the $x$ and $y$ direction.
+
+\begin{table}[h]
+\centering
+\caption{Degree of Freedom Counting}
+\label{Tab:TrussDoFCount}
+\begin{tabular}{|c|c|c|}
+\hline
+Node Number & $x$ & $y$ \\ \hline
+0 & 0 & 1 \\ \hline
+1 & 2 & 3 \\ \hline
+2 & 4 & 5 \\ \hline
+$i$ & $2i$ & $2i+1$ \\ \hline
+\end{tabular}
+\end{table}
+
+
+\paragraph{Assembly.} Now that the DoF counting has been determined, the rows and columns of the global element stiffness matrix are labeled with the associated start node and end node DoF numbers. This is shown in the following equation:
+
+\begin{align}
+\vec{k}_{global}=
+\begin{blockarray}{ccccc}
+2i & 2i+1 & 2j & 2j+1 & \\
+\begin{block}{[cccc]l}
+  \bullet & \bullet & \bullet & \bullet & 2i\\
+  \bullet & \bullet & \bullet & \bullet & 2i+1\\
+  \bullet & \bullet & \bullet & \bullet & 2j\\
+  \bullet & \bullet & \bullet & \bullet & 2j+1\\
+\end{block}
+\end{blockarray}
+\end{align}
+
+where $i$ is the start node number, and $j$ is the end node number. Now, to build the structure stiffness matrix, the contributions of each element stiffness matrix are added to the matching elements of the global matrix. For instance, element $\vec{k}_{global (0,0)}$ will be added to element $(2i, 2i)$ in the global matrix.
+
+
+
 \subsection{Boundary Conditions}
+A node can be restrained in the global frame of reference either in the $x$ or $y$ direction. Table \ref{Tab:TrussSupports} shows the possible truss supports. The number $1$ indicates the support is free to translate in direction, and a $0$ indicates the support is restrained in that direction.
+
+\begin{table}[h]
+\centering
+\caption{Truss Support Types}
+\label{Tab:TrussSupports}
+\begin{tabular}{|l|c|c|}
+\hline
+Support & $x$ & $y$\\ \hline
+Pin & 1 & 1\\ \hline
+Free & 0 & 0\\ \hline
+Horizontal Roller & 0& 1 \\ \hline
+Vertical Roller & 1 & 0 \\ \hline
+\end{tabular}
+\end{table}
+
+Each node in the truss is assigned boundary conditions.
 
