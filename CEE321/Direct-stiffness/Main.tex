@@ -1,4 +1,4 @@
-\documentclass[landscape, twocolumn, 12pt]{article}
+\documentclass{../../KDHnotes}
 
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -10,13 +10,8 @@
 \usepackage{tikz}
 \usetikzlibrary{calc}
 \usetikzlibrary{math}
-\usepackage{cuted}
-
-
-\usepackage{../../TitlePage}
-\usepackage{../../mathshortcuts}
-\usepackage{../../stanli}
-\usepackage{../../tikz-uml}
+\usepackage{stanli}
+\usepackage{blkarray}
 
 \title{Structural Analysis with the Direct Stiffness Method}
 \subtitle{Modeling Structural Systems as Springs}
@@ -27,16 +22,21 @@
 \university{Arizona State University}
 \date{\today}
 
+\newcommand{\sig}{\sigma}
+\newcommand{\ep}{\varepsilon}
+\newcommand{\n}{\vec{n}}
+\newcommand{\x}{\vec{x}}
+
 %-----------------------------------------------------
 \begin{document}
 
 
 \maketitle
 
-\input{Sections/Truss_Stiffness}
-\input{Sections/Beam_Stiffness}
-\input{Sections/Frame_Stiffness}
-\input{Sections/OOP}
+\input{Sections/Truss_Stiffness} \newpage
+\input{Sections/OOP} \newpage
+\input{Sections/Beam_Stiffness} \newpage
+\input{Sections/Frame_Stiffness} \newpage
 
 %-----------------------------------------------------
 \newpage
