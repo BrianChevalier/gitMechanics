@@ -11,17 +11,10 @@ repository: gitMechanics
 collections:
   jupyterblog:
     output: true
-  octaveblog:
-    output: true
 
 defaults:
   - scope:
       path: ""
       type: "jupyterblog"
-    values:
-      layout: notebook
-  - scope:
-      path: ""
-      type: "octaveblog"
     values:
       layout: notebook

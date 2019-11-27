@@ -21,9 +21,8 @@ install:
 - conda config --set always_yes yes --set changeps1 no
 - conda info -a
 - conda install -q snakemake-minimal
-- xargs -a binder/apt.txt sudo apt-get install
 script:
-- snakemake --use-conda
+- snakemake -j --use-conda
 # remove pdf and .gz from .gitignore
 - sed -i '$d' .gitignore
 - sed -i '$d' .gitignore
