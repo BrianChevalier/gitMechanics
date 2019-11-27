@@ -10,11 +10,6 @@ output += ['CEE421/CEE421.tar.gz', 'MAE241/MAE241.tar.gz', 'CEE384/CEE384.tar.gz
 # for jupyterblog
 output += ['_jupyterblog/' + each.replace('.ipynb','.md') for each in os.listdir('_jupyterblog') if each.endswith('.ipynb')]
 
-# for octave blog
-# removed for now
-# causing headaches.
-output += ['_octaveblog/' + each.replace('.ipynb','.md') for each in os.listdir('_octaveblog') if each.endswith('.ipynb')]
-
 
 print(output)
 
@@ -82,16 +77,3 @@ rule pythonNotebookTomd:
         jupyter nbconvert --to markdown _jupyterblog/{wildcards.name}.ipynb
         """
 
-
-rule octaveNotebookTomd:
-    input:
-        '_octaveblog/{name}.ipynb'
-    output:
-        '_octaveblog/{name}.md'
-    conda:
-        "binder/octave.yml"
-    shell:
-        #jupyter nbconvert --ExecutePreprocessor.kernel_name=octave --to notebook --inplace --execute _octaveblog/{wildcards.name}.ipynb
-        """
-        jupyter nbconvert --to markdown _octaveblog/{wildcards.name}.ipynb
-        """
