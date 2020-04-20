@@ -50,32 +50,32 @@ for style in plt.style.available:
 	print(style)
 ```
 
-    seaborn-ticks
-    ggplot
-    dark_background
-    bmh
-    seaborn-poster
-    seaborn-notebook
-    fast
-    seaborn
-    classic
     Solarize_Light2
-    seaborn-dark
-    seaborn-pastel
-    seaborn-muted
-    _classic_test
-    seaborn-paper
-    seaborn-colorblind
-    seaborn-bright
-    seaborn-talk
-    seaborn-dark-palette
-    tableau-colorblind10
-    seaborn-darkgrid
-    seaborn-whitegrid
+    _classic_test_patch
+    bmh
+    classic
+    dark_background
+    fast
     fivethirtyeight
+    ggplot
     grayscale
-    seaborn-white
+    seaborn
+    seaborn-bright
+    seaborn-colorblind
+    seaborn-dark
+    seaborn-dark-palette
+    seaborn-darkgrid
     seaborn-deep
+    seaborn-muted
+    seaborn-notebook
+    seaborn-paper
+    seaborn-pastel
+    seaborn-poster
+    seaborn-talk
+    seaborn-ticks
+    seaborn-white
+    seaborn-whitegrid
+    tableau-colorblind10
 
 
 

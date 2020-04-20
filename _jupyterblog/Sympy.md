@@ -31,6 +31,15 @@ Next, let's define the quadratic equation as a `sympy` equation using the `Eq` f
 eq = sy.Eq(a*x**2 + b*x + c)
 ```
 
+    /home/travis/build/BrianChevalier/gitMechanics/.snakemake/conda/ee189a0b/lib/python3.6/site-packages/sympy/core/relational.py:470: SymPyDeprecationWarning: 
+    
+    Eq(expr) with rhs default to 0 has been deprecated since SymPy 1.5.
+    Use Eq(expr, 0) instead. See
+    https://github.com/sympy/sympy/issues/16587 for more info.
+    
+      deprecated_since_version="1.5"
+
+
 Let's make sure that our equation looks right by printing it:
 
 
